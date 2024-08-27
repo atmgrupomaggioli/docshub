@@ -1,0 +1,15 @@
+services:
+  docshub-watch:
+    container_name: docshub-watch
+    image: <in_coming>:candidate
+    ports:
+      - "4321:4321"
+    restart: unless-stopped
+    volumes:
+      - ./docs:/app/src/content/docs
+      - ./images:/app/public/images
+    environment:
+      DOCUMENTATION_TITLE: "Example Documentation title"
+      VERSION: "0.0.1"
+      REPOSITORY_TYPE: "github"
+      REPOSITORY_URL: "https://github.com/atmgrupomaggioli/docshub"
