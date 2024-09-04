@@ -1,0 +1,66 @@
+---
+import { cx } from "@/utils/cx";
+import { CalendarIcon, TagIcon } from "lucide-react";
+
+import { convertCategory } from "@/utils/convertCategory";
+
+import Badge from "@/components/ui/badge.astro";
+import CopyToClipboard from "@/components/copyToClipboard";
+
+interface Props {
+  title: string;
+  description: string;
+  category: string;
+  publishDate?: string;
+  url: string;
+}
+
+const { title, description, category, publishDate, url } = Astro.props;
+---
+
+<div class="ml-0 md:ml-72">
+  <article class="px-5 py-0 md:py-6 xl:py-8 w-full md:max-w-4xl">
+    <div class="pb-4">
+      <div class="flex flex-col space-y-3 mb-4">
+        <h1 class="text-3xl xl:text-4xl font-semibold">{title}</h1>
+        <p class="text-gray-300 text-pretty">{description}</p>
+      </div>
+      <div
+        class="flex items-center w-full justify-between tracking-tight mb-6 border-b border-gray-700/50 pb-3"
+      >
+        <div class="flex items-center space-x-2">
+          <Badge>
+            <TagIcon width={15} strokeWidth={1.5} />
+            <span>{convertCategory(category)}</span>
+          </Badge>
+          {
+            publishDate && (
+              <Badge>
+                <CalendarIcon width={15} strokeWidth={1.5} />
+                <span>{publishDate}</span>
+              </Badge>
+            )
+          }
+        </div>
+        <CopyToClipboard
+          client:only="react"
+          btnText="Share"
+          contentToCopy={url}
+        />
+      </div>
+      <section
+        class={cx(
+          "text-pretty",
+          "prose prose-invert max-w-full",
+          "hover:prose-a:opacity-75",
+          "md:prose-h1:text-4xl prose-h1:text-3xl prose-h1:font-semibold",
+          "prose-headings:tracking-tight prose-heading:font-medium",
+          "prose-a:decoration-gray-600 prose-a:decoration-dotted prose-a:underline-offset-[7px]",
+          "prose-inline-code:rounded prose-inline-code:font-normal prose-inline-code:font-mono prose-inline-code:p-[2px] prose-inline-code:border prose-inline-code:border-gray-800 prose-inline-code:bg-gray-800/50",
+        )}
+      >
+        <slot />
+      </section>
+    </div>
+  </article>
+</div>

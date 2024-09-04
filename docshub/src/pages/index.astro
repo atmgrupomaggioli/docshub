@@ -1,0 +1,22 @@
+---
+import LayoutMain from "@/layouts/layoutMain.astro";
+import Inicio from "@/pages/inicio.astro";
+import InicioDoc from "./inicio.mdx";
+import defaultDocshubConfig from "docshub.config";
+
+const url = new URL(Astro.request.url).href;
+---
+
+<LayoutMain
+  title={defaultDocshubConfig.documentationTitle}
+  description={defaultDocshubConfig.documentationTitle}
+>
+  <Inicio
+    title={defaultDocshubConfig.documentationTitle}
+    description={defaultDocshubConfig.author || ''}
+    category="Introduction"
+    docUrl={url}
+  >
+    <InicioDoc />
+  </Inicio>
+</LayoutMain>

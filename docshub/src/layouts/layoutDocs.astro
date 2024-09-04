@@ -1,0 +1,40 @@
+---
+import type { MarkdownHeading } from "astro";
+
+import PageContent from "@/components/page-content.astro";
+import Headings from "@/components/headings.astro";
+import Sidebar from "@/components/sidebar/sidebar.astro";
+import CopyToClipboard from "@/components/copyToClipboard.astro";
+
+import { ViewTransitions } from "astro:transitions";
+
+// Docs layout props:
+export interface Props {
+  title: string;
+  description: string;
+  category: string;
+  docUrl: string;
+  publishDate?: string;
+  headings?: MarkdownHeading[];
+}
+
+const { title, description, category, publishDate, docUrl, headings } =
+  Astro.props;
+---
+
+<ViewTransitions />
+
+<CopyToClipboard />
+<Sidebar />
+{headings && headings.length > 0 && 
+  <Headings headings={headings} />
+}
+<PageContent
+  title={title}
+  description={description}
+  category={category}
+  publishDate={publishDate}
+  url={docUrl}
+>
+  <slot />
+</PageContent>

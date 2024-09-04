@@ -1,0 +1,4 @@
+.DS_Store
+dist
+src/content/docs/*.mdx
+public/images/**

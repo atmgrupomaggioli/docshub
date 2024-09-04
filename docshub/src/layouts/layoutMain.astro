@@ -1,0 +1,53 @@
+---
+// Styles:
+import "@/styles/globals.css";
+
+// Layout:
+import NavbarTop from "@/components/navbar-top.astro";
+
+// Server:
+// import { getUserSession } from "@/server";
+
+// Main layout props:
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+// Get User Data:
+// let userData;
+// const { cookies } = Astro;
+// const accessToken = cookies.get("sb-access-token");
+// const refreshToken = cookies.get("sb-refresh-token");
+
+// if (accessToken && refreshToken) {
+//   userData = await getUserSession({
+//     accessToken: accessToken?.value,
+//     refreshToken: refreshToken?.value,
+//   });
+// }
+
+const { ...data } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" style="color-scheme: dark;" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={data.description} />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/logo/docshub_transparent.png"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <title>{data.title} - DocsHub</title>
+  </head>
+  <body class="bg-gray-900 text-white antialiased font-sans">
+    <NavbarTop title="DocsHub" />
+    <main class="my-3 md:my-0">
+      <slot />
+    </main>
+  </body>
+</html>

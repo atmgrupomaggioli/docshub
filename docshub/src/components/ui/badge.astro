@@ -1,0 +1,22 @@
+---
+import { cx } from "@/utils/cx";
+
+interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
+---
+
+<div
+  class={cx(
+    "flex items-center space-x-2",
+    "text-pretty text-sm font-medium",
+    "px-1.5 py-1",
+    "bg-gray-700/40",
+    "border border-gray-700 rounded-md",
+    className,
+  )}
+>
+  <slot />
+</div>

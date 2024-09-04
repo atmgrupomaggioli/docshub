@@ -1,0 +1,91 @@
+---
+import type { MarkdownHeading } from "astro";
+
+import { CalendarIcon, TagIcon, FlameIcon } from "lucide-react";
+
+import PageContent from "@/components/page-content.astro";
+import Headings from "@/components/headings.astro";
+import Sidebar from "@/components/sidebar/sidebar.astro";
+
+import { getCollection } from "astro:content";
+import { ViewTransitions } from "astro:transitions";
+
+import InicioDoc from "@/pages/inicio.mdx";
+import Badge from "@/components/ui/badge.astro";
+
+import { convertCategory } from "@/utils/convertCategory";
+
+// Docs layout props:
+export interface Props {
+  title: string;
+  description: string;
+  category: string;
+  docUrl: string;
+  publishDate?: string;
+  headings?: MarkdownHeading[];
+}
+const allDocs = await getCollection("docs");
+const latestPost = allDocs.sort((a, b) => {
+  const dateA = new Date(b.data.publishDate).valueOf();
+  const dateB = new Date(a.data.publishDate).valueOf();
+  return dateA - dateB;
+});
+const { title, description, category, publishDate, docUrl, headings } =
+  Astro.props;
+---
+
+<ViewTransitions />
+
+<Sidebar />
+
+{headings && headings.length > 0 && <Headings headings={headings} />}
+<div class="flex flex-col xl:flex-row ml-0 justify-between">
+  <PageContent
+        title={title}
+        description={description}
+        category={category}
+        publishDate={publishDate}
+        url={docUrl}
+      >
+        <slot />
+  </PageContent>
+
+  <nav class="p-4 min-w-60 ml-0 md:ml-72 xl:ml-0">
+    <div class="flex items-center gap-2 my-3">
+      <FlameIcon />
+      <h3 class="text-xl font-semibold">Last entries</h3>
+    </div>
+    
+    <div class="grid grid-cols-1 space-y-3">
+      
+      {
+        latestPost.slice(0, 6).map((post) => (
+          <a
+            href={post.slug}
+            class="flex flex-col gap-2 p-3 border border-gray-800 hover:bg-gray-700/30 transition-colors duration-100 rounded-md no-underline"
+          >
+            <span>
+              {post.data.title}
+            </span>
+            
+            <div class="flex gap-2 w-fit">
+              <Badge>
+                <TagIcon width={15} strokeWidth={1.5} />
+                  <span>{convertCategory(post.data.category)}</span>
+              </Badge>
+              {
+                post.data.publishDate && (
+                  <Badge>
+                    <CalendarIcon width={15} strokeWidth={1.5} />
+                    <span>{post.data.publishDate}</span>
+                  </Badge>
+                )
+              }
+            </div>
+            
+          </a>
+        ))
+      }
+    </div>
+  </nav>
+</div>

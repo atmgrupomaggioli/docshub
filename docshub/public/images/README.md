@@ -1,0 +1,1 @@
+## Localización de las imágenes de la documentación

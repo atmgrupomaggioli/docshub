@@ -1,0 +1,41 @@
+---
+export const prerender = true;
+
+import { type CollectionEntry, getCollection } from "astro:content";
+
+import LayoutMain from "@/layouts/layoutMain.astro";
+import LayoutDocs from "@/layouts/layoutDocs.astro";
+
+// 📄 Get Document:
+// ----------------
+
+const post = Astro.props;
+
+export async function getStaticPaths() {
+  const docs = await getCollection("docs");
+  return docs.map((entry) => ({
+    params: {
+      slug: entry.slug,
+    },
+    props: entry,
+  }));
+}
+type Props = CollectionEntry<"docs">;
+
+const url = new URL(Astro.request.url).href;
+
+const { Content, headings } = await post.render();
+---
+
+<LayoutMain title={post.data.title} description={post.data.description}>
+  <LayoutDocs
+    title={post.data.title}
+    description={post.data.description}
+    category={post.data.category}
+    publishDate={post.data.publishDate}
+    headings={headings}
+    docUrl={url}
+  >
+    <Content />
+  </LayoutDocs>
+</LayoutMain>

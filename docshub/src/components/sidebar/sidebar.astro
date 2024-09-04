@@ -1,0 +1,23 @@
+---
+import { getCollection } from "astro:content";
+import { cx } from "@/utils/cx";
+
+import SidebarContent from "./sidebar-content";
+
+const allDocs = await getCollection("docs");
+const pathname = new URL(Astro.request.url).pathname;
+---
+
+<aside
+  class={cx(
+    "transition-transform -translate-x-full z-40",
+    "hidden sm:translate-x-0",
+    "md:fixed md:left-0 md:w-64 md:h-full md:block",
+  )}
+>
+  <div
+    class="h-full px-2 py-2 overflow-y-auto bg-gray-900 border-r border-gray-800"
+  >
+    <SidebarContent client:only="react" docs={allDocs} pathname={pathname} />
+  </div>
+</aside>
