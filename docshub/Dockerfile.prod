@@ -1,19 +1,16 @@
-# Etapa 1: Construcción de la aplicación
 FROM node:20-alpine AS build
 
 WORKDIR /app
 
-# Copia el package.json y package-lock.json al contenedor
 COPY package*.json ./
 
-# Instalamos las dependencias
 RUN npm i
 
-# Copia el resto de los archivos de la aplicación
 COPY . .
 
-# Construye la aplicación
 RUN npm run build
+
+COPY . .
 
 FROM nginx:alpine AS runtime
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
