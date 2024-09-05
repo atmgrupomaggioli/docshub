@@ -7,10 +7,10 @@
     "npm": ">=9.0.0"
   },
   "scripts": {
-    "postinstall": "cd cli && npm i",
     "dev": "astro dev",
     "dev:watch": "astro dev --watch",
-    "build": "npm run build:cli && npm run build:astro",
+    "install:cli": "cd cli && npm i",
+    "build": "npm run build:astro",
     "build:astro": "npm run check && astro build",
     "build:cli": "cd cli && npm run build",
     "check": "astro check",

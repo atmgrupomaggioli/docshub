@@ -35,7 +35,7 @@ const dockerDeploy = {
 
 // https://astro.build/config
 export default defineConfig({
-  //...dockerDeploy,
+  // ...dockerDeploy,
   adapter: vercel(),
   output: "server",
   site: "https://docshub.vercel.app",

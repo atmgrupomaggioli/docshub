@@ -8,7 +8,7 @@ Start and build the DocsHub app with the following compose.
 # docker-compose.yml
 services:
   docshub-watch:
-    container_name: docshub-watch
+    container_name: docshub
     image: <in_coming>:candidate
     ports:
       - "4321:4321"
@@ -35,7 +35,7 @@ You can start the DocsHub Docker environment using the following docker run comm
 
 ```bash
 docker run -d \
-  --name docshub-watch \
+  --name docshub \
   -p 4321:4321 \
   --restart unless-stopped \
   -v ./docs:/app/src/content/docs \
