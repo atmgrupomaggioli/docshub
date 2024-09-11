@@ -29,8 +29,8 @@ const dockerDeploy = {
 
 // https://astro.build/config
 export default defineConfig({
-  ...dockerDeploy, 
-  // ...vercelDeploy,
+  // ...dockerDeploy, 
+  ...vercelDeploy,
   integrations: [
     react(),
     tailwind({
