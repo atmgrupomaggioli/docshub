@@ -7,9 +7,30 @@ Start and build the DocsHub app with the following compose.
 ```yml
 # docker-compose.yml
 services:
-  docshub-watch:
+  docshub:
     container_name: docshub
-    image: <in_coming>:candidate
+    image: atmgrupomaggioli/docshub:latest
+    ports:
+      - "4321:4321"
+    restart: unless-stopped
+    volumes:
+      - ./docs:/app/src/content/docs
+      - ./images:/app/public/images
+    environment:
+      DOCUMENTATION_TITLE: "Example Documentation title"
+      VERSION: "0.0.1"
+      REPOSITORY_TYPE: "github"
+      REPOSITORY_URL: "https://github.com/atmgrupomaggioli/docshub"
+```
+
+If you want to start DocsHub in a cross-platform scenario use the following `multiplatform` image.
+
+```yml
+# docker-compose.yml
+services:
+  docshub-multiplatform:
+    container_name: docshub-multiplatform
+    image: atmgrupomaggioli/docshub:multiplatform
     ports:
       - "4321:4321"
     restart: unless-stopped
@@ -44,5 +65,5 @@ docker run -d \
   -e VERSION="0.0.1" \
   -e REPOSITORY_TYPE="github" \
   -e REPOSITORY_URL="https://github.com/atmgrupomaggioli/docshub" \
-  <in_coming>:candidate
+  atmgrupomaggioli/docshub:latest
 ```
