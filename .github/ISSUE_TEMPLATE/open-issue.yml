@@ -4,6 +4,7 @@ title: "🔔 New Issue"
 labels: ["new", "request"]
 body:
   - type: textarea
+    id: issue-description
     attributes:
       label: Description
       description: Describe the issue here
@@ -11,6 +12,7 @@ body:
     validations:
       required: true
   - type: dropdown
+    id: docshub-version
     attributes:
       label: Docshub Version
       description: Enter the version of Docshub you are using.
@@ -19,6 +21,7 @@ body:
     validations:
       required: true
   - type: dropdown
+    id: os-version
     attributes:
       label: Operating System
       description: Enter the operating system you are using.
@@ -29,6 +32,7 @@ body:
     validations:
       required: true
   - type: dropdown
+    id: browser
     attributes:
       label: Browser
       description: Enter the browser you are using.
@@ -40,6 +44,7 @@ body:
     validations:
       required: true
   - type: dropdown
+    id: node-version
     attributes:
       label: Node Version
       description: Enter the node version you are using.
@@ -50,6 +55,7 @@ body:
     validations:
       required: true
   - type: dropdown
+    id: deploy-platform
     attributes:
       label: Deployed on
       description: Enter the platform you are using.
