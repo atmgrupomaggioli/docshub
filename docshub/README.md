@@ -13,25 +13,25 @@ Welcome to the source code section of [DocsHub](https://github.com/atmgrupomaggi
 **Prerequisites**:
 
 - [Node.js +20 installed](https://nodejs.org/en/download/)
-- [Astro VSCode Extension](https://marketplace.visualstudio.com/items?itemName=astro-build.astro-vscode)
-- [Tailwind CSS Intellisense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
+- [Astro VSCode Extension (optional)](https://marketplace.visualstudio.com/items?itemName=astro-build.astro-vscode)
+- [Tailwind CSS Intellisense (optional)](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/atmgrupomaggioli/docshub.git
+$ git clone https://github.com/atmgrupomaggioli/docshub.git
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-cd docshub
+$ cd docshub
 ```
 
 3. Install the dependencies:
 
 ```bash
-npm i
+$ npm i
 ```
 
 ## ⚙️ Commands
@@ -41,7 +41,7 @@ npm i
 This assistant will help us create a new documentation file with the corresponding metadata.
 
 ```bash
-npm run new:doc
+$ npm run new:doc
 ```
 
 ### 🔎 Document preview
@@ -49,7 +49,7 @@ npm run new:doc
 To edit and preview the document, run the application in development mode.
 
 ```bash
-npm run dev
+$ npm run dev
 ```
 
 and open [http://localhost:4321](http://localhost:3000) in your browser.
