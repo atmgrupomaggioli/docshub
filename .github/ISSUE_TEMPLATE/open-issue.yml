@@ -1,0 +1,68 @@
+name: ⚙️ New Issue
+description: Create a new issue for a bug or feature.
+title: "🔔 New Issue"
+labels: ["new", "request"]
+body:
+  - type: textarea
+    id: issue-description
+    attributes:
+      label: Description
+      description: Describe the issue here
+      placeholder: Describe the issue.
+    validations:
+      required: true
+  - type: dropdown
+    id: docshub-version
+    attributes:
+      label: Docshub Version
+      description: Enter the version of Docshub you are using.
+      options:
+        - 0.0.1
+    validations:
+      required: true
+  - type: dropdown
+    id: os-version
+    attributes:
+      label: Operating System
+      description: Enter the operating system you are using.
+      options:
+        - Windows
+        - MacOS
+        - Linux
+    validations:
+      required: true
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      description: Enter the browser you are using.
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
+    validations:
+      required: true
+  - type: dropdown
+    id: node-version
+    attributes:
+      label: Node Version
+      description: Enter the node version you are using.
+      options:
+        - "18"
+        - "19"
+        - "20"
+    validations:
+      required: true
+  - type: dropdown
+    id: deploy-platform
+    attributes:
+      label: Deployed on
+      description: Enter the platform you are using.
+      options:
+        - Vercel
+        - Netlify
+        - GitHub Pages
+        - Other
+    validations:
+      required: true
