@@ -34,6 +34,9 @@
 
 </div>
 
+> [!WARNING]
+> DocsHub is still in development. You cannot clone the repository yet. Please wait for the first release. Alternatively, you can try it with [Docker](https://github.com/atmgrupomaggioli/docshub/tree/main/docker).
+
 ## 🧑‍🚀 Introduction
 
 DocsHub is a **self-hosted** application designed to make documentation effortless. Just focus on writing in Markdown, and let DocsHub handle the rest.
