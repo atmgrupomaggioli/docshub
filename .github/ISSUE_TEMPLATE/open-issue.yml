@@ -16,6 +16,8 @@ body:
       description: Enter the version of Docshub you are using.
       options:
         - 0.0.1
+    validations:
+      required: true
   - type: dropdown
     attributes:
       label: Operating System
@@ -24,6 +26,8 @@ body:
         - Windows
         - MacOS
         - Linux
+    validations:
+      required: true
   - type: dropdown
     attributes:
       label: Browser
@@ -33,6 +37,8 @@ body:
         - Firefox
         - Safari
         - Edge
+    validations:
+      required: true
   - type: dropdown
     attributes:
       label: Node Version
@@ -41,6 +47,8 @@ body:
         - "18"
         - "19"
         - "20"
+    validations:
+      required: true
   - type: dropdown
     attributes:
       label: Deployed on
@@ -50,3 +58,5 @@ body:
         - Netlify
         - GitHub Pages
         - Other
+    validations:
+      required: true
