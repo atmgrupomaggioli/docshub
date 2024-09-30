@@ -24,17 +24,20 @@ const { title, description, category, publishDate, docUrl, headings } =
 
 <ViewTransitions />
 
-<CopyToClipboard />
-<Sidebar />
-{headings && headings.length > 0 && 
-  <Headings headings={headings} />
-}
-<PageContent
-  title={title}
-  description={description}
-  category={category}
-  publishDate={publishDate}
-  url={docUrl}
->
-  <slot />
-</PageContent>
+<div class="flex justify-center h-[calc(100vh-65px)]">
+  <CopyToClipboard />
+  <Sidebar />
+ 
+  <PageContent
+    title={title}
+    description={description}
+    category={category}
+    publishDate={publishDate}
+    url={docUrl}
+  >
+    <slot />
+  </PageContent>
+  {headings && headings.length > 0 && 
+    <Headings headings={headings} />
+  }
+</div>
