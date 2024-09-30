@@ -14,8 +14,8 @@ interface SidebarCollapseProps {
 const SidebarCollapse = (props: SidebarCollapseProps) => {
   return (
     <Sheet>
-      <SheetTrigger className="fixed right-3 rounded-md p-2 transition-colors hover:bg-gray-800 xl:hidden">
-        Icono Toc
+      <SheetTrigger className="fixed right-3 rounded-md p-2 transition-colors hover:bg-gray-800 md:hidden">
+        Aquí icono
       </SheetTrigger>
       <SheetContent className="flex flex-col p-6 py-[12px] text-sm">
         <SheetHeader className="mb-3 flex w-full items-center justify-between border-b border-gray-800 py-2">

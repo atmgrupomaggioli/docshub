@@ -1,6 +1,7 @@
 ---
 import type { MarkdownHeading } from "astro";
 import { cx } from "@/utils/cx";
+import TocIcon from "./ui/toc-icon.astro";
 // import { CornerDownLeftIcon, CornerDownRightIcon } from "lucide-react";
 
 interface Props {
@@ -25,22 +26,7 @@ const sharedHeadingClass = cx(
   )}
 >
   <div class="flex items-center space-x-2 mb-1 opacity-70">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="lucide lucide-notepad-text"
-      ><path d="M8 2v4"></path><path d="M12 2v4"></path><path d="M16 2v4"
-      ></path><rect width="16" height="18" x="4" y="4" rx="2"></rect><path
-        d="M8 10h6"></path><path d="M8 14h8"></path><path d="M8 18h5"
-      ></path></svg
-    >
+    <TocIcon />
     <p>On this page:</p>
   </div>
   <div class="flex flex-col xl:max-w-60">

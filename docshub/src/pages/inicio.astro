@@ -39,26 +39,25 @@ const { title, description, category, publishDate, docUrl, headings } =
 
 
 <!-- {headings && headings.length > 0 && <Headings headings={headings} />} -->
-<div class="flex flex-col xl:flex-row ml-0 justify-center">
+<div class="flex flex-col xl:flex-row ml-0 xl:justify-center">
   <Sidebar />
 
-  <PageContent
-        title={title}
-        description={description}
-        category={category}
-        publishDate={publishDate}
-        url={docUrl}
-      >
-        <slot />
-  </PageContent>
-
-  <nav class="p-4 min-w-60 ml-0 md:ml-72 xl:ml-0">
-    <div class="flex items-center gap-2 my-3">
+    <PageContent
+    title={title}
+    description={description}
+    category={category}
+    publishDate={publishDate}
+    url={docUrl}
+  >
+    <slot />
+</PageContent>
+  <nav class="min-w-60 ml-5 mt-3">
+    <div class="flex items-center gap-2 mb-3">
       <FlameIcon />
       <h3 class="text-xl font-semibold">Last entries</h3>
     </div>
     
-    <div class="flex flex-warp md:flex-col gap-2">
+    <div class="flex flex-row flex-wrap xl:flex-col gap-2">
       
       {
         latestPost.slice(0, 6).map((post) => (
