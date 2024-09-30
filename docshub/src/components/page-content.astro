@@ -7,16 +7,34 @@ import { convertCategory } from "@/utils/convertCategory";
 import Badge from "@/components/ui/badge.astro";
 import CopyToClipboard from "@/components/copyToClipboard";
 
+import SidebarTocCollapse from "@/components/sidebar-toc/sidebar-toc-collapse";
+import SidebarTocContent from "@/components/sidebar-toc/sidebar-toc-content";
+import type { MarkdownHeading } from "astro";
+
 interface Props {
   title: string;
   description: string;
   category: string;
   publishDate?: string;
   url: string;
+  headings?: MarkdownHeading[];
 }
 
-const { title, description, category, publishDate, url } = Astro.props;
+const { title, description, category, publishDate, url, headings } = Astro.props;
 ---
+
+{
+  (headings && headings.length > 0) && (
+    <SidebarTocCollapse client:only="react">
+      <SidebarTocContent
+        client:only="react"
+        headings={headings}
+        pathname={''}
+        className="p-0"
+      />
+    </SidebarCollapse>
+  )
+}
 
 <article class="py-0 w-full md:max-w-4xl">
   <div class="pb-4 border-x border-gray-800">
