@@ -11,12 +11,13 @@ const pathname = new URL(Astro.request.url).pathname;
 <aside
   class={cx(
     "hidden xl:translate-x-0",
-    "xl:flex max-w-[267px]",
+    "xl:flex w-[375px]",
   )}
 >
   <div
-    class="h-full px-2 py-2 overflow-y-auto bg-gray-900"
+    class="max-h-[calc(100vh-4rem)] xl:sticky top-16 px-2 py-2 overflow-y-auto bg-gray-900" 
   >
     <SidebarContent client:only="react" docs={allDocs} pathname={pathname} />
   </div>
 </aside>
+

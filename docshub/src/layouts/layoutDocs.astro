@@ -24,7 +24,7 @@ const { title, description, category, publishDate, docUrl, headings } =
 
 <ViewTransitions />
 
-<div class="flex justify-center h-[calc(100vh-65px)]">
+<div class="flex">
   <CopyToClipboard />
   <Sidebar />
  
@@ -38,6 +38,7 @@ const { title, description, category, publishDate, docUrl, headings } =
   >
     <slot />
   </PageContent>
+  
   {headings && headings.length > 0 && 
     <Headings headings={headings} />
   }
