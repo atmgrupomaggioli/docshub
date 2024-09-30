@@ -35,22 +35,22 @@ const { title } = Astro.props;
           className="p-0"
         />
       </SidebarCollapse>
-      <a href="/" class="flex items-center gap-2">
-        <img
-          class="h-6 w-6"
-          src="/logo/docshub_transparent.png"
-          alt="Docshub Logo"
-        />
+      <img
+        class="h-6 w-6"
+        src="/logo/docshub_transparent.png"
+        alt="Docshub Logo"
+      />
+      <a href="/" class="flex flex-col md:flex-row md:gap-2">
         <span
-          class="self-center text-xl font-semibold whitespace-nowrap text-white"
+          class="md:text-xl text-base font-semibold whitespace-nowrap text-white"
           >{title}
         </span>
         <span
-          class="hidden md:block pl-2 border-l border-gray-300 h-full self-center text-lg text-gray-300 whitespace-nowrap text-pretty"
+          class="block md:pl-2 md:border-l border-gray-800 h-full self-center text-sm md:text-lg text-gray-300 whitespace-nowrap text-pretty"
         >
           {config.documentationTitle}
         </span>
-        <div class="flex items-center">
+        <div class="hidden md:flex items-center">
           <MiniBadge>
             <span class="tracking-tight">v{config.version}</span>
           </MiniBadge>

@@ -1,7 +1,7 @@
 ---
 import type { MarkdownHeading } from "astro";
 import { cx } from "@/utils/cx";
-import { CornerDownLeftIcon, CornerDownRightIcon } from "lucide-react";
+// import { CornerDownLeftIcon, CornerDownRightIcon } from "lucide-react";
 
 interface Props {
   headings: MarkdownHeading[];
@@ -17,10 +17,11 @@ const sharedHeadingClass = cx(
 <div
   class={cx(
     "flex flex-col space-y-2 xl:rounded-md",
-    "max-h-[250px] xl:max-h-[calc(100vh-7rem)] overflow-auto overflow-y-auto",
-    "border-b xl:border border-gray-800 bg-gray-900",
-    "mb-5 md:my-0 text-sm mx-3 p-4",
-    "xl:fixed xl:my-0 xl:mx-0 xl:right-6 xl:top-[86px] md:ml-72",
+    // "max-h-[250px] xl:max-h-[calc(100vh-7rem)] overflow-auto overflow-y-auto",
+    // "border-l border-gray-800 bg-gray-900",
+    "mb-5 md:my-0 text-sm p-4",
+    "h-[calc(100vh-65px)] overflow-y-auto"
+    // "xl:fixed xl:my-0 xl:mx-0 xl:right-6 xl:top-[86px] md:ml-72",
   )}
 >
   <div class="flex items-center space-x-2 mb-1 opacity-70">
@@ -61,7 +62,7 @@ const sharedHeadingClass = cx(
               href={`#${heading.slug}`}
               class={cx(
                 sharedHeadingClass,
-                "ml-2 border-l border-gray-700 pl-4",
+                "pl-4",
               )}
             >
               <span title={heading.text}>{heading.text}</span>
@@ -73,7 +74,7 @@ const sharedHeadingClass = cx(
               href={`#${heading.slug}`}
               class={cx(
                 sharedHeadingClass,
-                "ml-2 border-l border-gray-700 pl-7",
+                "pl-7",
               )}
             >
               <span title={heading.text}>{heading.text}</span>
