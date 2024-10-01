@@ -3,12 +3,9 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
   SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "../ui/sheet";
-import { Image } from "astro:assets";
 import MenuIcon from "../icons/menu";
 
 interface SidebarCollapseProps {
@@ -21,11 +18,17 @@ const SidebarCollapse = (props: SidebarCollapseProps) => {
       <SheetTrigger className="block rounded-md p-2 transition-colors hover:bg-gray-800 xl:hidden">
         <MenuIcon className="h-6" />
       </SheetTrigger>
-      <SheetContent className="flex flex-col p-6 py-[12px] text-sm">
-        <SheetHeader className="mb-3 flex w-full items-center justify-between border-b border-gray-800 py-2">
-          <span>Docshub</span>
+      <SheetContent className="flex flex-col p-6 py-[12px] text-sm" side={'left'}>
+        <SheetHeader className="mb-3 flex w-full justify-between border-b border-gray-800 py-2">
+          <div className="flex items-center gap-2">
+            <img
+              className="h-6 w-6"
+              src="/logo/docshub_transparent.png"
+              alt="Docshub Logo"
+            />
+            <span className="font-bold text-xl">Docshub</span>
+          </div>
           <SheetClose className="hover:opacity-90">
-            aqui icono
           </SheetClose>
         </SheetHeader>
         <nav className="flex flex-col gap-1">{props.children}</nav>
