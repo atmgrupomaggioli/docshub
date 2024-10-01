@@ -1,7 +1,6 @@
 ---
 import type { MarkdownHeading } from "astro";
 import { cx } from "@/utils/cx";
-import TocIcon from "./ui/toc-icon.astro";
 
 interface Props {
   headings: MarkdownHeading[];
@@ -18,21 +17,20 @@ const sharedHeadingClass = cx(
   class={cx(
     "hidden xl:block xl:sticky xl:top-16 space-y-2 xl:rounded-md",
     "mb-5 md:my-0 text-sm p-4",
-    "h-[calc(100vh-65px)] overflow-y-auto"
+    "h-[calc(100vh-65px)] overflow-y-auto xl:flex xl:flex-col w-[375px]"
   )}
 >
-  <div class="flex items-center space-x-2 mb-1 opacity-70">
-    <TocIcon />
-    <p>On this page:</p>
+  <div class="flex opacity-70 text-lg font-bold">
+    <span>On this page</span>
   </div>
-  <div class="flex flex-col xl:max-w-60">
+  <div class="flex flex-col">
     {
       headings.map((heading) => {
         if (heading.depth == 2) {
           return (
             <a
               href={`#${heading.slug}`}
-              class={cx(sharedHeadingClass)}
+              class={cx(sharedHeadingClass, "font-semibold")}
               title={heading.text}
             >
               {heading.text}
@@ -44,7 +42,7 @@ const sharedHeadingClass = cx(
               href={`#${heading.slug}`}
               class={cx(
                 sharedHeadingClass,
-                "pl-4",
+                "pl-4" , "font-semibold"
               )}
             >
               <span title={heading.text}>{heading.text}</span>
