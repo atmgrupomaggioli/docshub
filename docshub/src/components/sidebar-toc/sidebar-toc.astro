@@ -1,0 +1,17 @@
+---
+import SidebarTocContent from "./sidebar-toc-content";
+
+const pathname = new URL(Astro.request.url).pathname;
+
+const { headings } = Astro.props;
+---
+
+<aside
+  class="xl:flex max-w-[267px]"
+>
+  <div
+    class="h-full px-2 py-2 overflow-y-auto bg-gray-900"
+  >
+    <SidebarTocContent client:only="react" headings={headings} pathname={pathname} />
+  </div>
+</aside>

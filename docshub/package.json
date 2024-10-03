@@ -1,7 +1,7 @@
 {
   "name": "@atmgrupomaggioli/docshub",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "engines": {
     "node": ">=18",
     "npm": ">=9.0.0"
@@ -30,11 +30,10 @@
     "@radix-ui/react-dialog": "1.1.1",
     "@radix-ui/react-dropdown-menu": "2.1.1",
     "@radix-ui/react-slot": "1.1.0",
-    "@supabase/supabase-js": "2.44.2",
     "astro": "4.12.2",
     "class-variance-authority": "0.7.0",
     "clsx": "2.1.1",
-    "lucide-react": "0.400.0",
+    "lucide-react": "0.446.0",
     "micromatch": "4.0.7",
     "react": "18.3.1",
     "react-dom": "18.3.1",

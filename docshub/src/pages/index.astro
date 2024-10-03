@@ -3,6 +3,8 @@ import LayoutMain from "@/layouts/layoutMain.astro";
 import Inicio from "@/pages/inicio.astro";
 import InicioDoc from "./inicio.mdx";
 import defaultDocshubConfig from "docshub.config";
+import { ContainerPage } from "@/components/ui/container-page";
+import { cx } from "@/utils/cx";
 
 const url = new URL(Astro.request.url).href;
 ---
@@ -11,12 +13,14 @@ const url = new URL(Astro.request.url).href;
   title={defaultDocshubConfig.documentationTitle}
   description={defaultDocshubConfig.documentationTitle}
 >
-  <Inicio
-    title={defaultDocshubConfig.documentationTitle}
-    description={defaultDocshubConfig.author || ''}
-    category="Introduction"
-    docUrl={url}
-  >
-    <InicioDoc />
-  </Inicio>
+  <article class={cx(ContainerPage, "h-full")}>
+    <Inicio
+      title={defaultDocshubConfig.documentationTitle}
+      description={defaultDocshubConfig.author || ''}
+      category="Introduction"
+      docUrl={url}
+    >
+      <InicioDoc />
+    </Inicio>
+  </article>
 </LayoutMain>
