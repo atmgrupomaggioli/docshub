@@ -5,27 +5,11 @@ import "@/styles/globals.css";
 // Layout:
 import NavbarTop from "@/components/navbar-top.astro";
 
-// Server:
-// import { getUserSession } from "@/server";
-
 // Main layout props:
 export interface Props {
   title: string;
   description?: string;
 }
-
-// Get User Data:
-// let userData;
-// const { cookies } = Astro;
-// const accessToken = cookies.get("sb-access-token");
-// const refreshToken = cookies.get("sb-refresh-token");
-
-// if (accessToken && refreshToken) {
-//   userData = await getUserSession({
-//     accessToken: accessToken?.value,
-//     refreshToken: refreshToken?.value,
-//   });
-// }
 
 const { ...data } = Astro.props;
 ---

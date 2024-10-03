@@ -1,5 +1,4 @@
 import type { MarkdownHeading } from "astro";
-import Headings from "../headings.astro";
 
 interface SidebarContentProps {
   headings: MarkdownHeading[];
