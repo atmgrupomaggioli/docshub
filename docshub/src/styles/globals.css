@@ -18,3 +18,8 @@
   font-display: swap;
   src: url("/fonts/GeistMonoVF.woff2") format("woff2");
 }
+
+/* 🏋️‍♀️ Scroll for heading with sticky header */
+h2, h3, h4 { 
+  scroll-margin-top: 65px; 
+}
