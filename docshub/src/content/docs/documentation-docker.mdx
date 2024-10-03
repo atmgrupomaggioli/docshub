@@ -13,9 +13,9 @@ Start and build the DocsHub app with the following compose.
 ```yml
 # docker-compose.yml
 services:
-  docshub-watch:
-    container_name: docshub-watch
-    image: <in_coming>:candidate
+  docshub:
+    container_name: docshub
+    image: atmgrupomaggioli/docshub:latest
     ports:
       - "4321:4321"
     restart: unless-stopped
@@ -33,6 +33,8 @@ services:
 docker compose up -d --build
 ```
 
+<Alert type={"Info"} message={"Additionally, you have a multi-platform image for linux/amd64 and linux/arm64 with the tag multiplatform"}/>
+
 ## Docker run
 
 Alternatively, if you don't have Docker Compose
@@ -41,7 +43,7 @@ You can start the DocsHub Docker environment using the following docker run comm
 
 ```bash
 docker run -d \
-  --name docshub-watch \
+  --name docshub \
   -p 4321:4321 \
   --restart unless-stopped \
   -v ./docs:/app/src/content/docs \
@@ -50,5 +52,5 @@ docker run -d \
   -e VERSION="0.0.1" \
   -e REPOSITORY_TYPE="github" \
   -e REPOSITORY_URL="https://github.com/atmgrupomaggioli/docshub" \
-  <in_coming>:candidate
+  atmgrupomaggioli/docshub:latest
 ```

@@ -1,0 +1,89 @@
+---
+title: "Syntax Referente Example Page"
+sidebarTitle: "Syntax References"
+description: "How to start the Astro application"
+category: "References"
+publishDate: "2024-09-04"
+---
+
+Below you will find examples of all the formats you can use in your Markdown documentation
+
+## Example Endpoint Docs
+
+<Endpoint 
+    method={"GET"}
+    title={"Example endpoint title"}
+    description={"Example endpoint description"}
+    path={"https://example.com/end/point/resource"}
+    label={"STABLE"}
+/>
+
+```tsx
+<Endpoint 
+    method={"GET"}
+    title={"Example endpoint title"}
+    description={"Example endpoint description"}
+    path={"https://example.com/end/point/resource"}
+    label={"STABLE"}
+/>
+```
+
+## Example Alert Docs
+
+<Alert type={"Info"} message={"Example alert"}/>
+<Alert type={"error"} message={"Example alert"}/>
+<Alert type={"success"} message={"Example alert"}/>
+<Alert type={"warning"} message={"Example alert"}/>
+
+```tsx
+<Alert type={"warning"} message={"Example alert"}/>
+```
+
+## Other Markdown utils
+
+### Example title with [link](/)
+
+- [Astro Framework](https://astro.build/).
+- [Tailwind CSS](https://tailwindcss.com/).
+- [Astro Content Collections (MDX)](https://docs.astro.build/en/guides/content-collections/).
+- [React Integration](https://docs.astro.build/es/guides/integrations-guide/react/).
+- [shadcn/ui with Radix](https://ui.shadcn.com/).
+
+### Example table
+
+| Column 1      | Column 2      | Column 3      |
+| ------------- | ------------- | ------------- |
+| Row 1, Cell 1 | Row 1, Cell 2 | Row 1, Cell 3 |
+| Row 2, Cell 1 | Row 2, Cell 2 | Row 2, Cell 3 |
+| Row 3, Cell 1 | Row 3, Cell 2 | Row 3, Cell 3 |
+
+### Heading
+Use `#` to define different levels of headings (from h1 to h4).
+
+```markdown
+## Heading Level 1
+### Heading Level 2
+#### Heading Level 3
+```
+### **Bold** *Italic* ~~Strikethrough~~
+
+```markdown
+**Bold**
+*Italic*
+~~Strikethrough~~
+```
+
+### Lists
+1.  First item
+2.  Second item
+    1. Sub-item 2.1
+    2. Sub-item 2.2
+3.  Third item
+
+```markdown
+1.  First item
+2.  Second item
+    1. Sub-item 2.1
+    2. Sub-item 2.2
+3.  Third item
+```
