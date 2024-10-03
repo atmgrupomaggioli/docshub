@@ -54,6 +54,8 @@ DocsHub is a **self-hosted** application designed to make documentation effortle
 - **Table of Contents**: Automatically generated table of contents for quick and easy access to different sections.
 - **Categorized Menu**: Organized menu structure to easily navigate through different categories and sections.
 - **Search Documentation**: Quickly find and navigate to specific entries within the documentation.
+- **Endpoint Documentation**: Ability to document API endpoints for better clarity and usage.
+- **Alerts**: Option to document using an alert component for important messages.
 
 ## 🤝 Contributors
 
