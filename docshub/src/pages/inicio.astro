@@ -1,20 +1,12 @@
 ---
 import type { MarkdownHeading } from "astro";
 
-import { CalendarIcon, TagIcon, FlameIcon } from "lucide-react";
-
-import PageContent from "@/components/page-content.astro";
-import Headings from "@/components/headings.astro";
-import Sidebar from "@/components/sidebar/sidebar.astro";
-
-import { getCollection } from "astro:content";
 import { ViewTransitions } from "astro:transitions";
 
 import InicioDoc from "@/pages/inicio.mdx";
-import Badge from "@/components/ui/badge.astro";
 
-import { convertCategory } from "@/utils/convertCategory";
 import LastEntries from "@/components/ui/last-entries.astro";
+import LayoutDocs from "@/layouts/layoutDocs.astro";
 
 // Docs layout props:
 export interface Props {
@@ -32,18 +24,19 @@ const { title, description, category, publishDate, docUrl, headings } =
 
 <ViewTransitions />
 
-<div class="flex flex-col xl:flex-row ml-0 xl:justify-center h-full">
-  
-
-  <PageContent
+  <LayoutDocs
     title={title}
     description={description}
     category={category}
     publishDate={publishDate}
-    url={docUrl}
+    headings={[]}
+    docUrl={docUrl}
   >
-    <slot />
-  </PageContent>
-  
-  <LastEntries />
-</div>
+    <section class="flex flex-col xl:flex-row">
+      <article>
+        <InicioDoc />
+      </article>
+      <LastEntries />
+    </section>
+    
+  </LayoutDocs>

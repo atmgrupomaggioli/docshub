@@ -81,10 +81,10 @@ const { title, description, category, publishDate, url, headings } = Astro.props
     >
       <slot />
     </section>
-</article>
-{headings && headings.length > 0 && 
-  <Headings headings={headings} />
-}
+  </article>
+  {headings && headings.length > 0 && 
+    <Headings headings={headings} />
+  }
 </div>
 
 
