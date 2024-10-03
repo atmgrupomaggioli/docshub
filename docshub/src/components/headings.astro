@@ -1,7 +1,6 @@
 ---
 import type { MarkdownHeading } from "astro";
 import { cx } from "@/utils/cx";
-import { CornerDownLeftIcon, CornerDownRightIcon } from "lucide-react";
 
 interface Props {
   headings: MarkdownHeading[];
@@ -14,73 +13,57 @@ const sharedHeadingClass = cx(
 );
 ---
 
-<div
+<aside
   class={cx(
-    "flex flex-col space-y-2 xl:rounded-md",
-    "max-h-[250px] xl:max-h-[calc(100vh-7rem)] overflow-auto overflow-y-auto",
-    "border-b xl:border border-gray-800 bg-gray-900",
-    "mb-5 md:my-0 text-sm mx-3 p-4",
-    "xl:fixed xl:my-0 xl:mx-0 xl:right-6 xl:top-[86px] md:ml-72",
+    "hidden xl:block",
+    "text-sm",
+    "bg-gray-900 border-l border-gray-800"
   )}
 >
-  <div class="flex items-center space-x-2 mb-1 opacity-70">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="lucide lucide-notepad-text"
-      ><path d="M8 2v4"></path><path d="M12 2v4"></path><path d="M16 2v4"
-      ></path><rect width="16" height="18" x="4" y="4" rx="2"></rect><path
-        d="M8 10h6"></path><path d="M8 14h8"></path><path d="M8 18h5"
-      ></path></svg
-    >
-    <p>On this page:</p>
-  </div>
-  <div class="flex flex-col xl:max-w-60">
-    {
-      headings.map((heading) => {
-        if (heading.depth == 2) {
-          return (
-            <a
-              href={`#${heading.slug}`}
-              class={cx(sharedHeadingClass)}
-              title={heading.text}
-            >
-              {heading.text}
-            </a>
-          );
-        } else if (heading.depth == 3) {
-          return (
-            <a
-              href={`#${heading.slug}`}
-              class={cx(
-                sharedHeadingClass,
-                "ml-2 border-l border-gray-700 pl-4",
-              )}
-            >
-              <span title={heading.text}>{heading.text}</span>
-            </a>
-          );
-        } else if (heading.depth == 4) {
-          return (
-            <a
-              href={`#${heading.slug}`}
-              class={cx(
-                sharedHeadingClass,
-                "ml-2 border-l border-gray-700 pl-7",
-              )}
-            >
-              <span title={heading.text}>{heading.text}</span>
-            </a>
-          );
-        }
-      })
-    }
-  </div>
-</div>
+  <nav class="sticky top-20 pl-4 w-[300px]">
+    <div class="flex opacity-70 text-lg font-bold">
+      <span>On this page</span>
+    </div>
+    <div class="flex flex-col">
+      {
+        headings.map((heading) => {
+          if (heading.depth == 2) {
+            return (
+              <a
+                href={`#${heading.slug}`}
+                class={cx(sharedHeadingClass, "font-semibold")}
+                title={heading.text}
+              >
+                {heading.text}
+              </a>
+            );
+          } else if (heading.depth == 3) {
+            return (
+              <a
+                href={`#${heading.slug}`}
+                class={cx(
+                  sharedHeadingClass,
+                  "pl-4" , "font-semibold"
+                )}
+              >
+                <span title={heading.text}>{heading.text}</span>
+              </a>
+            );
+          } else if (heading.depth == 4) {
+            return (
+              <a
+                href={`#${heading.slug}`}
+                class={cx(
+                  sharedHeadingClass,
+                  "pl-7",
+                )}
+              >
+                <span title={heading.text}>{heading.text}</span>
+              </a>
+            );
+          }
+        })
+      }
+    </div>
+  </nav>
+</aside>

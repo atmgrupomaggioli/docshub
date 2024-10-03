@@ -2,3 +2,7 @@
 dist
 src/content/docs/*.mdx
 public/images/**
+.env
+.dockerignore
+.git
+Dockerfile

@@ -60,7 +60,7 @@ const SidebarContent = (props: SidebarContentProps) => {
   const iconStroke = 1.5;
 
   return (
-    <div className={cx("flex flex-col space-y-3 p-4", props.className)}>
+    <div className={cx("flex flex-col space-y-3", props.className)}>
       <div className="relative w-full text-[12px]">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3">
           <div className="pointer-events-none">
