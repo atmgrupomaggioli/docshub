@@ -28,7 +28,7 @@ const { title, description, category, publishDate, docUrl, headings } =
 <ViewTransitions />
 <CopyToClipboard />
 
-<article class={cx(ContainerPage)}>
+<article class={cx(ContainerPage, "h-full")}>
   <Sidebar />
   
   <PageContent
@@ -41,10 +41,5 @@ const { title, description, category, publishDate, docUrl, headings } =
   >
     <slot />
   </PageContent>
-
-<!--   
-  {headings && headings.length > 0 && 
-    <Headings headings={headings} />
-  } -->
 
 </article>
