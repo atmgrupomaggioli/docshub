@@ -5,19 +5,19 @@ import {
   SheetContent,
   SheetHeader,
   SheetTrigger,
-} from "../ui/sheet";
+} from "@/components/ui/sheet";
 
-import { TableOfContentsIcon, XIcon } from 'lucide-react';
+import { TableOfContentsIcon } from 'lucide-react';
 
 interface SidebarCollapseProps {
   children: ReactNode;
 }
 
 const SidebarCollapse = (props: SidebarCollapseProps) => {
-  
+
   return (
     <Sheet key={'right'}>
-      <SheetTrigger className="fixed right-3 rounded-md p-2 m-4 z-50 transition-colors border border-gray-600 bg-gray-800 hover:bg-gray-900 xl:hidden">
+      <SheetTrigger className="fixed right-3 top-16 rounded-md p-2 m-4 z-50 transition-colors border border-gray-600 bg-gray-800 hover:bg-gray-900 xl:hidden">
         <TableOfContentsIcon size={25} />
       </SheetTrigger>
       <SheetContent className="flex flex-col p-6 py-[12px] text-sm">

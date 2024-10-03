@@ -7,6 +7,9 @@ import Sidebar from "@/components/sidebar/sidebar.astro";
 import CopyToClipboard from "@/components/copyToClipboard.astro";
 
 import { ViewTransitions } from "astro:transitions";
+import { cx } from "@/utils/cx";
+
+import { ContainerPage } from "@/components/ui/container-page";
 
 // Docs layout props:
 export interface Props {
@@ -23,11 +26,11 @@ const { title, description, category, publishDate, docUrl, headings } =
 ---
 
 <ViewTransitions />
+<CopyToClipboard />
 
-<div class="flex">
-  <CopyToClipboard />
+<article class={cx(ContainerPage)}>
   <Sidebar />
- 
+  
   <PageContent
     title={title}
     description={description}
@@ -38,8 +41,10 @@ const { title, description, category, publishDate, docUrl, headings } =
   >
     <slot />
   </PageContent>
-  
+
+<!--   
   {headings && headings.length > 0 && 
     <Headings headings={headings} />
-  }
-</div>
+  } -->
+
+</article>

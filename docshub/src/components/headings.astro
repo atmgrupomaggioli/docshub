@@ -13,55 +13,56 @@ const sharedHeadingClass = cx(
 );
 ---
 
-<div
+<aside
   class={cx(
-    "hidden xl:block xl:sticky xl:top-16 space-y-2 xl:rounded-md",
-    "mb-5 md:my-0 text-sm p-4",
-    "h-[calc(100vh-65px)] overflow-y-auto xl:flex xl:flex-col w-[375px]"
+    "text-sm h-screen",
+    "bg-gray-900 border-l border-gray-800"
   )}
 >
-  <div class="flex opacity-70 text-lg font-bold">
-    <span>On this page</span>
-  </div>
-  <div class="flex flex-col">
-    {
-      headings.map((heading) => {
-        if (heading.depth == 2) {
-          return (
-            <a
-              href={`#${heading.slug}`}
-              class={cx(sharedHeadingClass, "font-semibold")}
-              title={heading.text}
-            >
-              {heading.text}
-            </a>
-          );
-        } else if (heading.depth == 3) {
-          return (
-            <a
-              href={`#${heading.slug}`}
-              class={cx(
-                sharedHeadingClass,
-                "pl-4" , "font-semibold"
-              )}
-            >
-              <span title={heading.text}>{heading.text}</span>
-            </a>
-          );
-        } else if (heading.depth == 4) {
-          return (
-            <a
-              href={`#${heading.slug}`}
-              class={cx(
-                sharedHeadingClass,
-                "pl-7",
-              )}
-            >
-              <span title={heading.text}>{heading.text}</span>
-            </a>
-          );
-        }
-      })
-    }
-  </div>
-</div>
+  <nav class="sticky top-20 pl-4">
+    <div class="flex opacity-70 text-lg font-bold">
+      <span>On this page</span>
+    </div>
+    <div class="flex flex-col">
+      {
+        headings.map((heading) => {
+          if (heading.depth == 2) {
+            return (
+              <a
+                href={`#${heading.slug}`}
+                class={cx(sharedHeadingClass, "font-semibold")}
+                title={heading.text}
+              >
+                {heading.text}
+              </a>
+            );
+          } else if (heading.depth == 3) {
+            return (
+              <a
+                href={`#${heading.slug}`}
+                class={cx(
+                  sharedHeadingClass,
+                  "pl-4" , "font-semibold"
+                )}
+              >
+                <span title={heading.text}>{heading.text}</span>
+              </a>
+            );
+          } else if (heading.depth == 4) {
+            return (
+              <a
+                href={`#${heading.slug}`}
+                class={cx(
+                  sharedHeadingClass,
+                  "pl-7",
+                )}
+              >
+                <span title={heading.text}>{heading.text}</span>
+              </a>
+            );
+          }
+        })
+      }
+    </div>
+  </nav>
+</aside>

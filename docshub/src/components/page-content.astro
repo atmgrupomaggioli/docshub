@@ -10,6 +10,7 @@ import CopyToClipboard from "@/components/copyToClipboard";
 import SidebarTocCollapse from "@/components/sidebar-toc/sidebar-toc-collapse";
 import SidebarTocContent from "@/components/sidebar-toc/sidebar-toc-content";
 import type { MarkdownHeading } from "astro";
+import Headings from "./headings.astro";
 
 interface Props {
   title: string;
@@ -37,9 +38,9 @@ const { title, description, category, publishDate, url, headings } = Astro.props
   )
 }
 
-<article class="py-0 w-full xl:max-w-4xl">
-  <div class="pb-4 xl:border-x xl:border-gray-800 h-full">
-    <div class="flex flex-col space-y-3 mb-4 px-5 pt-5">
+<div class="ml-[270px] flex">
+  <article class="w-full">
+    <div class="flex flex-col space-y-3 mb-4 px-5 pt-4">
       <h1 class="text-3xl xl:text-4xl font-semibold">{title}</h1>
       <p class="text-gray-300 text-pretty">{description}</p>
     </div>
@@ -80,5 +81,12 @@ const { title, description, category, publishDate, url, headings } = Astro.props
     >
       <slot />
     </section>
-  </div>
 </article>
+{headings && headings.length > 0 && 
+  <Headings headings={headings} />
+}
+</div>
+
+
+
+

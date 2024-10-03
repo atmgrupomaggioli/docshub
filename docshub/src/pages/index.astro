@@ -3,6 +3,7 @@ import LayoutMain from "@/layouts/layoutMain.astro";
 import Inicio from "@/pages/inicio.astro";
 import InicioDoc from "./inicio.mdx";
 import defaultDocshubConfig from "docshub.config";
+import Sidebar from "@/components/sidebar/sidebar.astro";
 
 const url = new URL(Astro.request.url).href;
 ---
@@ -11,6 +12,7 @@ const url = new URL(Astro.request.url).href;
   title={defaultDocshubConfig.documentationTitle}
   description={defaultDocshubConfig.documentationTitle}
 >
+  <Sidebar />
   <Inicio
     title={defaultDocshubConfig.documentationTitle}
     description={defaultDocshubConfig.author || ''}

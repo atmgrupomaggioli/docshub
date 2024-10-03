@@ -13,6 +13,8 @@ import config from "docshub.config";
 import MiniBadge from "./ui/mini-badge.astro";
 import { cx } from "@/utils/cx";
 
+import { ContainerPage } from "@/components/ui/container-page";
+
 const allDocs = await getCollection("docs");
 const pathname = new URL(Astro.request.url).pathname;
 
@@ -28,7 +30,7 @@ const truncateStyles="truncate max-w-[210px] sm:max-w-[300px] md:max-w-[500px] l
 <nav
   class="bg-gray-900/80 backdrop-blur-md sticky top-0 w-full border-b border-gray-800 z-50"
 >
-  <div class="container flex items-center justify-between px-2 md:px-4 h-16">
+  <div class={cx("flex items-center justify-between h-16", ContainerPage)}>
     <div class="flex items-center space-x-3 rtl:space-x-reverse">
       <SidebarCollapse client:only="react">
         <SidebarContent
