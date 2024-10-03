@@ -6,6 +6,10 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import LayoutMain from "@/layouts/layoutMain.astro";
 import LayoutDocs from "@/layouts/layoutDocs.astro";
 
+// ✨ MDX Custom components
+import Endpoint from "@/components/mdx/endpoint";
+import Alert from "@/components/mdx/alert";
+
 // 📄 Get Document:
 // ----------------
 
@@ -36,6 +40,6 @@ const { Content, headings } = await post.render();
     headings={headings}
     docUrl={url}
   >
-    <Content />
+    <Content components={{ Endpoint, Alert }}/>
   </LayoutDocs>
 </LayoutMain>
