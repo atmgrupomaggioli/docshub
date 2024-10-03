@@ -15,10 +15,9 @@ export interface Props {
   category: string;
   docUrl: string;
   publishDate?: string;
-  headings?: MarkdownHeading[];
 }
 
-const { title, description, category, publishDate, docUrl, headings } =
+const { title, description, category, publishDate, docUrl } =
   Astro.props;
 ---
 
@@ -29,7 +28,6 @@ const { title, description, category, publishDate, docUrl, headings } =
     description={description}
     category={category}
     publishDate={publishDate}
-    headings={[]}
     docUrl={docUrl}
   >
     <section class="flex flex-col xl:flex-row">
