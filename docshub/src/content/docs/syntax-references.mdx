@@ -36,13 +36,21 @@ https://example.com/end/point/resource
 
 ## Example Alert Docs
 
-<Alert type="Info" message="Example alert" />
-<Alert type="error" message="Example alert" />
-<Alert type="success" message="Example alert" />
-<Alert type="warning" message="Example alert" />
+<Alert type="info">Example message</Alert>
+<Alert type="error">Example message</Alert>
+<Alert type="success">Example message</Alert>
+<Alert type="warning">Example message</Alert>
+
+- Usage:
 
 ```tsx
-<Alert type={"warning"} message={"Example alert"} />
+<Alert type="warning">Example message</Alert>
+```
+
+- `type` properties:
+
+```ts
+export type AlertType = "success" | "error" | "warning" | "info";
 ```
 
 ## Other Markdown utils
