@@ -7,8 +7,8 @@ import LayoutMain from "@/layouts/layoutMain.astro";
 import LayoutDocs from "@/layouts/layoutDocs.astro";
 
 // ✨ MDX Custom components
-import Endpoint from "@/components/mdx/endpoint";
-import Alert from "@/components/mdx/alert";
+import Endpoint from "@/components/mdx/endpoint/endpoint.astro";
+import Alert from "@/components/mdx/alert/alert.astro";
 
 // 📄 Get Document:
 // ----------------
@@ -40,6 +40,6 @@ const { Content, headings } = await post.render();
     headings={headings}
     docUrl={url}
   >
-    <Content components={{ Endpoint, Alert }}/>
+    <Content components={{ Endpoint, Alert }} />
   </LayoutDocs>
 </LayoutMain>

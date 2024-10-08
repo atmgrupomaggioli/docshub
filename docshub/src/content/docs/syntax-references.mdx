@@ -10,33 +10,39 @@ Below you will find examples of all the formats you can use in your Markdown doc
 
 ## Example Endpoint Docs
 
-<Endpoint 
-    method={"GET"}
-    title={"Example endpoint title"}
-    description={"Example endpoint description"}
-    path={"https://example.com/end/point/resource"}
-    label={"STABLE"}
-/>
+<Endpoint
+  method="GET"
+  title="Example endpoint title"
+  description="Example endpoint description"
+  label="STABLE"
+>
+
+```bash
+https://example.com/end/point/resource
+```
 
 ```tsx
-<Endpoint 
-    method={"GET"}
-    title={"Example endpoint title"}
-    description={"Example endpoint description"}
-    path={"https://example.com/end/point/resource"}
-    label={"STABLE"}
-/>
+<Endpoint
+  method="GET"
+  title="Example endpoint title"
+  description="Example endpoint description"
+  label="STABLE"
+>
+  // Your markdown code here
+</Endpoint>
 ```
+
+</Endpoint>
 
 ## Example Alert Docs
 
-<Alert type={"Info"} message={"Example alert"}/>
-<Alert type={"error"} message={"Example alert"}/>
-<Alert type={"success"} message={"Example alert"}/>
-<Alert type={"warning"} message={"Example alert"}/>
+<Alert type="Info" message="Example alert" />
+<Alert type="error" message="Example alert" />
+<Alert type="success" message="Example alert" />
+<Alert type="warning" message="Example alert" />
 
 ```tsx
-<Alert type={"warning"} message={"Example alert"}/>
+<Alert type={"warning"} message={"Example alert"} />
 ```
 
 ## Other Markdown utils
@@ -58,22 +64,27 @@ Below you will find examples of all the formats you can use in your Markdown doc
 | Row 3, Cell 1 | Row 3, Cell 2 | Row 3, Cell 3 |
 
 ### Heading
+
 Use `#` to define different levels of headings (from h1 to h4).
 
 ```markdown
 ## Heading Level 1
+
 ### Heading Level 2
+
 #### Heading Level 3
 ```
-### **Bold** *Italic* ~~Strikethrough~~
+
+### **Bold** _Italic_ ~~Strikethrough~~
 
 ```markdown
 **Bold**
-*Italic*
+_Italic_
 ~~Strikethrough~~
 ```
 
 ### Lists
+
 1.  First item
 2.  Second item
     1. Sub-item 2.1
