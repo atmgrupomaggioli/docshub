@@ -17,24 +17,22 @@ export interface Props {
   publishDate?: string;
 }
 
-const { title, description, category, publishDate, docUrl } =
-  Astro.props;
+const { title, description, category, publishDate, docUrl } = Astro.props;
 ---
 
 <ViewTransitions />
 
-  <LayoutDocs
-    title={title}
-    description={description}
-    category={category}
-    publishDate={publishDate}
-    docUrl={docUrl}
-  >
-    <section class="flex flex-col xl:flex-row">
-      <article>
-        <InicioDoc />
-      </article>
-      <LastEntries />
-    </section>
-    
-  </LayoutDocs>
+<LayoutDocs
+  title={title}
+  description={description}
+  category={category}
+  publishDate={publishDate}
+  docUrl={docUrl}
+>
+  <section class="flex flex-col xl:flex-row">
+    <article>
+      <InicioDoc />
+    </article>
+    <LastEntries />
+  </section>
+</LayoutDocs>

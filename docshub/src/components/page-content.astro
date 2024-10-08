@@ -21,12 +21,12 @@ interface Props {
   headings?: MarkdownHeading[];
 }
 
-const { title, description, category, publishDate, url, headings } = Astro.props;
-
+const { title, description, category, publishDate, url, headings } =
+  Astro.props;
 ---
 
 {
-  (headings && headings.length > 0) && (
+  headings && headings.length > 0 && (
     <SidebarTocCollapse client:only="react">
       <SidebarTocContent
         client:only="react"
@@ -34,7 +34,7 @@ const { title, description, category, publishDate, url, headings } = Astro.props
         pathname={url}
         className="p-0"
       />
-    </SidebarCollapse>
+    </SidebarTocCollapse>
   )
 }
 
@@ -45,7 +45,7 @@ const { title, description, category, publishDate, url, headings } = Astro.props
       <p class="text-gray-300 text-pretty">{description}</p>
     </div>
     <div
-      class=" px-5 flex items-center w-full justify-between tracking-tight mb-6 border-b border-gray-800 pb-3"
+      class="px-5 flex items-center w-full justify-between tracking-tight mb-6 border-b border-gray-800 pb-3"
     >
       <div class="flex items-center space-x-2">
         <Badge>
@@ -70,23 +70,20 @@ const { title, description, category, publishDate, url, headings } = Astro.props
     <section
       class={cx(
         "text-pretty",
+        "px-5 pb-3",
         "prose prose-invert max-w-full",
         "hover:prose-a:opacity-75",
         "md:prose-h1:text-4xl prose-h1:text-3xl prose-h1:font-semibold",
         "prose-headings:tracking-tight prose-heading:font-medium",
         "prose-a:decoration-gray-600 prose-a:decoration-dotted prose-a:underline-offset-[7px]",
         "prose-inline-code:rounded prose-inline-code:font-normal prose-inline-code:font-mono prose-inline-code:p-[2px] prose-inline-code:border prose-inline-code:border-gray-800 prose-inline-code:bg-gray-800/50",
-        "px-5"
+        "prose-code:break-words prose-code:text-wrap",
+        "prose-pre:my-[3px]",
+        "prose-th:text-start",
       )}
     >
       <slot />
     </section>
   </article>
-  {headings && headings.length > 0 && 
-    <Headings headings={headings} />
-  }
+  {headings && headings.length > 0 && <Headings headings={headings} />}
 </div>
-
-
-
-

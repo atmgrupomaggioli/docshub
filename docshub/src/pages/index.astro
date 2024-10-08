@@ -13,14 +13,12 @@ const url = new URL(Astro.request.url).href;
   title={defaultDocshubConfig.documentationTitle}
   description={defaultDocshubConfig.documentationTitle}
 >
-  <article class={cx(ContainerPage, "h-full")}>
-    <Inicio
-      title={defaultDocshubConfig.documentationTitle}
-      description={defaultDocshubConfig.author || ''}
-      category="Introduction"
-      docUrl={url}
-    >
-      <InicioDoc />
-    </Inicio>
-  </article>
+  <Inicio
+    title={defaultDocshubConfig.documentationTitle}
+    description={defaultDocshubConfig.author || ""}
+    category="Introduction"
+    docUrl={url}
+  >
+    <InicioDoc />
+  </Inicio>
 </LayoutMain>

@@ -1,0 +1,25 @@
+---
+import type { AlertType } from "./alert.types";
+import { cx } from "@/utils/cx";
+
+interface Props {
+  type: AlertType;
+}
+
+const { type } = Astro.props;
+---
+
+<div
+  role="alert"
+  class={cx(
+    "border-l-4 pl-3 rounded-md my-2 py-3",
+    "flex flex-col sm:flex-row sm:gap-2",
+    "relative",
+    type === "success" && "bg-green-200/80 border-green-500 text-green-800",
+    type === "error" && "bg-red-200/80 border-red-500 text-red-800",
+    type === "warning" && "bg-yellow-200/80 border-yellow-500 text-yellow-800",
+    type === "info" && "bg-blue-200/80 border-blue-500 text-blue-800",
+  )}
+>
+  <slot />
+</div>
