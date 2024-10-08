@@ -32,14 +32,13 @@ const optionClass = cx(
 interface Props {
   title: string;
   description: string;
-  path: string;
   method: Method;
   label: Label;
   spaceTop?: boolean;
   spaceBottom?: boolean;
 }
 
-const { title, description, path, method, label, spaceTop, spaceBottom } =
+const { title, description, method, label, spaceTop, spaceBottom } =
   Astro.props;
 ---
 
