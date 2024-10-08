@@ -1,0 +1,109 @@
+---
+import type { iMethodClasses, Label, Method } from "./endpoint.types";
+import { cx } from "@/utils/cx";
+
+const methodClasses: iMethodClasses = {
+  GET: cx(
+    "bg-green-400/20 text-green-600 dark:bg-green-400/20 dark:text-green-500",
+  ),
+  POST: cx(
+    "bg-blue-400/20 text-blue-600 dark:bg-blue-400/20 dark:text-blue-500",
+  ),
+  PUT: cx(
+    "bg-yellow-400/20 text-yellow-600 dark:bg-yellow-400/20 dark:text-yellow-500",
+  ),
+  PATCH: cx(
+    "bg-indigo-400/20 text-indigo-600 dark:bg-indigo-400/20 dark:text-indigo-500",
+  ),
+  DELETE: cx("bg-red-400/20 text-red-600 dark:bg-red-400/20 dark:text-red-500"),
+};
+
+const labelClasses = {
+  ALPHA: cx("text-rose-600 dark:text-rose-500"),
+  BETA: cx("text-blue-600 dark:text-blue-500"),
+  STABLE: cx("text-green-600 dark:text-green-500"),
+  DEPRECATED: cx("text-red-600 dark:text-red-500"),
+};
+
+const optionClass = cx(
+  "m-0 select-none rounded-md px-1.5 py-[1.5px] text-center text-sm font-medium leading-5",
+);
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  method: Method;
+  label: Label;
+  spaceTop?: boolean;
+  spaceBottom?: boolean;
+}
+
+const { title, description, path, method, label, spaceTop, spaceBottom } =
+  Astro.props;
+---
+
+<section class={cx(spaceTop && "mt-4", spaceBottom && "mb-8")}>
+  <div class="flex items-start space-x-0 pb-2 md:items-center md:space-x-4">
+    <p
+      class={cx(
+        optionClass,
+        "hidden md:block",
+        method === "GET" && methodClasses.GET,
+        method === "POST" && methodClasses.POST,
+        method === "PUT" && methodClasses.PUT,
+        method === "PATCH" && methodClasses.PATCH,
+        method === "DELETE" && methodClasses.DELETE,
+      )}
+    >
+      {method}
+    </p>
+    <div class="m-0 flex flex-col space-y-0">
+      <h3 class="m-0 flex items-center space-x-3 font-medium">
+        <span>{title}</span>
+        <span
+          class={cx(
+            optionClass,
+            "hidden rounded-none border-l-2 border-neutral-200 pl-3 text-[12px] uppercase md:block dark:border-neutral-800",
+            label === "ALPHA" && labelClasses.ALPHA,
+            label === "BETA" && labelClasses.BETA,
+            label === "DEPRECATED" && labelClasses.DEPRECATED,
+            label === "STABLE" && labelClasses.STABLE,
+          )}
+        >
+          {label}
+        </span>
+      </h3>
+      <p class="mb-0 font-mono text-sm">{description}</p>
+    </div>
+  </div>
+  <div class="items-center flex space-x-2 md:hidden">
+    <p
+      class={cx(
+        optionClass,
+        method === "GET" && methodClasses.GET,
+        method === "POST" && methodClasses.POST,
+        method === "PUT" && methodClasses.PUT,
+        method === "PATCH" && methodClasses.PATCH,
+        method === "DELETE" && methodClasses.DELETE,
+      )}
+    >
+      {method}
+    </p>
+    <span
+      class={cx(
+        optionClass,
+        "rounded-none border-l-2 border-neutral-200 pl-3 text-[12px] uppercase dark:border-neutral-800",
+        label === "ALPHA" && labelClasses.ALPHA,
+        label === "BETA" && labelClasses.BETA,
+        label === "DEPRECATED" && labelClasses.DEPRECATED,
+        label === "STABLE" && labelClasses.STABLE,
+      )}
+    >
+      {label}
+    </span>
+  </div>
+  <div class="prose-pre:my-[6px]">
+    <slot />
+  </div>
+</section>
