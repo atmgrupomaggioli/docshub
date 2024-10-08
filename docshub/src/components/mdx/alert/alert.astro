@@ -1,0 +1,26 @@
+---
+import type { AlertType } from "./alert.types";
+import { cx } from "@/utils/cx";
+
+interface Props {
+  type: AlertType;
+  message: string;
+}
+
+const { type, message } = Astro.props;
+---
+
+<div
+  role="alert"
+  class={cx(
+    "border-l-8 pl-2 rounded-md my-2 py-3",
+    "flex flex-col sm:flex-row sm:gap-2",
+    type === "success" && "bg-green-100 border-green-500 text-green-700",
+    type === "error" && "bg-red-100 border-red-500 text-red-700",
+    type === "warning" && "bg-yellow-100 border-yellow-500 text-yellow-700",
+    type === "info" && "bg-blue-100 border-blue-500 text-blue-700",
+  )}
+>
+  <p class="font-bold my-0">{type?.toUpperCase()}</p>
+  <p class="my-0">{message}</p>
+</div>
