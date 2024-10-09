@@ -33,13 +33,14 @@
 ![TailwindCSS Badge](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=fff&style=flat)
 ![Docker Badge](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff&style=flat)
 ![MDX Badge](https://img.shields.io/badge/MDX-1B1F24?logo=mdx&logoColor=fff&style=flat)
+![GitHub Release](https://img.shields.io/github/v/release/atmgrupomaggioli/docshub)
 ![GitHub stars](https://img.shields.io/github/stars/atmgrupomaggioli/docshub)
 ![GitHub issues](https://img.shields.io/github/issues/atmgrupomaggioli/docshub)
 
 </div>
 
 > [!WARNING]
-> DocsHub is still in development. You cannot clone the repository yet. Please wait for the first release. Alternatively, you can try it with [Docker](https://github.com/atmgrupomaggioli/docshub/tree/main/docker).
+> DocsHub is still in development. You cannot clone the repository yet. Alternatively, you can try it with [Docker](https://github.com/atmgrupomaggioli/docshub/tree/main/docker).
 
 ## 🧑‍🚀 Introduction
 
