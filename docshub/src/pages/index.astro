@@ -1,24 +1,18 @@
 ---
+import { getEntry } from "astro:content";
+
 import LayoutMain from "@/layouts/layoutMain.astro";
-import Inicio from "@/pages/inicio.astro";
-import InicioDoc from "./inicio.mdx";
-import defaultDocshubConfig from "docshub.config";
-import { ContainerPage } from "@/components/ui/container-page";
-import { cx } from "@/utils/cx";
+import LayoutDocs from "@/layouts/layoutDocs.astro";
+import LastEntries from "@/components/ui/last-entries.astro";
+
+const entry = await getEntry("docs", "getting-started");
+const { Content, headings } = await entry.render();
 
 const url = new URL(Astro.request.url).href;
 ---
 
-<LayoutMain
-  title={defaultDocshubConfig.documentationTitle}
-  description={defaultDocshubConfig.documentationTitle}
->
-  <Inicio
-    title={defaultDocshubConfig.documentationTitle}
-    description={defaultDocshubConfig.author || ""}
-    category="Introduction"
-    docUrl={url}
-  >
-    <InicioDoc />
-  </Inicio>
+<LayoutMain title={entry.data.title} description={entry.data.description}>
+  <LayoutDocs document={entry.data} docUrl={url} headings={headings}>
+    <Content />
+  </LayoutDocs>
 </LayoutMain>

@@ -11,8 +11,6 @@ import Endpoint from "@/components/mdx/endpoint/endpoint.astro";
 import Alert from "@/components/mdx/alert/alert.astro";
 
 // 📄 Get Document:
-// ----------------
-
 const post = Astro.props;
 
 export async function getStaticPaths() {
@@ -28,16 +26,14 @@ type Props = CollectionEntry<"docs">;
 
 const url = new URL(Astro.request.url).href;
 
-const { Content, headings } = await post.render();
+const { Content, headings, remarkPluginFrontmatter } = await post.render();
 ---
 
 <LayoutMain title={post.data.title} description={post.data.description}>
   <LayoutDocs
-    title={post.data.title}
-    description={post.data.description}
-    category={post.data.category}
-    publishDate={post.data.publishDate}
+    document={post.data}
     headings={headings}
+    readingTime={remarkPluginFrontmatter.minutesRead}
     docUrl={url}
   >
     <Content components={{ Endpoint, Alert }} />
