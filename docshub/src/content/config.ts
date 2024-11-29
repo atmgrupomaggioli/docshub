@@ -16,6 +16,14 @@ const docsProperties = z.object({
     message: "El máximo para la categoría son 25 caracteres",
   }),
   publishDate: z.string().default(new Date().toISOString().split("T")[0]),
+  author: z
+    .object({
+      name: z.string().min(1).max(25, {
+        message: "El máximo para el nombre de autor son 25 caracteres",
+      }),
+      url: z.string().url().optional(),
+    })
+    .optional(),
 });
 
 const docs = defineCollection({
