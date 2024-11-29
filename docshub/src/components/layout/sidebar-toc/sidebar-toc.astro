@@ -1,0 +1,33 @@
+---
+import { cx } from "@/utils/cx";
+
+const pathname = new URL(Astro.request.url).pathname;
+import { SidebarFolder } from "@/components/layout/sidebar-item";
+
+const { headings } = Astro.props;
+---
+
+<aside
+  class={cx(
+    "h-[calc(100vh-65px)]",
+    "overflow-y-auto",
+    "hidden xl:block fixed z-50",
+    "bg-gray-100 dark:bg-gray-900",
+    "border-l border-gray-200 dark:border-gray-800",
+    "w-[240px] max-w-[240px]",
+  )}
+>
+  <div class="px-5 py-6 flex flex-col space-y-1.5">
+    <h3>On this page</h3>
+    <nav class="flex flex-col">
+      {
+        headings &&
+          headings.map((heading) => (
+            <a href={`#${heading.slug}`} class={cx(SidebarFolder)}>
+              {heading.text}
+            </a>
+          ))
+      }
+    </nav>
+  </div>
+</aside>

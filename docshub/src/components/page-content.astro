@@ -1,89 +1,103 @@
 ---
 import { cx } from "@/utils/cx";
-import { CalendarIcon, TagIcon } from "lucide-react";
+import {
+  ArrowUpRightIcon,
+  CalendarIcon,
+  ClockIcon,
+  TagIcon,
+  UserIcon,
+} from "lucide-react";
 
 import { convertCategory } from "@/utils/convertCategory";
 
 import Badge from "@/components/ui/badge.astro";
 import CopyToClipboard from "@/components/copyToClipboard";
-
-import SidebarTocCollapse from "@/components/sidebar-toc/sidebar-toc-collapse";
-import SidebarTocContent from "@/components/sidebar-toc/sidebar-toc-content";
-import type { MarkdownHeading } from "astro";
-import Headings from "./headings.astro";
+import type { iDocsProperties } from "@/content/config";
 
 interface Props {
-  title: string;
-  description: string;
-  category: string;
-  publishDate?: string;
+  document: iDocsProperties;
+  readingTime?: string;
   url: string;
-  headings?: MarkdownHeading[];
 }
 
-const { title, description, category, publishDate, url, headings } =
-  Astro.props;
+const { document, url, readingTime } = Astro.props;
 ---
 
-{
-  headings && headings.length > 0 && (
-    <SidebarTocCollapse client:only="react">
-      <SidebarTocContent
-        client:only="react"
-        headings={headings}
-        pathname={url}
-        className="p-0"
-      />
-    </SidebarTocCollapse>
-  )
-}
-
-<div class="xl:ml-[270px] flex min-h-[calc(100vh-65px)]">
-  <article class="w-full">
-    <div class="flex flex-col space-y-3 mb-4 px-5 pt-4">
-      <h1 class="text-3xl xl:text-4xl font-semibold mr-7">{title}</h1>
-      <p class="text-gray-300 text-pretty">{description}</p>
-    </div>
-    <div
-      class="px-5 flex items-center w-full justify-between tracking-tight mb-6 border-b border-gray-800 pb-3"
-    >
-      <div class="flex items-center space-x-2">
-        <Badge>
-          <TagIcon width={15} strokeWidth={1.5} />
-          <span>{convertCategory(category)}</span>
-        </Badge>
-        {
-          publishDate && (
-            <Badge>
-              <CalendarIcon width={15} strokeWidth={1.5} />
-              <span>{publishDate}</span>
+<div class={cx("flex flex-col px-4 py-4 md:px-8 md:py-8 container max-w-6xl")}>
+  <header class="flex flex-col space-y-3 mb-4">
+    <h1 class="tracking-tight text-3xl xl:text-4xl font-bold">
+      {document.title}
+    </h1>
+    <p class="text-gray-700 dark:text-gray-300 text-pretty">
+      {document.description}
+    </p>
+  </header>
+  <div
+    class="flex items-center w-full justify-between tracking-tight mb-6 border-b-2 border-gray-200 dark:border-gray-800 pb-3"
+  >
+    <div class="flex items-center space-x-1.5">
+      <Badge title={`Category: ${document.category}`}>
+        <TagIcon size={14} strokeWidth={1.5} />
+        <span>{convertCategory(document.category)}</span>
+      </Badge>
+      {
+        document.publishDate && (
+          <Badge title={`Published on: ${document.publishDate}`}>
+            <CalendarIcon size={14} strokeWidth={1.5} />
+            <span>{document.publishDate}</span>
+          </Badge>
+        )
+      }
+      {
+        readingTime && (
+          <Badge title={`Read time: ${readingTime}`}>
+            <ClockIcon size={14} strokeWidth={1.5} />
+            <span>{readingTime}</span>
+          </Badge>
+        )
+      }
+      {
+        document.author &&
+          (document.author.url ? (
+            <a
+              href={document.author.url}
+              target="_blank"
+              title={`Published by ${document.author.name}`}
+              rel="noopener noreferrer"
+            >
+              <Badge className="cursor-pointer group hover:border-gray-600 dark:hover:border-gray-500 transition-colors">
+                <UserIcon size={14} strokeWidth={1.5} />
+                <span>{document.author.name}</span>
+                <ArrowUpRightIcon
+                  className="group-hover:text-black dark:group-hover:text-white text-gray-500 transition-colors"
+                  size={12}
+                />
+              </Badge>
+            </a>
+          ) : (
+            <Badge title={`Published by ${document.author.name}`}>
+              <UserIcon size={14} strokeWidth={1.5} />
+              <span>{document.author.name}</span>
             </Badge>
-          )
-        }
-      </div>
-      <CopyToClipboard
-        client:only="react"
-        btnText="Share"
-        contentToCopy={url}
-      />
+          ))
+      }
     </div>
-    <section
-      class={cx(
-        "text-pretty",
-        "px-5 pb-3",
-        "prose prose-invert max-w-full",
-        "hover:prose-a:opacity-75",
-        "md:prose-h1:text-4xl prose-h1:text-3xl prose-h1:font-semibold",
-        "prose-headings:tracking-tight prose-heading:font-medium",
-        "prose-a:decoration-gray-600 prose-a:decoration-dotted prose-a:underline-offset-[7px]",
-        "prose-inline-code:rounded prose-inline-code:font-normal prose-inline-code:font-mono prose-inline-code:p-[2px] prose-inline-code:border prose-inline-code:border-gray-800 prose-inline-code:bg-gray-800/50",
-        "prose-code:break-words prose-code:text-wrap",
-        "prose-pre:my-[3px]",
-        "prose-th:text-start",
-      )}
-    >
-      <slot />
-    </section>
+    <CopyToClipboard client:only="react" btnText="Share" contentToCopy={url} />
+  </div>
+  <article
+    class={cx(
+      "text-pretty max-w-full",
+      "prose prose-gray dark:prose-invert",
+      "hover:prose-a:opacity-75",
+      "md:prose-h1:text-4xl prose-h1:text-3xl prose-h1:font-semibold",
+      "prose-headings:tracking-tight prose-heading:font-medium prose-headings:scroll-mt-16",
+      "prose-a:decoration-gray-600 prose-a:decoration-dotted prose-a:underline-offset-[7px]",
+      "prose-inline-code:rounded prose-inline-code:font-normal prose-inline-code:font-mono prose-inline-code:p-[2px] prose-inline-code:border dark:prose-inline-code:border-gray-800 prose-inline-code:border-gray-300 dark:prose-inline-code:bg-gray-800/50 prose-inline-code:bg-gray-200/50",
+      "prose-code:break-words prose-code:text-wrap",
+      "prose-pre:my-[3px] prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-gray-800",
+      "prose-th:text-start",
+    )}
+  >
+    <slot />
   </article>
-  {headings && headings.length > 0 && <Headings headings={headings} />}
 </div>

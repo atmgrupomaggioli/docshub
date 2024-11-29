@@ -1,44 +1,33 @@
 ---
 import type { MarkdownHeading } from "astro";
+import type { iDocsProperties } from "@/content/config";
 
 import PageContent from "@/components/page-content.astro";
-import Sidebar from "@/components/sidebar/sidebar.astro";
-import CopyToClipboard from "@/components/copyToClipboard.astro";
+import Sidebar from "@/components/layout/sidebar/sidebar.astro";
+import SidebarToc from "@/components/layout/sidebar-toc/sidebar-toc.astro";
+import CopyToClipboardMDX from "@/components/mdx/plugins/copyToClipboard.astro";
 
 import { ViewTransitions } from "astro:transitions";
-import { cx } from "@/utils/cx";
 
-import { ContainerPage } from "@/components/ui/container-page";
-
-// Docs layout props:
 export interface Props {
-  title: string;
-  description: string;
-  category: string;
+  document: iDocsProperties;
   docUrl: string;
-  publishDate?: string;
+  readingTime?: string;
   headings?: MarkdownHeading[];
 }
 
-const { title, description, category, publishDate, docUrl, headings } =
-  Astro.props;
+const { document, docUrl, headings, readingTime } = Astro.props;
 ---
 
 <ViewTransitions />
-<CopyToClipboard />
+<CopyToClipboardMDX />
 
-<article class={cx(ContainerPage, "h-full")}>
-  <Sidebar />
-  
-  <PageContent
-    title={title}
-    description={description}
-    category={category}
-    publishDate={publishDate}
-    url={docUrl}
-    headings={headings}
-  >
+<Sidebar />
+<div class="xl:ml-64 grid grid-cols-1 xl:grid-cols-[1fr_240px]">
+  <PageContent document={document} url={docUrl} readingTime={readingTime}>
     <slot />
   </PageContent>
-
-</article>
+  <div>
+    {headings && headings.length > 0 && <SidebarToc headings={headings} />}
+  </div>
+</div>

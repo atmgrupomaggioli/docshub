@@ -9,7 +9,8 @@
 
       let copyButton = document.createElement("button");
       copyButton.title = "Copiar código";
-      copyButton.className = "absolute top-0 right-0 p-3 hover:text-white";
+      copyButton.className =
+        "absolute top-0 right-0 p-3 text-gray-500 transition-colors hover:text-black dark:hover:text-white";
       copyButton.innerHTML = copyButtonLabel;
 
       codeBlock.setAttribute("tabindex", "0");
