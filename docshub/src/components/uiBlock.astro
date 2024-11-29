@@ -1,0 +1,21 @@
+---
+import { BoxIcon } from "lucide-react";
+
+interface Props {
+  title: string;
+}
+---
+
+<section
+  class="flex flex-col border-2 border-neutral-200 dark:border-gray-800 rounded-md"
+>
+  <div
+    class="py-2 px-2 border-b-2 border-gray-200 dark:border-gray-800 flex items-center space-x-2"
+  >
+    <BoxIcon strokeWidth={1.5} size={16} />
+    <p class="my-0 font-mono tracking-tight text-sm">{Astro.props.title}</p>
+  </div>
+  <div class="p-6">
+    <slot />
+  </div>
+</section>
