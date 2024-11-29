@@ -1,6 +1,6 @@
 ---
-title: "Syntax Referente Example Page"
-sidebarTitle: "Syntax References"
+title: "Components"
+sidebarTitle: "Components"
 description: "Below you will find examples of all the formats you can use in your Markdown documentation"
 category: "References"
 publishDate: "2024-10-03"
@@ -8,7 +8,26 @@ publishDate: "2024-10-03"
 
 Below you will find examples of all the formats you can use in your Markdown documentation
 
-## Example Endpoint Docs
+## Codeblocks
+
+Using [Shiki](https://shiki.matsu.io/) for syntax highlighting.
+
+<UiBlock title="Codeblocks">
+
+```bash
+echo "Hello World"
+```
+
+</UiBlock>
+````md
+```bash
+echo "Hello World"
+```
+````
+
+## Endpoint
+
+<UiBlock title="Endpoint">
 
 <Endpoint
   method="GET"
@@ -22,26 +41,34 @@ https://example.com/end/point/resource
 ```
 
 ```tsx
+// Your markdown code here
+```
+
+</Endpoint>
+
+</UiBlock>
+
+```tsx
 <Endpoint
   method="GET"
   title="Example endpoint title"
   description="Example endpoint description"
   label="STABLE"
 >
-  // Your markdown code here
+  // Code
 </Endpoint>
 ```
 
-</Endpoint>
+## Alert
 
-## Example Alert Docs
+<UiBlock title="Alert">
 
 <Alert type="info">Example message</Alert>
 <Alert type="error">Example message</Alert>
 <Alert type="success">Example message</Alert>
 <Alert type="warning">Example message</Alert>
 
-- Usage:
+</UiBlock>
 
 ```tsx
 <Alert type="warning">Example message</Alert>
@@ -53,17 +80,20 @@ https://example.com/end/point/resource
 export type AlertType = "success" | "error" | "warning" | "info";
 ```
 
-## Other Markdown utils
+## Link
 
-### Example title with [link](/)
+<UiBlock title="Link">
 
-- [Astro Framework](https://astro.build/).
-- [Tailwind CSS](https://tailwindcss.com/).
-- [Astro Content Collections (MDX)](https://docs.astro.build/en/guides/content-collections/).
-- [React Integration](https://docs.astro.build/es/guides/integrations-guide/react/).
-- [shadcn/ui with Radix](https://ui.shadcn.com/).
+[Astro Framework](https://astro.build/).
 
-### Example table
+</UiBlock>
+```md
+[Astro Framework](https://astro.build/).
+```
+
+### Table
+
+<UiBlock title="Table">
 
 | Column 1      | Column 2      | Column 3      |
 | ------------- | ------------- | ------------- |
@@ -71,11 +101,30 @@ export type AlertType = "success" | "error" | "warning" | "info";
 | Row 2, Cell 1 | Row 2, Cell 2 | Row 2, Cell 3 |
 | Row 3, Cell 1 | Row 3, Cell 2 | Row 3, Cell 3 |
 
-### Heading
+</UiBlock>
+```md
+| Column 1      | Column 2      | Column 3      |
+| ------------- | ------------- | ------------- |
+| Row 1, Cell 1 | Row 1, Cell 2 | Row 1, Cell 3 |
+| Row 2, Cell 1 | Row 2, Cell 2 | Row 2, Cell 3 |
+| Row 3, Cell 1 | Row 3, Cell 2 | Row 3, Cell 3 |
+```
+
+### Headings
 
 Use `#` to define different levels of headings (from h1 to h4).
 
-```markdown
+<UiBlock title="Headings">
+
+## Heading Level 1
+
+### Heading Level 2
+
+#### Heading Level 3
+
+</UiBlock>
+
+```md
 ## Heading Level 1
 
 ### Heading Level 2
@@ -83,9 +132,19 @@ Use `#` to define different levels of headings (from h1 to h4).
 #### Heading Level 3
 ```
 
-### **Bold** _Italic_ ~~Strikethrough~~
+### Text
 
-```markdown
+<UiBlock title="Text">
+
+Normal
+**Bold**
+_Italic_
+~~Strikethrough~~
+
+</UiBlock>
+
+```md
+Normal
 **Bold**
 _Italic_
 ~~Strikethrough~~
@@ -93,13 +152,16 @@ _Italic_
 
 ### Lists
 
+<UiBlock title="Lists">
+
 1.  First item
 2.  Second item
     1. Sub-item 2.1
     2. Sub-item 2.2
 3.  Third item
 
-```markdown
+</UiBlock>
+```md
 1.  First item
 2.  Second item
     1. Sub-item 2.1
