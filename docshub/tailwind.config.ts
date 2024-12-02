@@ -6,6 +6,9 @@ import twTypography from "@tailwindcss/typography";
 import defaultTheme from "tailwindcss/defaultTheme";
 import twAnimate from "tailwindcss-animate";
 
+// Colors:
+import { docshubColors } from "./src/components/ui/docshub.colors";
+
 const config = {
   darkMode: ["class"],
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
@@ -20,6 +23,9 @@ const config = {
       fontFamily: {
         sans: ["InterVariable", ...defaultTheme.fontFamily.sans],
         mono: ["GeistMono", ...defaultTheme.fontFamily.mono],
+      },
+      colors: {
+        docshub: docshubColors,
       },
       typography: {
         DEFAULT: {
