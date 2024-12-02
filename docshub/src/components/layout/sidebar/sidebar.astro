@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import { cx } from "@/utils/cx";
 
 import SidebarContent from "./sidebar-content";
+import DocshubBrand from "@/components/docshubBrand.astro";
 
 const allDocs = await getCollection("docs");
 const pathname = new URL(Astro.request.url).pathname;
@@ -11,13 +12,15 @@ const pathname = new URL(Astro.request.url).pathname;
 <aside
   class={cx(
     "h-[calc(100vh-65px)]",
-    "hidden xl:block fixed left-0 z-50",
+    "hidden xl:flex flex-col fixed left-0 z-50",
     "bg-gray-100 dark:bg-gray-900",
     "border-r border-gray-200 dark:border-gray-800",
     "w-64 max-w-64",
+    "overflow-y-auto",
   )}
 >
-  <div class="overflow-y-auto px-5 py-6">
+  <div class="overflow-y-auto px-5 py-6 flex-1">
     <SidebarContent client:only="react" docs={allDocs} pathname={pathname} />
   </div>
+  <DocshubBrand />
 </aside>

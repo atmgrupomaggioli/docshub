@@ -150,6 +150,7 @@ const SidebarContent = (props: SidebarContentProps) => {
         ) : docsByCategory.length > 0 ? (
           docsByCategory.map((category) => (
             <Accordion
+              key={category.category}
               type="single"
               defaultValue={
                 category.docs.some(

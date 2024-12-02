@@ -1,7 +1,6 @@
 ---
 import { cx } from "@/utils/cx";
 
-const pathname = new URL(Astro.request.url).pathname;
 import { SidebarFolder } from "@/components/layout/sidebar-item";
 
 const { headings } = Astro.props;
@@ -10,15 +9,14 @@ const { headings } = Astro.props;
 <aside
   class={cx(
     "h-[calc(100vh-65px)]",
-    "overflow-y-auto",
+    "hover:overflow-y-auto",
     "hidden xl:block fixed z-50",
     "bg-gray-100 dark:bg-gray-900",
-    "border-l border-gray-200 dark:border-gray-800",
     "w-[240px] max-w-[240px]",
   )}
 >
-  <div class="px-5 py-6 flex flex-col space-y-1.5">
-    <h3>On this page</h3>
+  <div class="px-5 py-6 flex flex-col space-y-2">
+    <h3 class="text-gray-700 dark:text-gray-300 text-sm">On this page</h3>
     <nav class="flex flex-col">
       {
         headings &&
@@ -26,7 +24,11 @@ const { headings } = Astro.props;
             <a
               title={heading.text}
               href={`#${heading.slug}`}
-              class={cx(SidebarFolder)}
+              class={cx(
+                SidebarFolder,
+                "dark:border-gray-800 border-gray-300",
+                "hover:font-medium",
+              )}
             >
               <span class="truncate max-w-44">{heading.text}</span>
             </a>

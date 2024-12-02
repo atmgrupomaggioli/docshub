@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import { cx } from "@/utils/cx";
+import defaultDocshubConfig from "docshub.config";
 
 import Bitbucket from "@/components/icons/bitbucket.astro";
 import Github from "@/components/icons/github.astro";
@@ -47,19 +48,16 @@ const truncateStyles =
       </SidebarCollapse>
       <img
         class="h-6 w-6"
-        src="/logo/docshub_transparent.png"
+        src={defaultDocshubConfig.logoUrl}
         alt="Docshub Logo"
       />
       <a
         href="/"
-        class="flex flex-col md:flex-row md:gap-2 max-w-full hover:opacity-70 transition-opacity"
+        class="flex flex-col md:flex-row md:gap-2 max-w-full hover:opacity-70 transition-opacity items-center"
       >
-        <span class="md:text-xl text-base font-semibold whitespace-nowrap">
-          {title}
-        </span>
         <p
           class={cx(
-            "block md:pl-2 md:border-l border-gray-200 dark:border-gray-800 self-center text-sm md:text-base  whitespace-nowrap overflow-hidden",
+            "block text-lg font-semibold tracking-tight",
             truncateStyles,
           )}
         >
