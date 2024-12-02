@@ -1,54 +1,75 @@
+import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
-import { MoonIcon, SunIcon } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
 
-type Theme = "theme-light" | "dark" | "system";
+export type Theme = "light" | "dark" | "system";
 
-const ThemeToggle = () => {
-  const [theme, setThemeState] = useState<Theme>("theme-light");
+function ThemeToggle() {
+  const [theme, setThemeState] = useState<Theme>("light");
 
   useEffect(() => {
-    const isDarkMode = document.documentElement.classList.contains("dark");
-    setThemeState(isDarkMode ? "dark" : "theme-light");
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      setThemeState(savedTheme as Theme);
+      applyTheme(savedTheme as "light" | "dark");
+    } else {
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      const defaultTheme = prefersDark ? "dark" : "light";
+      setThemeState(defaultTheme);
+      applyTheme(defaultTheme);
+    }
   }, []);
 
-  useEffect(() => {
-    const isDark =
-      theme === "dark" ||
-      (theme === "system" &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches);
-    document.documentElement.classList[isDark ? "add" : "remove"]("dark");
-  }, [theme]);
+  const applyTheme = (theme: "light" | "dark") => {
+    document.documentElement.classList.remove("dark", "light");
+    document.documentElement.classList.add(theme);
+    document.documentElement.style.colorScheme = theme;
+    localStorage.setItem("theme", theme);
+  };
+
+  const handleThemeChange = (newTheme: "light" | "dark" | "system") => {
+    if (newTheme === "system") {
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      applyTheme(prefersDark ? "dark" : "light");
+    } else {
+      applyTheme(newTheme);
+    }
+    setThemeState(newTheme);
+  };
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon">
-          {theme === "dark" && <SunIcon size={22} strokeWidth={1.5} />}
-          {theme === "theme-light" && <MoonIcon size={22} strokeWidth={1.5} />}
+        <Button variant="ghost" size="icon" title="Toggle theme">
+          {theme === "dark" ? (
+            <Sun size={20} strokeWidth={1.5} />
+          ) : (
+            <Moon size={20} strokeWidth={1.5} />
+          )}
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setThemeState("theme-light")}>
+        <DropdownMenuItem onClick={() => handleThemeChange("light")}>
           Light
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setThemeState("dark")}>
+        <DropdownMenuItem onClick={() => handleThemeChange("dark")}>
           Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setThemeState("system")}>
-          System
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
-};
+}
 
 export default ThemeToggle;
