@@ -6,7 +6,33 @@ category: "References"
 publishDate: "2024-10-03"
 ---
 
+import ShowColors from "@/components/ui/showColors";
+import {
+  docshubAppColors,
+  docshubColors,
+} from "@/components/ui/docshub.colors";
+
 Below you will find examples of all the formats you can use in your Markdown documentation
+
+## Colors
+
+Generated using [tints.dev](https://www.tints.dev/brand/FF8200) and [Tailwind CSS Default Colors Theme](https://tailwindcss.com/docs/customizing-colors).
+
+<div className="flex flex-col space-y-4">
+
+<UiBlock palette title="Docshub Brand Colors">
+
+<ShowColors client:only="react" colors={docshubColors} />
+
+</UiBlock>
+
+<UiBlock palette title="Docshub App Colors">
+
+<ShowColors client:only="react" colors={docshubAppColors} />
+
+</UiBlock>
+
+</div>
 
 ## Codeblocks
 
