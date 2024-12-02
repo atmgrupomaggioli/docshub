@@ -23,8 +23,12 @@ const { headings } = Astro.props;
       {
         headings &&
           headings.map((heading) => (
-            <a href={`#${heading.slug}`} class={cx(SidebarFolder)}>
-              {heading.text}
+            <a
+              title={heading.text}
+              href={`#${heading.slug}`}
+              class={cx(SidebarFolder)}
+            >
+              <span class="truncate max-w-44">{heading.text}</span>
             </a>
           ))
       }

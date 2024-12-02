@@ -6,7 +6,7 @@ export const SidebarFolder = cx(
     variant: "ghost",
   }),
   "px-3 py-2",
-  "truncate w-full",
+  "w-full",
   "font-normal",
   "justify-start",
   "rounded-none",

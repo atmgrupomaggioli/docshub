@@ -123,6 +123,7 @@ const SidebarContent = (props: SidebarContentProps) => {
                   title={doc.slug}
                   className={cx(
                     SidebarFolder,
+                    "py-4",
                     props.pathname.replace(/\/$/, "") === doc.slug &&
                       SidebarItemActive,
                   )}
@@ -166,6 +167,7 @@ const SidebarContent = (props: SidebarContentProps) => {
                 className="border-none"
               >
                 <AccordionTrigger
+                  title={convertCategory(category.category)}
                   className={cx(
                     SidebarFolder,
                     "justify-between",
@@ -176,7 +178,9 @@ const SidebarContent = (props: SidebarContentProps) => {
                 >
                   <div className="flex items-center space-x-3">
                     <FolderIcon strokeWidth={iconStroke} size={16} />
-                    <span>{convertCategory(category.category)}</span>
+                    <span className="max-w-32 truncate">
+                      {convertCategory(category.category)}
+                    </span>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="mb-2 flex w-full flex-col">
@@ -184,6 +188,7 @@ const SidebarContent = (props: SidebarContentProps) => {
                     <a
                       key={doc.slug}
                       href={doc.slug}
+                      title={doc.data.sidebarTitle}
                       className={cx(
                         SidebarFolder,
                         "border-l border-gray-300 dark:border-gray-700",
@@ -193,7 +198,9 @@ const SidebarContent = (props: SidebarContentProps) => {
                       )}
                     >
                       <FileIcon strokeWidth={iconStroke} size={16} />
-                      <span>{doc.data.sidebarTitle}</span>
+                      <span className="max-w-40 truncate">
+                        {doc.data.sidebarTitle}
+                      </span>
                     </a>
                   ))}
                 </AccordionContent>
