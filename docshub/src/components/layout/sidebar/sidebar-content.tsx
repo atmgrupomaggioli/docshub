@@ -1,24 +1,24 @@
 import type { CollectionEntry } from "astro:content";
-import { useState } from "react";
 import { cx } from "@/utils/cx";
-import {
-  BoxIcon,
-  CornerDownRightIcon,
-  FileIcon,
-  FileSearch2Icon,
-  FolderIcon,
-  HouseIcon,
-  SearchIcon,
-} from "lucide-react";
+
+import { BoxIcon, FileIcon, FolderIcon, HouseIcon } from "lucide-react";
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+} from "@/components/ui/command";
+import SearchDocs from "@/components/searchDocs";
 
 import { convertCategory } from "@/utils/convertCategory";
-import { Input } from "@/components/ui/input";
 import { SidebarFolder, SidebarItemActive } from "../sidebar-item";
 
 interface SidebarContentProps {
@@ -27,13 +27,11 @@ interface SidebarContentProps {
   className?: string;
 }
 
+// 📦 Ignore documents
+// Then, add the slug manually:
+const ignoreDocuments = ["getting-started"];
+
 const SidebarContent = (props: SidebarContentProps) => {
-  const [inputSearch, setInputSearch] = useState<string>("");
-
-  // 📦 Ignore documents
-  // Then, add the slug manually:
-  const ignoreDocuments = ["ui"];
-
   const allDocs = [
     ...props.docs
       .filter((doc) => !ignoreDocuments.includes(doc.slug))
@@ -43,51 +41,52 @@ const SidebarContent = (props: SidebarContentProps) => {
       })),
   ];
 
-  const filteredDocs = allDocs.filter(
-    (doc) =>
-      doc.data.title.toLowerCase().includes(inputSearch.toLowerCase()) ||
-      (doc.data.description &&
-        doc.data.description.toLowerCase().includes(inputSearch.toLowerCase())),
-  );
-
   const categories = Array.from(
-    new Set(filteredDocs.map((doc) => doc.data.category)),
+    new Set(allDocs.map((doc) => doc.data.category)),
   );
 
   const docsByCategory = categories
     .map((category) => ({
       category,
-      docs: filteredDocs.filter((doc) => doc.data.category === category),
+      docs: allDocs.filter((doc) => doc.data.category === category),
     }))
     .filter((group) => group.docs.length > 0);
+
+  const handleGoToDoc = (slug: string) => {
+    window.location.href = `${slug}`;
+  };
 
   // Document Styles:
   const iconStroke = 1.5;
 
   return (
     <div className={cx("flex flex-col space-y-4", props.className)}>
-      <div className="relative w-full text-[12px]">
-        <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-          <div className="pointer-events-none">
-            <SearchIcon
-              strokeWidth={iconStroke}
-              size={16}
-              className="text-gray-600 dark:text-gray-400"
-            />
-          </div>
-        </div>
-        <Input
-          type="search"
-          value={inputSearch}
-          onChange={(e) => setInputSearch(e.target.value)}
-          placeholder="Search..."
-          autoComplete="off"
-          className={cx(
-            "border-gray-300 pl-[36px] dark:border-gray-700",
-            "focus-visible:ring-gray-400 dark:focus-visible:ring-gray-600",
-          )}
-        />
-      </div>
+      <SearchDocs>
+        <CommandList>
+          <CommandEmpty>No results found.</CommandEmpty>
+          {docsByCategory.map((category, index) => (
+            <>
+              <CommandGroup
+                heading={convertCategory(category.category)}
+                key={category.category}
+              >
+                {category.docs.map((doc) => (
+                  <CommandItem
+                    key={doc.slug}
+                    onSelect={() => handleGoToDoc(doc.slug)}
+                    className="flex flex-col justify-start"
+                  >
+                    <span>{doc.data.sidebarTitle}</span>
+                    <span className="truncate text-gray-500">
+                      {doc.data.description}
+                    </span>
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </>
+          ))}
+        </CommandList>
+      </SearchDocs>
       <nav className="flex w-full flex-col text-sm">
         <a
           href="/"
@@ -101,53 +100,7 @@ const SidebarContent = (props: SidebarContentProps) => {
             <span>Introduction</span>
           </div>
         </a>
-        <a
-          href="/ui"
-          className={cx(
-            SidebarFolder,
-            props.pathname === "/ui" && SidebarItemActive,
-          )}
-        >
-          <div className="flex items-center space-x-3">
-            <BoxIcon strokeWidth={iconStroke} size={16} />
-            <span>Components</span>
-          </div>
-        </a>
-        {inputSearch ? (
-          <div className="flex flex-col">
-            {filteredDocs.length > 0 ? (
-              filteredDocs.map((doc) => (
-                <a
-                  key={doc.slug}
-                  href={doc.slug}
-                  title={doc.slug}
-                  className={cx(
-                    SidebarFolder,
-                    "py-4",
-                    props.pathname.replace(/\/$/, "") === doc.slug &&
-                      SidebarItemActive,
-                  )}
-                >
-                  <div className="flex flex-col">
-                    <div className="flex items-center space-x-3">
-                      <FileIcon strokeWidth={iconStroke} size={16} />
-                      <span>{doc.data.sidebarTitle}</span>
-                    </div>
-                    <div className="ml-[6px] flex items-center space-x-3">
-                      <CornerDownRightIcon strokeWidth={iconStroke} size={16} />
-                      <span>{convertCategory(doc.data.category)}</span>
-                    </div>
-                  </div>
-                </a>
-              ))
-            ) : (
-              <div className="flex flex-col items-center justify-center space-y-2 p-2 text-gray-400">
-                <FileSearch2Icon strokeWidth={1.5} size={25} />
-                <p>No hay resultados</p>
-              </div>
-            )}
-          </div>
-        ) : docsByCategory.length > 0 ? (
+        {docsByCategory.length > 0 &&
           docsByCategory.map((category) => (
             <Accordion
               key={category.category}
@@ -178,8 +131,12 @@ const SidebarContent = (props: SidebarContentProps) => {
                   )}
                 >
                   <div className="flex items-center space-x-3">
-                    <FolderIcon strokeWidth={iconStroke} size={16} />
-                    <span className="max-w-32 truncate">
+                    {category.category === "components" ? (
+                      <BoxIcon strokeWidth={iconStroke} size={16} />
+                    ) : (
+                      <FolderIcon strokeWidth={iconStroke} size={16} />
+                    )}
+                    <span className="max-w-28 truncate">
                       {convertCategory(category.category)}
                     </span>
                   </div>
@@ -192,7 +149,7 @@ const SidebarContent = (props: SidebarContentProps) => {
                       title={doc.data.sidebarTitle}
                       className={cx(
                         SidebarFolder,
-                        "border-l border-gray-300 dark:border-gray-700",
+                        "border-l border-gray-300 dark:border-gray-800",
                         "ml-[14px]",
                         props.pathname.replace(/\/$/, "") === doc.slug &&
                           SidebarItemActive,
@@ -207,13 +164,7 @@ const SidebarContent = (props: SidebarContentProps) => {
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
-          ))
-        ) : (
-          <div className="flex flex-col items-center justify-center space-y-2 p-2 text-gray-400">
-            <FileSearch2Icon strokeWidth={1.5} size={25} />
-            <p>No hay resultados</p>
-          </div>
-        )}
+          ))}
       </nav>
     </div>
   );

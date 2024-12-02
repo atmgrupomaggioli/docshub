@@ -12,7 +12,7 @@ export const SidebarFolder = cx(
   "rounded-none",
   "text-gray-600 dark:text-gray-400",
   "hover:bg-gray-300/60 dark:hover:bg-gray-800/70",
-  "border-l border-gray-300 dark:border-gray-700",
+  "border-l border-gray-300 dark:border-gray-800",
 );
 
 export const SidebarItemActive = cx(
@@ -20,5 +20,5 @@ export const SidebarItemActive = cx(
   "font-medium",
   "justify-start",
   "text-gray-900 dark:text-gray-50",
-  "border-l border-gray-500 dark:border-gray-400",
+  "border-l border-gray-500 dark:border-gray-500",
 );
