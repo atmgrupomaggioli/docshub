@@ -6,7 +6,8 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "../../ui/sheet";
-import MenuIcon from "../../icons/menu";
+import defaultDocshubConfig from "docshub.config";
+import { MenuIcon } from "lucide-react";
 
 interface SidebarCollapseProps {
   children: ReactNode;
@@ -15,25 +16,24 @@ interface SidebarCollapseProps {
 const SidebarCollapse = (props: SidebarCollapseProps) => {
   return (
     <Sheet>
-      <SheetTrigger className="block rounded-md p-2 transition-colors hover:bg-gray-800 xl:hidden">
-        <MenuIcon className="h-6" />
+      <SheetTrigger className="block rounded-md transition-colors hover:bg-gray-800 xl:hidden">
+        <MenuIcon size={22} />
       </SheetTrigger>
-      <SheetContent
-        className="flex flex-col p-6 py-[12px] text-sm"
-        side={"left"}
-      >
-        <SheetHeader className="mb-3 flex w-full justify-between border-b border-gray-800 py-2">
+      <SheetContent className="flex flex-col p-6 py-3 text-sm" side={"left"}>
+        <SheetHeader className="flex w-full justify-between py-2">
           <div className="flex items-center gap-2">
             <img
               className="h-6 w-6"
-              src="/logo/docshub_transparent.png"
-              alt="Docshub Logo"
+              src={defaultDocshubConfig.logoUrl}
+              alt={defaultDocshubConfig.documentationTitle}
             />
-            <span className="text-xl font-bold">Docshub</span>
+            <span className="text-lg font-bold">
+              {defaultDocshubConfig.documentationTitle}
+            </span>
           </div>
           <SheetClose className="hover:opacity-90"></SheetClose>
         </SheetHeader>
-        <nav className="flex flex-col gap-1">{props.children}</nav>
+        <nav className="flex h-full flex-col">{props.children}</nav>
       </SheetContent>
     </Sheet>
   );
