@@ -20,13 +20,13 @@ Generated using [tints.dev](https://www.tints.dev/brand/FF8200) and [Tailwind CS
 
 <div className="flex flex-col space-y-4">
 
-<UiBlock palette title="Docshub Brand Colors">
+<UiBlock component="palette" title="Docshub Brand Colors">
 
 <ShowColors client:only="react" colors={docshubColors} />
 
 </UiBlock>
 
-<UiBlock palette title="Docshub App Colors">
+<UiBlock component="palette" title="Docshub App Colors">
 
 <ShowColors client:only="react" colors={docshubAppColors} />
 
@@ -38,7 +38,7 @@ Generated using [tints.dev](https://www.tints.dev/brand/FF8200) and [Tailwind CS
 
 Using [Shiki](https://shiki.matsu.io/) for syntax highlighting.
 
-<UiBlock title="Codeblocks">
+<UiBlock component="component" title="Codeblocks">
 
 ```bash
 echo "Hello World"
@@ -53,7 +53,7 @@ echo "Hello World"
 
 ## Endpoint
 
-<UiBlock title="Endpoint">
+<UiBlock component="component" title="Endpoint">
 
 <Endpoint
   method="GET"
@@ -87,7 +87,7 @@ https://example.com/end/point/resource
 
 ## Alert
 
-<UiBlock title="Alert">
+<UiBlock component="component" title="Alert">
 
 <Alert type="info">Example message</Alert>
 <Alert type="error">Example message</Alert>
@@ -108,7 +108,7 @@ export type AlertType = "success" | "error" | "warning" | "info";
 
 ## Link
 
-<UiBlock title="Link">
+<UiBlock component="component" title="Link">
 
 [Astro Framework](https://astro.build/).
 
@@ -119,7 +119,7 @@ export type AlertType = "success" | "error" | "warning" | "info";
 
 ### Table
 
-<UiBlock title="Table">
+<UiBlock component="component" title="Table">
 
 | Column 1      | Column 2      | Column 3      |
 | ------------- | ------------- | ------------- |
@@ -140,7 +140,7 @@ export type AlertType = "success" | "error" | "warning" | "info";
 
 Use `#` to define different levels of headings (from h1 to h4).
 
-<UiBlock title="Headings">
+<UiBlock component="component" title="Headings">
 
 ## Heading Level 1
 
@@ -160,7 +160,7 @@ Use `#` to define different levels of headings (from h1 to h4).
 
 ### Text
 
-<UiBlock title="Text">
+<UiBlock component="component" title="Text">
 
 Normal
 **Bold**
@@ -178,7 +178,7 @@ _Italic_
 
 ### Lists
 
-<UiBlock title="Lists">
+<UiBlock component="component" title="Lists">
 
 1.  First item
 2.  Second item
