@@ -18,6 +18,7 @@ type RepositoryType = "github" | "gitlab" | "bitbucket";
 interface DocshubConfig {
   documentationTitle: string;
   version: string;
+  docsUrl: string;
   author?: string;
   logoUrl?: string;
   license?: LicenseType;
