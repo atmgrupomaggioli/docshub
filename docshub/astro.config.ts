@@ -1,5 +1,8 @@
 import { defineConfig } from "astro/config";
 
+// Docshub Configuration:
+import docshubConfig from "./docshub.config";
+
 // Deployment integrations:
 import node from "@astrojs/node";
 import vercel from "@astrojs/vercel/serverless";
@@ -13,6 +16,9 @@ import mdx from "@astrojs/mdx";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import remarkGfm from "remark-gfm";
+import rehypeMermaid from "rehype-mermaid";
+import addMermaidClass from "./src/components/mdx/plugins/addMermaidClassname";
+import { targetBlank } from "./src/components/mdx/plugins/targetBlank";
 import { remarkReadingTime } from "./src/components/mdx/plugins/remarkReadingTime.mjs";
 import { HEADING_LINK_ANCHOR } from "./src/components/ui/prose-headings";
 
@@ -48,6 +54,9 @@ export default defineConfig({
       },
       rehypePlugins: [
         rehypeSlug,
+        addMermaidClass,
+        rehypeMermaid,
+        [targetBlank, { domain: docshubConfig.docsUrl }],
         [
           rehypeAutolinkHeadings,
           {
