@@ -3,7 +3,8 @@ name: 🧑‍🚀 Check
 on:
   push:
     branches:
-      - "*"
+      - "main"
+      - "feature/mermaid-markdown-integration"
   pull_request:
     branches:
       - main
