@@ -12,9 +12,9 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  vitest:
+  docshub:
     runs-on: ubuntu-latest
-    name: 📦 Build Docshub
+    name: 📦 Build DocsHub
     steps:
       - uses: actions/checkout@v4
 
@@ -22,7 +22,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          working-directory: ./docshub
 
       - name: Install dependencies
         run: npm install
