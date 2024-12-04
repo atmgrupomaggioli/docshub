@@ -18,13 +18,18 @@ const CopyToClipboard = ({ btnText, contentToCopy }: iCopyToClipboard) => {
   };
 
   return (
-    <Button size="sm" variant="outline" onClick={() => handleCopy()}>
+    <Button
+      size="sm"
+      variant="outline"
+      className="w-full"
+      onClick={() => handleCopy()}
+    >
       {isCopied ? (
         <CheckCheckIcon size={14} strokeWidth={1.5} />
       ) : (
         <CopyIcon size={14} strokeWidth={1.5} />
       )}
-      <span className="hidden md:block">{btnText}</span>
+      <span>{btnText}</span>
     </Button>
   );
 };

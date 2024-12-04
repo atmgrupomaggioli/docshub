@@ -33,17 +33,21 @@ const { document, url, readingTime } = Astro.props;
     </p>
   </header>
   <div
-    class="flex items-center w-full justify-between tracking-tight mb-6 border-b-2 border-gray-200 dark:border-gray-800 pb-3"
+    class="flex flex-col md:flex-row items-center w-full justify-between tracking-tight mb-6 border-b-2 border-gray-200 dark:border-gray-800 pb-3"
   >
-    <div class="flex items-center space-x-1.5">
+    <div class="flex flex-row items-center space-x-1.5">
       <Badge title={`Category: ${document.category}`}>
-        <TagIcon size={14} strokeWidth={1.5} />
+        <TagIcon className="flex-shrink-0" size={14} strokeWidth={1.5} />
         <span>{convertCategory(document.category)}</span>
       </Badge>
       {
         document.publishDate && (
           <Badge title={`Published on: ${document.publishDate}`}>
-            <CalendarIcon size={14} strokeWidth={1.5} />
+            <CalendarIcon
+              className="flex-shrink-0"
+              size={14}
+              strokeWidth={1.5}
+            />
             <span>{document.publishDate}</span>
           </Badge>
         )
@@ -51,7 +55,7 @@ const { document, url, readingTime } = Astro.props;
       {
         readingTime && (
           <Badge title={`Read time: ${readingTime}`}>
-            <ClockIcon size={14} strokeWidth={1.5} />
+            <ClockIcon className="flex-shrink-0" size={14} strokeWidth={1.5} />
             <span>{readingTime}</span>
           </Badge>
         )
@@ -66,7 +70,11 @@ const { document, url, readingTime } = Astro.props;
               rel="noopener noreferrer"
             >
               <Badge className="cursor-pointer group hover:border-gray-600 dark:hover:border-gray-500 transition-colors">
-                <UserIcon size={14} strokeWidth={1.5} />
+                <UserIcon
+                  className="flex-shrink-0"
+                  size={14}
+                  strokeWidth={1.5}
+                />
                 <span>{document.author.name}</span>
                 <ArrowUpRightIcon
                   className="group-hover:text-black dark:group-hover:text-white text-gray-500 transition-colors"
@@ -76,7 +84,7 @@ const { document, url, readingTime } = Astro.props;
             </a>
           ) : (
             <Badge title={`Published by ${document.author.name}`}>
-              <UserIcon size={14} strokeWidth={1.5} />
+              <UserIcon className="flex-shrink-0" size={14} strokeWidth={1.5} />
               <span>{document.author.name}</span>
             </Badge>
           ))
