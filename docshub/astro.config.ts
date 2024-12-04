@@ -11,13 +11,13 @@ import vercel from "@astrojs/vercel/serverless";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 
-// MDX Configuration:
+// MDX Plugins:
 import mdx from "@astrojs/mdx";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import remarkGfm from "remark-gfm";
-import rehypeMermaid from "rehype-mermaid";
-import addMermaidClass from "./src/components/mdx/plugins/addMermaidClassname";
+
+import { mermaid } from "./src/components/mdx/plugins/mermaid";
 import { targetBlank } from "./src/components/mdx/plugins/targetBlank";
 import { remarkReadingTime } from "./src/components/mdx/plugins/remarkReadingTime.mjs";
 import { HEADING_LINK_ANCHOR } from "./src/components/ui/prose-headings";
@@ -54,8 +54,6 @@ export default defineConfig({
       },
       rehypePlugins: [
         rehypeSlug,
-        addMermaidClass,
-        rehypeMermaid,
         [targetBlank, { domain: docshubConfig.docsUrl }],
         [
           rehypeAutolinkHeadings,
@@ -67,7 +65,7 @@ export default defineConfig({
           },
         ],
       ],
-      remarkPlugins: [remarkGfm, remarkReadingTime],
+      remarkPlugins: [remarkGfm, remarkReadingTime, mermaid],
     }),
   ],
 });
