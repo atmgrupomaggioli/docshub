@@ -85,26 +85,24 @@ const SidebarContent = (props: SidebarContentProps) => {
       <SearchDocs>
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
-          {docsByCategory.map((category, index) => (
-            <>
-              <CommandGroup
-                heading={convertCategory(category.category)}
-                key={category.category}
-              >
-                {category.docs.map((doc) => (
-                  <CommandItem
-                    key={doc.slug}
-                    onSelect={() => handleGoToDoc(doc.slug)}
-                    className="flex flex-col justify-start"
-                  >
-                    <span>{doc.data.sidebarTitle}</span>
-                    <span className="truncate text-gray-500">
-                      {doc.data.description}
-                    </span>
-                  </CommandItem>
-                ))}
-              </CommandGroup>
-            </>
+          {docsByCategory.map((category) => (
+            <CommandGroup
+              key={category.category}
+              heading={convertCategory(category.category)}
+            >
+              {category.docs.map((doc) => (
+                <CommandItem
+                  key={doc.slug}
+                  onSelect={() => handleGoToDoc(doc.slug)}
+                  className="flex flex-col justify-start"
+                >
+                  <span>{doc.data.sidebarTitle}</span>
+                  <span className="truncate text-gray-500">
+                    {doc.data.description}
+                  </span>
+                </CommandItem>
+              ))}
+            </CommandGroup>
           ))}
         </CommandList>
       </SearchDocs>

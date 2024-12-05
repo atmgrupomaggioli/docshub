@@ -36,7 +36,7 @@ const ShowColors = ({ colors }: ShowColorsProps) => {
     <div className="flex items-center space-x-2 overflow-y-auto">
       {Object.entries(colors).map(([key, value]) => (
         <button
-          key={value}
+          key={key}
           className={btnClasses}
           title={`Copy ${value} to clipboard`}
           onClick={() => copyColors(value)}

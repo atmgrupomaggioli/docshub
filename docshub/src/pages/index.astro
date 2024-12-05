@@ -3,7 +3,6 @@ import { getEntry } from "astro:content";
 
 import LayoutMain from "@/layouts/layoutMain.astro";
 import LayoutDocs from "@/layouts/layoutDocs.astro";
-import LastEntries from "@/components/ui/last-entries.astro";
 
 const entry = await getEntry("docs", "getting-started");
 const { Content, headings } = await entry.render();
