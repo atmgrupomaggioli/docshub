@@ -39,6 +39,11 @@ const dockerDeploy = {
 export default defineConfig({
   //...dockerDeploy,
   ...vercelDeploy,
+  redirects: {
+    "/documentation-docker": "/docshub-docker",
+    "/documentation-docshub": "/docshub-source",
+    "/documentation-cli": "/docshub-cli",
+  },
   integrations: [
     react(),
     tailwind({
