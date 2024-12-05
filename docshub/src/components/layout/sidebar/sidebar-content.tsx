@@ -1,7 +1,15 @@
 import type { CollectionEntry } from "astro:content";
 import { cx } from "@/utils/cx";
 
-import { BoxIcon, FileIcon, FolderIcon, HouseIcon } from "lucide-react";
+import {
+  FileIcon,
+  FolderIcon,
+  HouseIcon,
+  PaletteIcon,
+  PenLineIcon,
+  SettingsIcon,
+  TelescopeIcon,
+} from "lucide-react";
 
 import {
   Accordion,
@@ -9,15 +17,15 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+
 import {
   CommandEmpty,
   CommandGroup,
   CommandItem,
   CommandList,
-  CommandSeparator,
 } from "@/components/ui/command";
-import SearchDocs from "@/components/searchDocs";
 
+import SearchDocs from "@/components/searchDocs";
 import { convertCategory } from "@/utils/convertCategory";
 import { SidebarFolder, SidebarItemActive } from "../sidebar-item";
 
@@ -58,6 +66,19 @@ const SidebarContent = (props: SidebarContentProps) => {
 
   // Document Styles:
   const iconStroke = 1.5;
+
+  const specialCategories = [
+    { category: "components", icon: PaletteIcon },
+    { category: "getting started", icon: TelescopeIcon },
+    { category: "configuration", icon: SettingsIcon },
+    { category: "write docs", icon: PenLineIcon },
+    { category: "folders", icon: FolderIcon },
+  ];
+
+  const getIconForCategory = (category: string) => {
+    const config = specialCategories.find((item) => item.category === category);
+    return config ? config.icon : FolderIcon;
+  };
 
   return (
     <div className={cx("flex flex-col space-y-4", props.className)}>
@@ -101,70 +122,70 @@ const SidebarContent = (props: SidebarContentProps) => {
           </div>
         </a>
         {docsByCategory.length > 0 &&
-          docsByCategory.map((category) => (
-            <Accordion
-              key={category.category}
-              type="single"
-              defaultValue={
-                category.docs.some(
-                  (doc) => doc.slug === props.pathname.replace(/\/$/, ""),
-                )
-                  ? category.category
-                  : ""
-              }
-              className="flex flex-col space-y-2"
-              collapsible={true}
-            >
-              <AccordionItem
+          docsByCategory.map((category) => {
+            const IconComponent = getIconForCategory(category.category);
+            return (
+              <Accordion
                 key={category.category}
-                value={category.category}
-                className="border-none"
+                type="single"
+                defaultValue={
+                  category.docs.some(
+                    (doc) => doc.slug === props.pathname.replace(/\/$/, ""),
+                  )
+                    ? category.category
+                    : ""
+                }
+                className="flex flex-col space-y-2"
+                collapsible={true}
               >
-                <AccordionTrigger
-                  title={convertCategory(category.category)}
-                  className={cx(
-                    SidebarFolder,
-                    "justify-between",
-                    category.docs.some(
-                      (doc) => doc.slug === props.pathname.replace(/\/$/, ""),
-                    ) && "font-medium text-gray-900 dark:text-gray-50",
-                  )}
+                <AccordionItem
+                  key={category.category}
+                  value={category.category}
+                  className="border-none"
                 >
-                  <div className="flex items-center space-x-3">
-                    {category.category === "components" ? (
-                      <BoxIcon strokeWidth={iconStroke} size={16} />
-                    ) : (
-                      <FolderIcon strokeWidth={iconStroke} size={16} />
+                  <AccordionTrigger
+                    title={convertCategory(category.category)}
+                    className={cx(
+                      SidebarFolder,
+                      "justify-between",
+                      category.docs.some(
+                        (doc) => doc.slug === props.pathname.replace(/\/$/, ""),
+                      ) && "font-medium text-gray-900 dark:text-gray-50",
                     )}
-                    <span className="max-w-28 truncate">
-                      {convertCategory(category.category)}
-                    </span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="mb-2 flex w-full flex-col">
-                  {category.docs.map((doc) => (
-                    <a
-                      key={doc.slug}
-                      href={doc.slug}
-                      title={doc.data.sidebarTitle}
-                      className={cx(
-                        SidebarFolder,
-                        "border-l border-gray-300 dark:border-gray-800",
-                        "ml-[14px]",
-                        props.pathname.replace(/\/$/, "") === doc.slug &&
-                          SidebarItemActive,
-                      )}
-                    >
-                      <FileIcon strokeWidth={iconStroke} size={16} />
-                      <span className="max-w-40 truncate">
-                        {doc.data.sidebarTitle}
+                  >
+                    <div className="flex items-center space-x-3">
+                      {/* Renderizamos el ícono dinámico */}
+                      <IconComponent strokeWidth={iconStroke} size={16} />
+                      <span className="max-w-28 truncate">
+                        {convertCategory(category.category)}
                       </span>
-                    </a>
-                  ))}
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          ))}
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="mb-2 flex w-full flex-col">
+                    {category.docs.map((doc) => (
+                      <a
+                        key={doc.slug}
+                        href={doc.slug}
+                        title={doc.data.sidebarTitle}
+                        className={cx(
+                          SidebarFolder,
+                          "border-l border-gray-300 dark:border-gray-800",
+                          "ml-[14px]",
+                          props.pathname.replace(/\/$/, "") === doc.slug &&
+                            SidebarItemActive,
+                        )}
+                      >
+                        <FileIcon strokeWidth={iconStroke} size={16} />
+                        <span className="max-w-40 truncate">
+                          {doc.data.sidebarTitle}
+                        </span>
+                      </a>
+                    ))}
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            );
+          })}
       </nav>
     </div>
   );

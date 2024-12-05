@@ -21,7 +21,7 @@ const CopyToClipboard = ({ btnText, contentToCopy }: iCopyToClipboard) => {
     <Button
       size="sm"
       variant="outline"
-      className="w-full"
+      className="w-full md:w-fit"
       onClick={() => handleCopy()}
     >
       {isCopied ? (

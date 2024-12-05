@@ -33,9 +33,12 @@ const { document, url, readingTime } = Astro.props;
     </p>
   </header>
   <div
-    class="flex flex-col md:flex-row items-center w-full justify-between tracking-tight mb-6 border-b-2 border-gray-200 dark:border-gray-800 pb-3"
+    class={cx(
+      "flex items-center justify-between w-full",
+      "border-b border-gray-200 dark:border-gray-800 pb-3 mb-6",
+    )}
   >
-    <div class="flex flex-row items-center space-x-1.5">
+    <div class="flex overflow-x-auto items-center space-x-1.5 w-full">
       <Badge title={`Category: ${document.category}`}>
         <TagIcon className="flex-shrink-0" size={14} strokeWidth={1.5} />
         <span>{convertCategory(document.category)}</span>
@@ -90,7 +93,13 @@ const { document, url, readingTime } = Astro.props;
           ))
       }
     </div>
-    <CopyToClipboard client:only="react" btnText="Share" contentToCopy={url} />
+    <div>
+      <CopyToClipboard
+        client:only="react"
+        btnText="Share"
+        contentToCopy={url}
+      />
+    </div>
   </div>
   <article
     class={cx(
