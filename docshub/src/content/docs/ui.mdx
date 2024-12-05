@@ -51,6 +51,20 @@ echo "Hello World"
 ```
 ````
 
+## Document Card
+
+Add a card that redirects to a document in your application. It receives the `documentSlug` parameter, which refers to the **filename** of the document.
+
+<UiBlock component="component" title="Document Card">
+
+<DocumentCard documentSlug="getting-started" />
+
+</UiBlock>
+```html
+<DocumentCard documentSlug="getting-started" />
+<!-- src/content/docs/getting-started.mdx -->
+```
+
 ## Endpoint
 
 <UiBlock component="component" title="Endpoint">
@@ -83,6 +97,39 @@ https://example.com/end/point/resource
 >
   // Code
 </Endpoint>
+```
+
+- `Method` properties:
+
+```ts
+export type Method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
+```
+
+- `Label` properties:
+
+```ts
+export type Label = "DEPRECATED" | "BETA" | "ALPHA" | "STABLE";
+```
+
+## UI Block
+
+<UiBlock component="component" title="UI Block">
+
+<UiBlock component="component" title="Component Block Title">
+  Your Astro or React component here
+</UiBlock>
+
+</UiBlock>
+```html
+ <UiBlock component="component" title="Component Block Title">
+  Your Astro or React component here
+ </UiBlock>
+ ```
+
+- `component` properties:
+
+```ts
+type Component = "palette" | "mermaid" | "component";
 ```
 
 ## Alert
