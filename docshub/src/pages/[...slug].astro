@@ -10,6 +10,7 @@ import LayoutDocs from "@/layouts/layoutDocs.astro";
 import Endpoint from "@/components/mdx/endpoint/endpoint.astro";
 import Alert from "@/components/mdx/alert/alert.astro";
 import UiBlock from "@/components/uiBlock.astro";
+import DocumentCard from "@/components/documentCard.astro";
 
 // 📄 Get Document:
 const post = Astro.props;
@@ -37,6 +38,6 @@ const { Content, headings, remarkPluginFrontmatter } = await post.render();
     readingTime={remarkPluginFrontmatter.minutesRead}
     docUrl={url}
   >
-    <Content components={{ Endpoint, Alert, UiBlock }} />
+    <Content components={{ Endpoint, Alert, UiBlock, DocumentCard }} />
   </LayoutDocs>
 </LayoutMain>

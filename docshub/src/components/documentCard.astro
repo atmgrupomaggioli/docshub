@@ -1,0 +1,68 @@
+---
+import { cx } from "@/utils/cx";
+import { CalendarIcon, FileIcon, TagIcon } from "lucide-react";
+import { getEntry } from "astro:content";
+import Badge from "./ui/badge.astro";
+import { convertCategory } from "@/utils/convertCategory";
+
+interface Props {
+  documentSlug: string;
+}
+
+const getEntryBySlug = async (slug: string) => {
+  try {
+    const entry = await getEntry("docs", slug);
+    return entry?.data ? { ...entry.data, url: entry.slug } : null;
+  } catch (error) {
+    console.error("Error fetching entry:", error);
+    return null;
+  }
+};
+
+const document = await getEntryBySlug(Astro.props.documentSlug);
+
+const { title, description, url, category, publishDate } = document ?? {
+  title: "Document not found",
+  description: "This document does not exist",
+  url: "#",
+};
+---
+
+<a
+  href={url}
+  class={cx(
+    "relative",
+    "flex flex-col gap-1 rounded-lg p-4",
+    "bg-gray-50 dark:bg-gray-900",
+    "border-[1.5px] border-gray-200 dark:border-gray-800",
+    "no-underline",
+    "shadow-sm",
+  )}
+>
+  <span class="text-lg font-semibold tracking-tight">
+    {title}
+  </span>
+  <span class="max-w-full truncate opacity-80 text-sm">{description}</span>
+  <div class="flex items-center space-x-1.5 mt-2">
+    <Badge className="py-0.5">
+      <TagIcon width={15} strokeWidth={1.5} />
+      <span class="text-xs">{convertCategory(category)}</span>
+    </Badge>
+    {
+      publishDate && (
+        <Badge className="py-0.5">
+          <CalendarIcon width={15} strokeWidth={1.5} />
+          <span class="text-xs">{publishDate}</span>
+        </Badge>
+      )
+    }
+  </div>
+  <FileIcon
+    size={14}
+    strokeWidth={1.5}
+    className={cx(
+      "text-gray-500 dark:text-gray-400",
+      "absolute top-2.5 right-2",
+    )}
+  />
+</a>
