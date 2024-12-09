@@ -39,9 +39,9 @@ const SidebarTocCollapse = (props: SidebarCollapseProps) => {
         <nav className="flex flex-col overflow-y-auto">
           {props.headings.map((heading) => (
             <a
-              key={heading.id}
+              key={heading.slug}
               title={heading.text}
-              href={`#${heading.id}`}
+              href={`#${heading.slug}`}
               className={cx(
                 SidebarFolder,
                 "border-gray-300 dark:border-gray-800",
