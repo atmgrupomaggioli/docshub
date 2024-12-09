@@ -5,7 +5,7 @@ import docshubConfig from "./docshub.config";
 
 // Deployment integrations:
 import node from "@astrojs/node";
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel";
 
 // UI integrations:
 import react from "@astrojs/react";
