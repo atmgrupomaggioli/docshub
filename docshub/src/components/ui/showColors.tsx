@@ -1,7 +1,7 @@
 import { clipboard } from "@/utils/clipboard";
 import { cx } from "@/utils/cx";
 import { CheckCheckIcon, CopyIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const btnClasses = cx(
   "h-10 w-10 group flex items-center justify-center rounded-md border border-gray-300 dark:border-gray-700",

@@ -11,7 +11,6 @@ import SidebarCollapse from "@/components/layout/sidebar/sidebar-collapse";
 import SidebarContent from "@/components/layout/sidebar/sidebar-content";
 
 import { buttonVariants } from "@/components/ui/button";
-import Badge from "@/components/ui/badge.astro";
 
 import config from "docshub.config";
 import ThemeToggle from "./themeToggle";
@@ -20,12 +19,6 @@ import { HistoryIcon } from "lucide-react";
 
 const allDocs = await getCollection("docs");
 const pathname = new URL(Astro.request.url).pathname;
-
-interface Props {
-  title: string;
-}
-
-const { title } = Astro.props;
 
 const truncateStyles =
   "truncate max-w-[210px] sm:max-w-[300px] md:max-w-[500px] lg:max-w-[600px] xl:max-w-[800px] 2xl:max-w-full";
