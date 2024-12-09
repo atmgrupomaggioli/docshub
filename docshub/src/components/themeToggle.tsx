@@ -13,12 +13,14 @@ export type Theme = "light" | "dark" | "system";
 
 function ThemeToggle() {
   const [theme, setThemeState] = useState<Theme>("light");
+  const [ready, setReady] = useState<boolean>(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
       setThemeState(savedTheme as Theme);
       applyTheme(savedTheme as "light" | "dark");
+      setReady(true);
     } else {
       const prefersDark = window.matchMedia(
         "(prefers-color-scheme: dark)",
@@ -26,8 +28,9 @@ function ThemeToggle() {
       const defaultTheme = prefersDark ? "dark" : "light";
       setThemeState(defaultTheme);
       applyTheme(defaultTheme);
+      setReady(true);
     }
-  }, []);
+  }, [ready]);
 
   const applyTheme = (theme: "light" | "dark") => {
     document.documentElement.classList.remove("dark", "light");
@@ -52,11 +55,20 @@ function ThemeToggle() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" title="Toggle theme">
-          {theme === "dark" ? (
-            <Sun size={20} strokeWidth={1.5} />
-          ) : (
-            <Moon size={20} strokeWidth={1.5} />
-          )}
+          {ready &&
+            (theme === "dark" ? (
+              <Sun
+                className="animate-in fade-in-20"
+                size={20}
+                strokeWidth={1.5}
+              />
+            ) : (
+              <Moon
+                className="animate-in fade-in-20"
+                size={20}
+                strokeWidth={1.5}
+              />
+            ))}
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
