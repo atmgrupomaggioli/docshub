@@ -1,9 +1,10 @@
+import { glob } from "astro/loaders";
 import { defineCollection } from "astro:content";
 import { z } from "zod";
 
 const defaultSiteConfig = {
-  title: "Docshub",
-  description: "MangoLibs Docs",
+  title: "DocsHub",
+  description: "Markdown Documentation with Vitamins",
 };
 
 const docsProperties = z.object({
@@ -32,6 +33,7 @@ const docsProperties = z.object({
 });
 
 const docs = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/docs" }),
   schema: docsProperties,
 });
 

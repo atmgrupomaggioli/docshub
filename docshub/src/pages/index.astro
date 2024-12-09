@@ -1,17 +1,22 @@
 ---
-import { getEntry } from "astro:content";
+import { getEntry, render } from "astro:content";
 
 import LayoutMain from "@/layouts/layoutMain.astro";
 import LayoutDocs from "@/layouts/layoutDocs.astro";
 
-const entry = await getEntry("docs", "getting-started");
-const { Content, headings } = await entry.render();
+const document = await getEntry("docs", "getting-started");
+
+if (!document) {
+  return Astro.redirect("404");
+}
+
+const { Content, headings } = await render(document);
 
 const url = new URL(Astro.request.url).href;
 ---
 
-<LayoutMain title={entry.data.title} description={entry.data.description}>
-  <LayoutDocs document={entry.data} docUrl={url} headings={headings}>
+<LayoutMain title={document.data.title} description={document.data.description}>
+  <LayoutDocs document={document.data} docUrl={url} headings={headings}>
     <Content />
   </LayoutDocs>
 </LayoutMain>

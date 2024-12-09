@@ -17,7 +17,7 @@ const sharedHeadingClass = cx(
   class={cx(
     "hidden xl:block",
     "text-sm",
-    "bg-gray-900 border-l border-gray-800"
+    "bg-gray-900 border-l border-gray-800",
   )}
 >
   <nav class="sticky top-20 pl-4 w-[300px]">
@@ -41,10 +41,7 @@ const sharedHeadingClass = cx(
             return (
               <a
                 href={`#${heading.slug}`}
-                class={cx(
-                  sharedHeadingClass,
-                  "pl-4" , "font-semibold"
-                )}
+                class={cx(sharedHeadingClass, "pl-4", "font-semibold")}
               >
                 <span title={heading.text}>{heading.text}</span>
               </a>
@@ -53,10 +50,7 @@ const sharedHeadingClass = cx(
             return (
               <a
                 href={`#${heading.slug}`}
-                class={cx(
-                  sharedHeadingClass,
-                  "pl-7",
-                )}
+                class={cx(sharedHeadingClass, "pl-7")}
               >
                 <span title={heading.text}>{heading.text}</span>
               </a>

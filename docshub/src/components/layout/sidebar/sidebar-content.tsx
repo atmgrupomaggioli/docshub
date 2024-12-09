@@ -42,10 +42,10 @@ const ignoreDocuments = ["getting-started"];
 const SidebarContent = (props: SidebarContentProps) => {
   const allDocs = [
     ...props.docs
-      .filter((doc) => !ignoreDocuments.includes(doc.slug))
+      .filter((doc) => !ignoreDocuments.includes(doc.id))
       .map((doc) => ({
         ...doc,
-        slug: doc.slug.startsWith("/") ? doc.slug : `/${doc.slug}`,
+        slug: doc.id.startsWith("/") ? doc.id : `/${doc.id}`,
       })),
   ];
 
@@ -95,10 +95,10 @@ const SidebarContent = (props: SidebarContentProps) => {
           {docsByCategory.map((category) => {
             if (!category.category) {
               return category.docs.map((doc) => (
-                <CommandGroup key={doc.slug}>
+                <CommandGroup key={doc.id}>
                   <CommandItem
-                    key={doc.slug}
-                    onSelect={() => handleGoToDoc(doc.slug)}
+                    key={doc.id}
+                    onSelect={() => handleGoToDoc(doc.id)}
                     className="flex flex-col justify-start"
                   >
                     <span>{doc.data.title}</span>
@@ -116,8 +116,8 @@ const SidebarContent = (props: SidebarContentProps) => {
               >
                 {category.docs.map((doc) => (
                   <CommandItem
-                    key={doc.slug}
-                    onSelect={() => handleGoToDoc(doc.slug)}
+                    key={doc.id}
+                    onSelect={() => handleGoToDoc(doc.id)}
                     className="flex flex-col justify-start"
                   >
                     <span>{doc.data.title}</span>
@@ -149,12 +149,11 @@ const SidebarContent = (props: SidebarContentProps) => {
             if (!category.category) {
               return category.docs.map((doc) => (
                 <a
-                  key={doc.slug}
-                  href={doc.slug}
+                  key={doc.id}
+                  href={doc.id}
                   className={cx(
                     SidebarFolder,
-                    props.pathname.replace(/\/$/, "") === doc.slug &&
-                      SidebarItemActive,
+                    props.pathname === `/${doc.id}` && SidebarItemActive,
                   )}
                 >
                   <FileIcon strokeWidth={iconStroke} size={16} />
@@ -171,7 +170,9 @@ const SidebarContent = (props: SidebarContentProps) => {
                 type="single"
                 defaultValue={
                   category.docs.some(
-                    (doc) => doc.slug === props.pathname.replace(/\/$/, ""),
+                    (doc) =>
+                      doc.id.replace(/^\/|\/$/g, "") ===
+                      props.pathname.replace(/^\/|\/$/g, ""),
                   )
                     ? category.category
                     : ""
@@ -190,7 +191,9 @@ const SidebarContent = (props: SidebarContentProps) => {
                       SidebarFolder,
                       "justify-between",
                       category.docs.some(
-                        (doc) => doc.slug === props.pathname.replace(/\/$/, ""),
+                        (doc) =>
+                          doc.id.replace(/^\/|\/$/g, "") ===
+                          props.pathname.replace(/^\/|\/$/g, ""),
                       ) && "font-medium text-gray-900 dark:text-gray-50",
                     )}
                   >
@@ -204,14 +207,15 @@ const SidebarContent = (props: SidebarContentProps) => {
                   <AccordionContent className="mb-2 flex w-full flex-col">
                     {category.docs.map((doc) => (
                       <a
-                        key={doc.slug}
-                        href={doc.slug}
+                        key={doc.id}
+                        href={doc.id}
                         title={doc.data.sidebarTitle}
                         className={cx(
                           SidebarFolder,
                           "border-l border-gray-300 dark:border-gray-800",
                           "ml-[14px]",
-                          props.pathname.replace(/\/$/, "") === doc.slug &&
+                          doc.id.replace(/^\/|\/$/g, "") ===
+                            props.pathname.replace(/^\/|\/$/g, "") &&
                             SidebarItemActive,
                         )}
                       >

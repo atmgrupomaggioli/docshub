@@ -12,7 +12,7 @@ interface Props {
 const getEntryBySlug = async (slug: string) => {
   try {
     const entry = await getEntry("docs", slug);
-    return entry?.data ? { ...entry.data, url: entry.slug } : null;
+    return entry?.data ? { ...entry.data, url: entry.id } : null;
   } catch (error) {
     console.error("Error fetching entry:", error);
     return null;
