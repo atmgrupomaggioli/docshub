@@ -84,7 +84,7 @@ const truncateStyles =
         {
           config.repository && (
             <a
-              title={`${config.repository.type} repository`}
+              title={`${config.repository.type} Repository`}
               href={config.repository.url}
               target="_blank"
               rel="noopener noreferrer"
@@ -93,13 +93,13 @@ const truncateStyles =
                 size: "icon",
               })}
             >
-              {config.repository.type === "bitbucket" && (
+              {config.repository.type === "BitBucket" && (
                 <Bitbucket height={22} width={22} />
               )}
-              {config.repository.type === "github" && (
+              {config.repository.type === "GitHub" && (
                 <Github height={22} width={22} />
               )}
-              {config.repository.type === "gitlab" && (
+              {config.repository.type === "GitLab" && (
                 <Gitlab height={22} width={22} />
               )}
             </a>

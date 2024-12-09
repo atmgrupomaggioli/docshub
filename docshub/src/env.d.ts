@@ -13,7 +13,7 @@ type LicenseType =
   | "CC0-1.0"
   | "Proprietary";
 
-type RepositoryType = "github" | "gitlab" | "bitbucket";
+type RepositoryType = "GitHub" | "GitLab" | "BitBucket";
 
 interface DocshubConfig {
   documentationTitle: string;
