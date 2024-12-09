@@ -3,6 +3,7 @@ import { cx } from "@/utils/cx";
 import {
   ArrowUpRightIcon,
   CalendarIcon,
+  ChevronRightIcon,
   ClockIcon,
   TagIcon,
   UserIcon,
@@ -13,6 +14,7 @@ import { convertCategory } from "@/utils/convertCategory";
 import Badge from "@/components/ui/badge.astro";
 import CopyToClipboard from "@/components/copyToClipboard";
 import type { iDocsProperties } from "@/content/config";
+import defaultDocshubConfig from "docshub.config";
 
 interface Props {
   document: iDocsProperties;
@@ -23,7 +25,26 @@ interface Props {
 const { document, url, readingTime } = Astro.props;
 ---
 
-<div class={cx("flex flex-col px-4 py-4 md:px-8 md:py-8 container max-w-6xl")}>
+<div class={cx("flex flex-col px-4 py-4 md:px-8 md:py-7 container max-w-6xl")}>
+  <nav
+    class="w-full flex items-center cursor-default justify-between mb-7 transition-colors text-[13px] text-gray-600 dark:text-gray-400 dark:hover:text-white hover:text-black"
+  >
+    <div class="flex items-center space-x-2">
+      <p class="select-all max-w-24 md:max-w-48 truncate">
+        {defaultDocshubConfig.documentationTitle}
+      </p>
+      {document.category && <ChevronRightIcon size={14} />}
+      {
+        document.category && (
+          <p class="select-all max-w-24 md:max-w-48 truncate">
+            {convertCategory(document.category)}
+          </p>
+        )
+      }
+      <ChevronRightIcon size={14} />
+      <p class="select-all max-w-24 md:max-w-48 truncate">{document.title}</p>
+    </div>
+  </nav>
   <header class="flex flex-col space-y-3 mb-4">
     <h1 class="tracking-tight text-3xl xl:text-4xl font-bold">
       {document.title}
@@ -34,15 +55,11 @@ const { document, url, readingTime } = Astro.props;
   </header>
   <div
     class={cx(
-      "flex items-center justify-between w-full",
+      "flex flex-wrap md:flex-nowrap items-center justify-between w-full",
       "border-b border-gray-200 dark:border-gray-800 pb-3 mb-6",
     )}
   >
-    <div class="flex overflow-x-auto items-center space-x-1.5 w-full">
-      <Badge title={`Category: ${document.category}`}>
-        <TagIcon className="flex-shrink-0" size={14} strokeWidth={1.5} />
-        <span>{convertCategory(document.category)}</span>
-      </Badge>
+    <div class="w-full gap-1 flex flex-wrap items-center">
       {
         document.publishDate && (
           <Badge title={`Published on: ${document.publishDate}`}>
@@ -93,7 +110,7 @@ const { document, url, readingTime } = Astro.props;
           ))
       }
     </div>
-    <div>
+    <div class="mt-2 xl:w-auto w-full md:mt-2 md:w-full lg:w-full">
       <CopyToClipboard
         client:only="react"
         btnText="Share"
@@ -101,6 +118,7 @@ const { document, url, readingTime } = Astro.props;
       />
     </div>
   </div>
+
   <article
     class={cx(
       "text-pretty max-w-full",

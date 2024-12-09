@@ -16,6 +16,7 @@ import Badge from "@/components/ui/badge.astro";
 import config from "docshub.config";
 import ThemeToggle from "./themeToggle";
 import DocshubBrand from "./docshubBrand.astro";
+import { HistoryIcon } from "lucide-react";
 
 const allDocs = await getCollection("docs");
 const pathname = new URL(Astro.request.url).pathname;
@@ -38,7 +39,7 @@ const truncateStyles =
   )}
 >
   <div class="flex items-center justify-between h-16 px-3">
-    <div class="flex items-center space-x-3 rtl:space-x-reverse">
+    <section class="flex items-center space-x-3 rtl:space-x-reverse">
       <SidebarCollapse client:only="react">
         <SidebarContent
           client:only="react"
@@ -46,6 +47,12 @@ const truncateStyles =
           pathname={pathname}
           className="flex-1"
         />
+        <p
+          class="mt-2 pb-2 border-b border-dashed border-gray-200 dark:border-gray-800 flex items-center space-x-2 text-sm font-mono text-gray-600 dark:text-gray-400 tracking-tight"
+        >
+          <HistoryIcon size={14} />
+          <span>v{defaultDocshubConfig.version}</span>
+        </p>
         <DocshubBrand />
       </SidebarCollapse>
       <img
@@ -65,39 +72,41 @@ const truncateStyles =
         >
           {config.documentationTitle}
         </p>
-        <div class="hidden md:flex items-center">
-          <Badge className="font-mono tracking-tight">
-            <span class="tracking-tight">v{config.version}</span>
-          </Badge>
-        </div>
       </a>
-    </div>
-    <div class="flex items-center gap-1">
-      {
-        config.repository && (
-          <a
-            title={`${config.repository.type} repository`}
-            href={config.repository.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class={buttonVariants({
-              variant: "ghost",
-              size: "icon",
-            })}
-          >
-            {config.repository.type === "bitbucket" && (
-              <Bitbucket height={22} width={22} />
-            )}
-            {config.repository.type === "github" && (
-              <Github height={22} width={22} />
-            )}
-            {config.repository.type === "gitlab" && (
-              <Gitlab height={22} width={22} />
-            )}
-          </a>
-        )
-      }
-      <ThemeToggle client:load />
-    </div>
+    </section>
+    <section class="flex items-center">
+      <div
+        class="mr-3 hidden md:inline pr-4 border-r border-gray-300 dark:border-gray-800"
+      >
+        <span class="text-sm font-mono tracking-tight">v{config.version}</span>
+      </div>
+      <div class="flex items-center gap-1">
+        {
+          config.repository && (
+            <a
+              title={`${config.repository.type} repository`}
+              href={config.repository.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class={buttonVariants({
+                variant: "ghost",
+                size: "icon",
+              })}
+            >
+              {config.repository.type === "bitbucket" && (
+                <Bitbucket height={22} width={22} />
+              )}
+              {config.repository.type === "github" && (
+                <Github height={22} width={22} />
+              )}
+              {config.repository.type === "gitlab" && (
+                <Gitlab height={22} width={22} />
+              )}
+            </a>
+          )
+        }
+        <ThemeToggle client:load />
+      </div>
+    </section>
   </div>
 </nav>

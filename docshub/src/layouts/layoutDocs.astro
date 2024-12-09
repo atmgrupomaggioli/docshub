@@ -8,6 +8,7 @@ import SidebarToc from "@/components/layout/sidebar-toc/sidebar-toc.astro";
 import CopyToClipboardMDX from "@/components/mdx/plugins/copyToClipboard.astro";
 
 import { ViewTransitions } from "astro:transitions";
+import SidebarTocCollapse from "@/components/layout/sidebar-toc/sidebar-toc-collapse";
 
 export interface Props {
   document: iDocsProperties;
@@ -24,12 +25,19 @@ const { document, docUrl, headings, readingTime } = Astro.props;
 
 <Sidebar />
 <div class="xl:ml-64 grid grid-cols-1 xl:grid-cols-[1fr_240px]">
+  <section class="block sm:block md:block lg:hidden">
+    {
+      headings && headings.length > 0 && (
+        <SidebarTocCollapse headings={headings} client:load />
+      )
+    }
+  </section>
   <PageContent document={document} url={docUrl} readingTime={readingTime}>
     <slot />
   </PageContent>
-  <div>
+  <section>
     {headings && headings.length > 0 && <SidebarToc headings={headings} />}
-  </div>
+  </section>
 </div>
 
 <script>

@@ -27,13 +27,15 @@ const SidebarCollapse = (props: SidebarCollapseProps) => {
               src={defaultDocshubConfig.logoUrl}
               alt={defaultDocshubConfig.documentationTitle}
             />
-            <span className="text-lg font-bold">
+            <p className="max-w-48 truncate text-lg font-bold">
               {defaultDocshubConfig.documentationTitle}
-            </span>
+            </p>
           </div>
           <SheetClose className="hover:opacity-90"></SheetClose>
         </SheetHeader>
-        <nav className="flex h-full flex-col">{props.children}</nav>
+        <nav className="flex h-full flex-col overflow-y-auto">
+          {props.children}
+        </nav>
       </SheetContent>
     </Sheet>
   );

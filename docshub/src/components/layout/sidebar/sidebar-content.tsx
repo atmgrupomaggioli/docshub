@@ -53,12 +53,19 @@ const SidebarContent = (props: SidebarContentProps) => {
     new Set(allDocs.map((doc) => doc.data.category)),
   );
 
-  const docsByCategory = categories
-    .map((category) => ({
-      category,
-      docs: allDocs.filter((doc) => doc.data.category === category),
-    }))
-    .filter((group) => group.docs.length > 0);
+  const docsByCategory = [
+    {
+      category: null,
+      docs: allDocs.filter((doc) => !doc.data.category),
+    },
+    ...categories
+      .filter((category) => category)
+      .map((category) => ({
+        category,
+        docs: allDocs.filter((doc) => doc.data.category === category),
+      }))
+      .filter((group) => group.docs.length > 0),
+  ];
 
   const handleGoToDoc = (slug: string) => {
     window.location.href = `${slug}`;
@@ -85,25 +92,43 @@ const SidebarContent = (props: SidebarContentProps) => {
       <SearchDocs>
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
-          {docsByCategory.map((category) => (
-            <CommandGroup
-              key={category.category}
-              heading={convertCategory(category.category)}
-            >
-              {category.docs.map((doc) => (
-                <CommandItem
-                  key={doc.slug}
-                  onSelect={() => handleGoToDoc(doc.slug)}
-                  className="flex flex-col justify-start"
-                >
-                  <span>{doc.data.sidebarTitle}</span>
-                  <span className="truncate text-gray-500">
-                    {doc.data.description}
-                  </span>
-                </CommandItem>
-              ))}
-            </CommandGroup>
-          ))}
+          {docsByCategory.map((category) => {
+            if (!category.category) {
+              return category.docs.map((doc) => (
+                <CommandGroup key={doc.slug}>
+                  <CommandItem
+                    key={doc.slug}
+                    onSelect={() => handleGoToDoc(doc.slug)}
+                    className="flex flex-col justify-start"
+                  >
+                    <span>{doc.data.title}</span>
+                    <span className="truncate text-gray-500">
+                      {doc.data.description}
+                    </span>
+                  </CommandItem>
+                </CommandGroup>
+              ));
+            }
+            return (
+              <CommandGroup
+                key={category.category}
+                heading={convertCategory(category.category)}
+              >
+                {category.docs.map((doc) => (
+                  <CommandItem
+                    key={doc.slug}
+                    onSelect={() => handleGoToDoc(doc.slug)}
+                    className="flex flex-col justify-start"
+                  >
+                    <span>{doc.data.title}</span>
+                    <span className="truncate text-gray-500">
+                      {doc.data.description}
+                    </span>
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            );
+          })}
         </CommandList>
       </SearchDocs>
       <nav className="flex w-full flex-col text-sm">
@@ -121,6 +146,24 @@ const SidebarContent = (props: SidebarContentProps) => {
         </a>
         {docsByCategory.length > 0 &&
           docsByCategory.map((category) => {
+            if (!category.category) {
+              return category.docs.map((doc) => (
+                <a
+                  key={doc.slug}
+                  href={doc.slug}
+                  className={cx(
+                    SidebarFolder,
+                    props.pathname.replace(/\/$/, "") === doc.slug &&
+                      SidebarItemActive,
+                  )}
+                >
+                  <FileIcon strokeWidth={iconStroke} size={16} />
+                  <span className="max-w-40 truncate">
+                    {doc.data.sidebarTitle}
+                  </span>
+                </a>
+              ));
+            }
             const IconComponent = getIconForCategory(category.category);
             return (
               <Accordion
@@ -152,7 +195,6 @@ const SidebarContent = (props: SidebarContentProps) => {
                     )}
                   >
                     <div className="flex items-center space-x-3">
-                      {/* Renderizamos el ícono dinámico */}
                       <IconComponent strokeWidth={iconStroke} size={16} />
                       <span className="max-w-28 truncate">
                         {convertCategory(category.category)}
