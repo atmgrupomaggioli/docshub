@@ -4,7 +4,7 @@ import { CheckCheckIcon, CopyIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const btnClasses = cx(
-  "h-10 w-10 group flex items-center justify-center rounded-full border border-gray-300 dark:border-gray-700",
+  "h-10 w-10 group flex items-center justify-center rounded-md border border-gray-300 dark:border-gray-700",
 );
 
 interface ShowColorsProps {
@@ -33,7 +33,7 @@ const ShowColors = ({ colors }: ShowColorsProps) => {
   };
 
   return (
-    <div className="flex items-center space-x-2 overflow-y-auto">
+    <div className="grid grid-cols-6 items-center gap-2 overflow-x-auto md:flex">
       {Object.entries(colors).map(([key, value]) => (
         <button
           key={key}
