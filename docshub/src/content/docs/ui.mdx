@@ -11,6 +11,7 @@ import {
   docshubAppColors,
   docshubColors,
 } from "@/components/ui/docshub.colors";
+import { Image } from "astro:assets";
 
 Below you will find examples of all the formats you can use in your Markdown documentation
 
@@ -50,6 +51,34 @@ echo "Hello World"
 echo "Hello World"
 ```
 ````
+
+## Images
+
+<UiBlock component="component" title="Images">
+
+<Image src="/logo/docshub.jpg" width="64" height="64" alt="Docshub Logo" />
+
+</UiBlock>
+
+There are two ways to add images to your documentation:
+
+- Using Markdown syntax:
+
+```md
+![Docshub Logo](/logo/docshub.jpg)
+```
+
+- Using the [`<Image>` Astro Component](https://docs.astro.build/en/guides/images/#images-in-mdx-files):
+
+```mdx
+---
+title: My Docshub Page
+---
+
+import { Image } from "astro:assets";
+
+<Image src="/logo/docshub.jpg" width="64" height="64" alt="Docshub Logo" />
+```
 
 ## Document Card
 
