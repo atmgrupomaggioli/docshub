@@ -1,14 +1,14 @@
 ---
 import type { MarkdownHeading } from "astro";
 import type { iDocsProperties } from "@/content.config";
+import { ClientRouter } from "astro:transitions";
 
-import PageContent from "@/components/page-content.astro";
 import Sidebar from "@/components/layout/sidebar/sidebar.astro";
 import SidebarToc from "@/components/layout/sidebar-toc/sidebar-toc.astro";
-import CopyToClipboardMDX from "@/components/mdx/plugins/copyToClipboard.astro";
-
-import { ViewTransitions } from "astro:transitions";
 import SidebarTocCollapse from "@/components/layout/sidebar-toc/sidebar-toc-collapse";
+
+import PageContent from "@/components/page-content.astro";
+import CopyToClipboardMDX from "@/components/mdx/plugins/copyToClipboard.astro";
 
 export interface Props {
   document: iDocsProperties;
@@ -20,7 +20,7 @@ export interface Props {
 const { document, docUrl, headings, readingTime } = Astro.props;
 ---
 
-<ViewTransitions />
+<ClientRouter />
 <CopyToClipboardMDX />
 
 <Sidebar />
