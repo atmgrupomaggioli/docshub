@@ -1,0 +1,140 @@
+---
+title: "Configuration"
+sidebarTitle: "Configuration File"
+description: "Prepare your documentation site using docshub.config file"
+category: "Configuration"
+publishDate: "2024-09-04"
+---
+
+Docshub use custom `docshub.config.ts` file to configure the application:
+
+- If you're using [**Source Code**](/documentation-docshub) you can edit directly the file (`docshub.config.ts`) in the root of the project.
+
+- If you're using [**Docker**](/documentation-docker) you need to use the **environment variables** (`environment:` property) to configure the application.
+
+## `documentationTitle`
+
+The title of your documentation site.
+
+```ts
+const defaultDocshubConfig: DocshubConfig = {
+  documentationTitle: "Docshub Demo",
+};
+```
+
+```env
+import.meta.env.DOCUMENTATION_TITLE
+```
+
+## `version`
+
+The version of your documentation site.
+
+```ts
+const defaultDocshubConfig: DocshubConfig = {
+  version: "0.0.1",
+};
+```
+
+```env
+import.meta.env.VERSION
+```
+
+## `docsUrl`
+
+The URL of your documentation site. If you don't have a production URL, you can use `http://localhost:4321` for testing.
+
+```ts
+const defaultDocshubConfig: DocshubConfig = {
+  docsUrl: "https://docshub.vercel.app",
+};
+```
+
+```env
+import.meta.env.DOCS_URL
+```
+
+## `author` (optional)
+
+The author of your documentation site.
+
+```ts
+const defaultDocshubConfig: DocshubConfig = {
+  author: "Author's name",
+};
+```
+
+```env
+import.meta.env.AUTHOR
+```
+
+## `license` (optional)
+
+The license of your documentation site.
+
+```ts
+const defaultDocshubConfig: DocshubConfig = {
+  license: "Proprietary",
+};
+```
+
+```env
+import.meta.env.LICENSE
+```
+
+- The license can be one of the following:
+
+```ts
+type LicenseType =
+  | "MIT"
+  | "GPL-3.0"
+  | "Apache-2.0"
+  | "BSD-3-Clause"
+  | "MPL-2.0"
+  | "LGPL-3.0"
+  | "AGPL-3.0"
+  | "Unlicense"
+  | "CC0-1.0"
+  | "Proprietary";
+```
+
+## `logoUrl` (optional)
+
+The logo of your documentation site.
+
+```ts
+const defaultDocshubConfig: DocshubConfig = {
+  logoUrl:
+    "https://github.com/atmgrupomaggioli/docshub/blob/main/docshub/public/logo/docshub_transparent.png?raw=true",
+};
+```
+
+```env
+import.meta.env.LOGO_URL
+```
+
+## `repository` (optional)
+
+The repository of your documentation site.
+
+```ts
+const defaultDocshubConfig: DocshubConfig = {
+  repository: {
+    type: "github",
+    url: "https://github.com/atmgrupomaggioli/docshub",
+  },
+};
+```
+
+```env
+import.meta.env.REPOSITORY_TYPE
+import.meta.env.REPOSITORY_URL
+```
+
+- `repository.type` can be one of the following:
+
+```ts
+type RepositoryType = "github" | "gitlab" | "bitbucket";
+```
+
+- `repository.url` is the URL of your repository.

@@ -1,9 +1,10 @@
+import { glob } from "astro/loaders";
 import { defineCollection } from "astro:content";
 import { z } from "zod";
 
 const defaultSiteConfig = {
-  title: "Docshub",
-  description: "MangoLibs Docs",
+  title: "DocsHub",
+  description: "Markdown Documentation with Vitamins",
 };
 
 const docsProperties = z.object({
@@ -12,13 +13,27 @@ const docsProperties = z.object({
     message: "El máximo para el título del menú son 25 caracteres",
   }),
   description: z.string().default(defaultSiteConfig.description),
-  category: z.string().toLowerCase().min(1).max(17, {
-    message: "El máximo para la categoría son 25 caracteres",
-  }),
+  category: z
+    .string()
+    .toLowerCase()
+    .min(1)
+    .max(17, {
+      message: "El máximo para la categoría son 25 caracteres",
+    })
+    .optional(),
   publishDate: z.string().default(new Date().toISOString().split("T")[0]),
+  author: z
+    .object({
+      name: z.string().min(1).max(25, {
+        message: "El máximo para el nombre de autor son 25 caracteres",
+      }),
+      url: z.string().url().optional(),
+    })
+    .optional(),
 });
 
 const docs = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/docs" }),
   schema: docsProperties,
 });
 

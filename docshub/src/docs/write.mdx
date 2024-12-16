@@ -1,0 +1,59 @@
+---
+title: "Create new document"
+sidebarTitle: "Create new document"
+description: "How to create new Markdown file"
+category: "Write Docs"
+publishDate: "2024-09-04"
+---
+
+To start writing a new document, you can choose from several options:
+
+## Using the CLI
+
+You can use the CLI to create a new Markdown file. To do this, run the following command:
+
+```bash
+npm run new:doc
+```
+
+## Creating a new document manually
+
+You can also create a new Markdown file manually. To do this...
+
+1. Create a new file in the `src/content/docs` directory with the `.mdx` extension.
+
+```txt
+src/content/docs/example.mdx
+```
+
+2. At the beginning of the document, make sure to include the following parameters:
+
+```mdx
+---
+title: "Example Document"
+sidebarTitle: "Example Document"
+description: "Example Document description"
+category: "Example Category"
+publishDate: "2024-09-04"
+---
+
+## Example Heading
+```
+
+3. Write your content in the document using [**Markdown**](https://www.markdownguide.org/basic-syntax/) syntax. Also, you can use the following components:
+
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+  <DocumentCard documentSlug="ui" />
+  <DocumentCard documentSlug="mermaid" />
+</div>
+
+## Params
+
+- `title` (required): The title of the document.
+- `sidebarTitle` (required): The title of the sidebar.
+- `description` (required): The description of the document.
+- `category` (optional): The category of the document.
+- `publishDate` (required): The publish date of the document.
+- `author` (optional):
+  - `name`: The name of the author.
+  - `url`: The URL of the author.

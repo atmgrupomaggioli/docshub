@@ -1,0 +1,39 @@
+---
+import { cx } from "@/utils/cx";
+import { Image } from "astro:assets";
+import { ArrowUpRightIcon } from "lucide-react";
+---
+
+<a
+  href="https://github.com/atmgrupomaggioli/docshub"
+  target="_blank"
+  rel="noopener noreferrer"
+  class={cx(
+    "relative group",
+    "mx-0 md:mx-5 mb-4 mt-2 md:mt-4",
+    "transition-colors",
+    "border border-dashed border-gray-300 dark:border-gray-800",
+    "hover:border-docshub-500 hover:dark:border-docshub-700",
+    "flex flex-col shadow-sm space-y-2 p-3 rounded-md",
+  )}
+>
+  <p
+    class="font-mono font-light tracking-tight text-gray-500 dark:text-gray-400 uppercase text-[11px]"
+  >
+    Powered by
+  </p>
+  <div class="flex items-center space-x-2">
+    <Image
+      src="/logo/docshub_transparent.png"
+      alt="Docshub Logo"
+      width="23"
+      height="23"
+    />
+    <h2 class="font-semibold tracking-tight">DocsHub</h2>
+  </div>
+  <ArrowUpRightIcon
+    size={16}
+    strokeWidth={1.5}
+    className="absolute top-0 right-1.5 group-hover:text-docshub-700 dark:group-hover:text-docshub-600 text-gray-500"
+  />
+</a>

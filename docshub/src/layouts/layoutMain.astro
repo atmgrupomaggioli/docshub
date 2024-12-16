@@ -4,6 +4,7 @@ import "@/styles/globals.css";
 
 // Layout:
 import NavbarTop from "@/components/navbar-top.astro";
+import { cx } from "@/utils/cx";
 
 // Main layout props:
 export interface Props {
@@ -14,8 +15,47 @@ export interface Props {
 const { ...data } = Astro.props;
 ---
 
-<!doctype html>
-<html lang="en" style="color-scheme: dark;" class="scroll-smooth">
+<!-- Light & Dark Theme -->
+<script is:inline>
+  const setTheme = () => {
+    const theme = (() => {
+      if (
+        typeof localStorage !== "undefined" &&
+        localStorage.getItem("theme")
+      ) {
+        return localStorage.getItem("theme");
+      }
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        return "dark";
+      }
+      return "light";
+    })();
+
+    if (theme === "light") {
+      document.documentElement.classList.remove("dark");
+    } else {
+      document.documentElement.classList.add("dark");
+    }
+
+    window.localStorage.setItem("theme", theme || "light");
+  };
+
+  websiteTheme = (() => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+    return "light";
+  })();
+
+  setTheme();
+
+  document.addEventListener("astro:after-swap", setTheme);
+</script>
+
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={data.description} />
@@ -28,8 +68,15 @@ const { ...data } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{data.title} - DocsHub</title>
   </head>
-  <body class="bg-gray-900 text-white antialiased font-sans">
-    <NavbarTop title="DocsHub" />
+  <body
+    class={cx(
+      "bg-gray-50 dark:bg-gray-900",
+      "text-gray-900 dark:text-white",
+      "antialiased font-sans",
+      "selection:bg-gray-300 selection:text-gray-900 dark:selection:bg-gray-700 dark:selection:text-white",
+    )}
+  >
+    <NavbarTop />
     <main>
       <slot />
     </main>

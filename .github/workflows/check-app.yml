@@ -1,0 +1,36 @@
+name: 🧑‍🚀 Check
+
+on:
+  push:
+    branches:
+      - "main"
+      - "feature/mermaid-markdown-integration"
+  pull_request:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  docshub:
+    runs-on: ubuntu-latest
+    name: 📦 Build DocsHub
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./docshub
+
+      - name: Check errors with Astro Check
+        run: npm run check
+        working-directory: ./docshub
+
+      - name: Build Docshub App
+        run: npm run build
+        working-directory: ./docshub

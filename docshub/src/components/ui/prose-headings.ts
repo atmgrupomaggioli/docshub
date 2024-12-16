@@ -1,1 +1,1 @@
-export const HEADING_LINK_ANCHOR = `before:content-['#'] before:absolute before:-ml-[1em] before:text-gray-100/0 hover:before:text-gray-200/50 pl-[1em] -ml-[1em]`;
+export const HEADING_LINK_ANCHOR = `before:content-['#'] transition-colors before:absolute before:-ml-[1em] dark:before:text-gray-900 before:text-gray-50 dark:hover:before:text-gray-200/50 hover:before:text-gray-900/50 pl-[1em] -ml-[1em]`;

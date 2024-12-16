@@ -13,33 +13,32 @@ type LicenseType =
   | "CC0-1.0"
   | "Proprietary";
 
-type RepositoryType =
-  | "github"
-  | "gitlab"
-  | "bitbucket";
+type RepositoryType = "GitHub" | "GitLab" | "BitBucket";
 
 interface DocshubConfig {
-    documentationTitle: string;
-    version: string;
-    author?: string;
-    license?: LicenseType;
-    repository?: DocshubRepository
+  documentationTitle: string;
+  version: string;
+  docsUrl: string;
+  author?: string;
+  logoUrl?: string;
+  license?: LicenseType;
+  repository?: DocshubRepository;
 }
 
 interface DocshubRepository {
-    type: RepositoryType;
-    url: string;
-  }
+  type: RepositoryType;
+  url: string;
+}
 
 interface ImportMetaEnv {
-    readonly DOCUMENTATION_TITLE: string;
-    readonly VERSION: string;
-    readonly AUTHOR: string;
-    readonly LICENSE: LicenseType;
-    readonly REPOSITORY_TYPE: RepositoryType;
-    readonly REPOSITORY_URL: string;
+  readonly DOCUMENTATION_TITLE: string;
+  readonly VERSION: string;
+  readonly AUTHOR: string;
+  readonly LICENSE: LicenseType;
+  readonly REPOSITORY_TYPE: RepositoryType;
+  readonly REPOSITORY_URL: string;
 }
 
 interface ImportMeta {
-    readonly env: ImportMetaEnv;
+  readonly env: ImportMetaEnv;
 }

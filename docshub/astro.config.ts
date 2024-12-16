@@ -1,36 +1,49 @@
 import { defineConfig } from "astro/config";
 
-// Integraciones:
+// Docshub Configuration:
+import docshubConfig from "./docshub.config";
+
+// Deployment integrations:
+import node from "@astrojs/node";
+import vercel from "@astrojs/vercel";
+
+// UI integrations:
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
-import vercel from "@astrojs/vercel/serverless";
 
-// Configuración de Markdown:
+// MDX Plugins:
 import mdx from "@astrojs/mdx";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import remarkGfm from "remark-gfm";
-import { HEADING_LINK_ANCHOR } from "./src/components/ui/prose-headings";
 
-import node from '@astrojs/node';
+import { mermaid } from "./src/components/mdx/plugins/mermaid";
+import { targetBlank } from "./src/components/mdx/plugins/targetBlank";
+import { remarkReadingTime } from "./src/components/mdx/plugins/remarkReadingTime.mjs";
+import { HEADING_LINK_ANCHOR } from "./src/components/ui/prose-headings";
 
 const vercelDeploy = {
   adapter: vercel(),
   output: "server" as const,
   site: "https://docshub.vercel.app",
-}
+};
 
 const dockerDeploy = {
   output: "server" as const,
   adapter: node({
-    mode: 'standalone',
+    mode: "standalone",
   }),
-}
+};
 
 // https://astro.build/config
 export default defineConfig({
-  //...dockerDeploy, 
+  //...dockerDeploy,
   ...vercelDeploy,
+  redirects: {
+    "/documentation-docker": "/docshub-docker",
+    "/documentation-docshub": "/docshub-source",
+    "/documentation-cli": "/docshub-cli",
+  },
   integrations: [
     react(),
     tailwind({
@@ -38,11 +51,15 @@ export default defineConfig({
     }),
     mdx({
       shikiConfig: {
-        theme: "one-dark-pro",
+        themes: {
+          light: "github-light",
+          dark: "github-dark-dimmed",
+        },
         wrap: true,
       },
       rehypePlugins: [
         rehypeSlug,
+        [targetBlank, { domain: docshubConfig.docsUrl }],
         [
           rehypeAutolinkHeadings,
           {
@@ -53,7 +70,7 @@ export default defineConfig({
           },
         ],
       ],
-      remarkPlugins: [remarkGfm],
+      remarkPlugins: [remarkGfm, remarkReadingTime, mermaid],
     }),
   ],
 });
