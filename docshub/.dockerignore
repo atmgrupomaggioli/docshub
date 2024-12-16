@@ -6,3 +6,4 @@ public/images/**
 .dockerignore
 .git
 Dockerfile
+node_modules
