@@ -36,14 +36,6 @@ $ npm i
 
 ## ⚙️ Commands
 
-### 📄 Run the assistant to generate new documents:
-
-This assistant will help us create a new documentation file with the corresponding metadata.
-
-```bash
-$ npm run new:doc
-```
-
 ### 🔎 Document preview
 
 To edit and preview the document, run the application in development mode.
@@ -53,6 +45,39 @@ $ npm run dev
 ```
 
 and open [http://localhost:4321](http://localhost:3000) in your browser.
+
+### 🏗️ Verifying & Building
+
+```bash
+$ npm run build
+```
+
+The command runs both `astro check` and `astro build`. First, it performs a configuration and content check, then it generates an optimized production build of the site.
+
+## 🐳 Docker
+
+We have 2 **Dockerfiles** for building: 
+
+- With `Dockerfile.interactive` we can access the **dev version** of the application by running a Docker image without considering the source code. 
+- With `Dockerfile.prod` we can building the site in production mode using the specified document volumes.
+
+To perform the different builds, we use the following commands:
+
+1. **For production build**:
+    ```bash
+    docker buildx build --platform linux/amd64,linux/arm64 \
+        -t atmgrupomaggioli/docshub:latest \ 
+        -t atmgrupomaggioli/docshub:<current-version> \
+        -f Dockerfile.prod . --push
+    ```
+
+2. **For interactive build**:
+    ```bash
+    docker buildx build --platform linux/amd64,linux/arm64 \
+        -t atmgrupomaggioli/docshub:latest \ 
+        -t atmgrupomaggioli/docshub:<current-version> \
+        -f Dockerfile.interactive . --push
+    ```
 
 ## 📝 License
 
