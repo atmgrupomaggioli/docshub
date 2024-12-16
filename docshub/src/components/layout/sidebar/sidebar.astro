@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import { cx } from "@/utils/cx";
 
 import SidebarContent from "./sidebar-content";
-import DocshubBrand from "@/components/docshubBrand.astro";
+import DocshubBrand from "@/components/brand/docshubBrand.astro";
 
 const allDocs = await getCollection("docs");
 const pathname = new URL(Astro.request.url).pathname;
