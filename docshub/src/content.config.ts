@@ -33,7 +33,7 @@ const docsProperties = z.object({
 });
 
 const docs = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/docs" }),
+  loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/docs" }),
   schema: docsProperties,
 });
 
