@@ -4,10 +4,11 @@ on:
   push:
     branches:
       - "main"
-      - "feature/mermaid-markdown-integration"
+      - "next"
   pull_request:
     branches:
-      - main
+      - "main"
+      - "next"
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
