@@ -8,6 +8,7 @@ import {
 } from "../../ui/sheet";
 import defaultDocshubConfig from "docshub.config";
 import { MenuIcon } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
 
 interface SidebarCollapseProps {
   children: ReactNode;
@@ -16,7 +17,14 @@ interface SidebarCollapseProps {
 const SidebarCollapse = (props: SidebarCollapseProps) => {
   return (
     <Sheet>
-      <SheetTrigger className="block rounded-md transition-colors hover:bg-gray-800 xl:hidden">
+      <SheetTrigger
+        title="Toggle Menu"
+        className={buttonVariants({
+          variant: "ghost",
+          size: "icon",
+          className: "block xl:hidden",
+        })}
+      >
         <MenuIcon size={22} />
       </SheetTrigger>
       <SheetContent className="flex flex-col p-6 py-3 text-sm" side={"left"}>
