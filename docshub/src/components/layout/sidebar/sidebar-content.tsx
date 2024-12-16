@@ -22,6 +22,7 @@ import {
   CommandEmpty,
   CommandGroup,
   CommandItem,
+  CommandItemDescription,
   CommandList,
 } from "@/components/ui/command";
 
@@ -89,6 +90,7 @@ const SidebarContent = (props: SidebarContentProps) => {
 
   return (
     <div className={cx("flex flex-col space-y-4", props.className)}>
+      {/* Command K Search Modal */}
       <SearchDocs>
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
@@ -102,7 +104,7 @@ const SidebarContent = (props: SidebarContentProps) => {
                     className="flex flex-col justify-start"
                   >
                     <span>{doc.data.title}</span>
-                    <span className="truncate text-gray-500">
+                    <span className={CommandItemDescription}>
                       {doc.data.description}
                     </span>
                   </CommandItem>
@@ -121,7 +123,7 @@ const SidebarContent = (props: SidebarContentProps) => {
                     className="flex flex-col justify-start"
                   >
                     <span>{doc.data.title}</span>
-                    <span className="truncate text-gray-500">
+                    <span className={CommandItemDescription}>
                       {doc.data.description}
                     </span>
                   </CommandItem>
@@ -131,6 +133,7 @@ const SidebarContent = (props: SidebarContentProps) => {
           })}
         </CommandList>
       </SearchDocs>
+      {/* Nav Links */}
       <nav className="flex w-full flex-col text-sm">
         <a
           href="/"

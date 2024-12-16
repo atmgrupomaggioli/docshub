@@ -1,5 +1,6 @@
-import { CommandDialog, CommandInput } from "./ui/command";
 import { useEffect, useState, type ReactNode } from "react";
+
+import { CommandDialog, CommandInput } from "./ui/command";
 import { Button } from "./ui/button";
 import { CommandIcon, SearchIcon } from "lucide-react";
 
