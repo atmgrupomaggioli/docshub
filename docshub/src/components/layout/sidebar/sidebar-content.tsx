@@ -220,7 +220,7 @@ const SidebarContent = (props: SidebarContentProps) => {
                         )}
                       >
                         <FileIcon strokeWidth={iconStroke} size={16} />
-                        <span className="max-w-40 truncate">
+                        <span className="max-w-[138px] truncate">
                           {doc.data.sidebarTitle}
                         </span>
                       </a>
