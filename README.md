@@ -59,6 +59,16 @@ DocsHub is a **self-hosted** application designed to make documentation effortle
 - **Endpoint Documentation**: Ability to document API endpoints for better clarity and usage.
 - **Alerts**: Option to document using an alert component for important messages.
 
+## 📚 Documentation
+
+You can check the Docshub documentation [here](https://docshub.vercel.app/). This documentation also serves as a live demo of the application 🚀.
+
+## 🙏 Support
+
+If you experience any bugs or problems, please use the **Issues section** of the repository to report them. You can create a [new issue](https://github.com/atmgrupomaggioli/docshub/issues/new/choose).
+
+Thank you for helping us improve! 😊
+
 ## 🤝 Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
