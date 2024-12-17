@@ -4,19 +4,24 @@ sidebarTitle: "Configuration File"
 description: "Prepare your documentation site using docshub.config file"
 category: "Configuration"
 publishDate: "2024-09-04"
-author: {
-    name: 'Pablo',
-    url: 'https://github.com/pheralb'
-}
+author: { name: "Pablo", url: "https://github.com/pheralb" }
 ---
 
-Docshub use custom `docshub.config.ts` file to configure the application:
+## Configuration File
 
-- If you're using [**Source Code**](/documentation-docshub) you can edit directly the file (`docshub.config.ts`) in the root of the project.
+- If you're using **Source Code** you can edit directly the file `docshub.config.ts` in the root of the project:
 
-- If you're using [**Docker**](/documentation-docker) you need to use the **environment variables** (`environment:` property) to configure the application.
+<DocumentCard documentSlug="docshub-source" />
 
-## `documentationTitle`
+- If you're using **Docker** you need to use **Docker Environments** from your Docker Compose. To get this file, use the CLI:
+
+<DocumentCard documentSlug="docshub-cli" />
+
+## Params
+
+The `docshub.config.ts` accepts the following params:
+
+### `documentationTitle`
 
 The title of your documentation site.
 
@@ -30,7 +35,7 @@ const defaultDocshubConfig: DocshubConfig = {
 import.meta.env.DOCUMENTATION_TITLE
 ```
 
-## `version`
+### `version`
 
 The version of your documentation site.
 
@@ -44,7 +49,7 @@ const defaultDocshubConfig: DocshubConfig = {
 import.meta.env.VERSION
 ```
 
-## `docsUrl`
+### `docsUrl`
 
 The URL of your documentation site. If you don't have a production URL, you can use `http://localhost:4321` for testing.
 
@@ -58,7 +63,7 @@ const defaultDocshubConfig: DocshubConfig = {
 import.meta.env.DOCS_URL
 ```
 
-## `author` (optional)
+### `author` (optional)
 
 The author of your documentation site.
 
@@ -72,7 +77,7 @@ const defaultDocshubConfig: DocshubConfig = {
 import.meta.env.AUTHOR
 ```
 
-## `license` (optional)
+### `license` (optional)
 
 The license of your documentation site.
 
@@ -102,7 +107,7 @@ type LicenseType =
   | "Proprietary";
 ```
 
-## `logoUrl` (optional)
+### `logoUrl` (optional)
 
 The logo of your documentation site.
 
@@ -117,14 +122,14 @@ const defaultDocshubConfig: DocshubConfig = {
 import.meta.env.LOGO_URL
 ```
 
-## `repository` (optional)
+### `repository` (optional)
 
 The repository of your documentation site.
 
 ```ts
 const defaultDocshubConfig: DocshubConfig = {
   repository: {
-    type: "github",
+    type: "GitHub",
     url: "https://github.com/atmgrupomaggioli/docshub",
   },
 };
@@ -135,10 +140,10 @@ import.meta.env.REPOSITORY_TYPE
 import.meta.env.REPOSITORY_URL
 ```
 
-- `repository.type` can be one of the following:
+- `repository.type` (optional) can be one of the following:
 
 ```ts
-type RepositoryType = "github" | "gitlab" | "bitbucket";
+type RepositoryType = "GitHub" | "GitLab" | "BitBucket";
 ```
 
-- `repository.url` is the URL of your repository.
+- `repository.url` (required) is the URL of your repository.
