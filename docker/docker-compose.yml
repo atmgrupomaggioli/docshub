@@ -9,22 +9,26 @@ services:
       - ./docs:/app/src/content/docs
       - ./images:/app/public/images
     environment:
-      DOCUMENTATION_TITLE: "Example Documentation title"
+      DOCUMENTATION_TITLE: "Standard Documentation"
       VERSION: "0.0.1"
       REPOSITORY_TYPE: "github"
       REPOSITORY_URL: "https://github.com/atmgrupomaggioli/docshub"
-      
-  # docshub-interactive:
-  #   container_name: docshub-interactive
-  #   image: atmgrupomaggioli/docshub:interactive
-  #   ports:
-  #     - "4321:4321"
-  #   restart: unless-stopped
-  #   volumes:
-  #     - ./docs:/app/src/content/docs
-  #     - ./images:/app/public/images
-  #   environment:
-  #     DOCUMENTATION_TITLE: "Example Documentation title"
-  #     VERSION: "0.0.1"
-  #     REPOSITORY_TYPE: "github"
-  #     REPOSITORY_URL: "https://github.com/atmgrupomaggioli/docshub"
+    profiles:
+      - standard
+
+  docshub-interactive:
+    container_name: docshub-interactive
+    image: atmgrupomaggioli/docshub:interactive
+    ports:
+      - "4321:4321"
+    restart: unless-stopped
+    volumes:
+      - ./docs:/app/src/content/docs
+      - ./images:/app/public/images
+    environment:
+      DOCUMENTATION_TITLE: "Interactive Documentation"
+      VERSION: "0.0.1"
+      REPOSITORY_TYPE: "github"
+      REPOSITORY_URL: "https://github.com/atmgrupomaggioli/docshub"
+    profiles:
+      - interactive
