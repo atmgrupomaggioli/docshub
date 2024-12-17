@@ -1,19 +1,16 @@
 {
   "name": "@atmgrupomaggioli/docshub",
   "type": "module",
-  "version": "2.0.0",
+  "version": "2.0.0-beta",
   "scripts": {
     "dev": "astro dev",
     "dev:watch": "astro dev --watch",
-    "install:cli": "cd cli && npm i",
     "build": "npm run build:astro",
     "build:astro": "npm run check && astro build",
-    "build:cli": "cd cli && npm run build",
     "check": "astro check",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "prettier --write .",
-    "new:doc": "cd cli && npm run dev"
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@astrojs/check": "0.9.4",
