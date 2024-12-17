@@ -56,7 +56,7 @@ The command runs both `astro check` and `astro build`. First, it performs a conf
 
 ## 🐳 Docker
 
-We have 2 **Dockerfiles** for building: 
+We have 2 **Dockerfiles** for building:
 
 - With `Dockerfile.interactive` we can access the **dev version** of the application by running a Docker image without considering the source code. 
 - With `Dockerfile.prod` we can building the site in production mode using the specified document volumes.
@@ -74,8 +74,8 @@ To perform the different builds, we use the following commands:
 2. **For interactive build**:
     ```bash
     docker buildx build --platform linux/amd64,linux/arm64 \
-        -t atmgrupomaggioli/docshub:latest \ 
-        -t atmgrupomaggioli/docshub:<current-version> \
+        -t atmgrupomaggioli/docshub:interactive \ 
+        -t atmgrupomaggioli/docshub:interactive-<current-version> \
         -f Dockerfile.interactive . --push
     ```
 
