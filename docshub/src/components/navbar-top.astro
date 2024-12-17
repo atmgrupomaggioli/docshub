@@ -17,7 +17,7 @@ import { buttonVariants } from "@/components/ui/button";
 import config from "docshub.config";
 import ThemeToggle from "./themeToggle";
 import DocshubBrand from "@/components/brand/docshubBrand.astro";
-import { HistoryIcon } from "lucide-react";
+import { GitFork, HistoryIcon } from "lucide-react";
 
 const allDocs = await getCollection("docs");
 const pathname = new URL(Astro.request.url).pathname;
@@ -84,7 +84,11 @@ const truncateStyles =
         {
           config.repository && (
             <a
-              title={`${config.repository.type} Repository`}
+              title={
+                config.repository.type
+                  ? `${config.repository.type} Repository`
+                  : "Repository"
+              }
               href={config.repository.url}
               target="_blank"
               rel="noopener noreferrer"
@@ -102,6 +106,7 @@ const truncateStyles =
               {config.repository.type === "GitLab" && (
                 <Gitlab height={22} width={22} />
               )}
+              {!config.repository.type && <GitFork height={20} width={20} />}
             </a>
           )
         }

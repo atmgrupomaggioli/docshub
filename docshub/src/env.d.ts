@@ -26,7 +26,7 @@ interface DocshubConfig {
 }
 
 interface DocshubRepository {
-  type: RepositoryType;
+  type?: RepositoryType;
   url: string;
 }
 
