@@ -6,11 +6,11 @@
 <p align="center"><strong>Markdown Documentation with Vitamins</strong></p>
 
 <div align="center">
-    <a href="https://github.com/atmgrupomaggioli/docshub/tree/main/docshub#docshub---core" target="_blank">
+    <a href="https://docshub.vercel.app/docshub-source" target="_blank">
         Get Started
     </a>
     <span>&nbsp;❖&nbsp;</span>
-    <a href="https://github.com/atmgrupomaggioli/docshub/tree/main/docker" target="_blank">
+    <a href="https://docshub.vercel.app/docshub-docker" target="_blank">
         Get Started with Docker
     </a>
     <span>&nbsp;❖&nbsp;</span>
@@ -18,12 +18,12 @@
         Demo
     </a>
     <span>&nbsp;❖&nbsp;</span>
-    <a href="#-features">
-        Features
+    <a href="https://github.com/atmgrupomaggioli/docshub/issues/new/choose">
+        Create Issue
     </a>
     <span>&nbsp;❖&nbsp;</span>
-    <a href="#-contributors">
-        Contributors
+    <a href="#-license">
+        License
     </a>
 </div>
 
@@ -49,33 +49,29 @@ DocsHub is a **self-hosted** application designed to make documentation effortle
 
 ## ✨ Features
 
-- **Syntax Highlighting with Copy Function**: Easily view and copy code snippets directly from the documentation.
-- **Friendly URLs**: Clean and user-friendly URLs for better navigation and sharing.
+- **CLI**: Create a new Docshub application or new documents using the command line.
+- **Syntax Highlighting**: Easily view and copy code snippets directly from the documentation.
+- **Automatically categorised menu**: Organized menu structure to easily navigate through different categories and sections.
 - **Table of Contents**: Automatically generated table of contents for quick and easy access to different sections.
-- **Categorized Menu**: Organized menu structure to easily navigate through different categories and sections.
-- **Search Documentation**: Quickly find and navigate to specific entries within the documentation.
-- **Endpoint Documentation**: Ability to document API endpoints for better clarity and usage.
-- **Alerts**: Option to document using an alert component for important messages.
+- **Search Documentation**: Quickly search your documentation for specific entries using Cmd+K.
+- **Mermaid Support**: Create beautiful diagrams and flowcharts using Mermaid.
+- **UI Components**: Includes a variety of UI components for better user experience.
 
 ## 📚 Documentation
 
 You can check the Docshub documentation [here](https://docshub.vercel.app/). This documentation also serves as a live demo of the application.
 
-## 🙏 Support
+## 🤝 Contributing
 
-If you experience any bugs or problems, please use the **Issues section** of the repository to report them. You can create a [new issue](https://github.com/atmgrupomaggioli/docshub/issues/new/choose).
+> [!TIP]
+> If you experience any bugs or problems, please [create a new issue](https://github.com/atmgrupomaggioli/docshub/issues/new/choose) or [contribute using source code](https://docshub.vercel.app/docshub-source#getting-started) and submit a pull request.
 
 Thank you for helping us improve! 😊
 
-## 🤝 Contributors
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
 <a href="https://github.com/atmgrupomaggioli/docshub/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=atmgrupomaggioli/docshub" />
 </a>
+
+## 📝 License
+
+- [GPL-3.0 license](https://github.com/atmgrupomaggioli/docshub/blob/main/LICENSE)
