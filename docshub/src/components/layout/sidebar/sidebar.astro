@@ -5,6 +5,7 @@ import { cx } from "@/utils/cx";
 import SidebarContent from "./sidebar-content";
 import DocshubBrand from "@/components/brand/docshubBrand.astro";
 
+const isDev = import.meta.env.DEV;
 const allDocs = await getCollection("docs");
 const pathname = new URL(Astro.request.url).pathname;
 ---
@@ -22,5 +23,5 @@ const pathname = new URL(Astro.request.url).pathname;
   <div class="overflow-y-auto px-5 py-6 flex-1">
     <SidebarContent client:only="react" docs={allDocs} pathname={pathname} />
   </div>
-  <DocshubBrand />
+  <DocshubBrand isEditing={isDev} />
 </aside>
