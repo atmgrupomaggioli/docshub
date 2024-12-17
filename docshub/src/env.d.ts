@@ -19,6 +19,7 @@ interface DocshubConfig {
   documentationTitle: string;
   version: string;
   docsUrl: string;
+  faviconUrl: string;
   author?: string;
   logoUrl?: string;
   license?: LicenseType;

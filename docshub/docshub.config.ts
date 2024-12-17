@@ -3,10 +3,13 @@ const defaultDocshubConfig: DocshubConfig = {
   version: import.meta.env.VERSION || "2.0.0",
   docsUrl: import.meta.env.DOCS_URL || "https://docshub.vercel.app",
   author: import.meta.env.AUTHOR || "Author's name",
+  faviconUrl:
+    import.meta.env.FAVICON_URL ||
+    "https://github.com/atmgrupomaggioli/docshub/blob/main/docshub/public/images/docshub_transparent.png?raw=true",
   license: import.meta.env.LICENSE || "Proprietary",
   logoUrl:
     import.meta.env.LOGO_URL ||
-    "https://github.com/atmgrupomaggioli/docshub/blob/main/docshub/public/logo/docshub_transparent.png?raw=true",
+    "https://github.com/atmgrupomaggioli/docshub/blob/main/docshub/public/images/docshub_transparent.png?raw=true",
   repository: {
     type: import.meta.env.REPOSITORY_TYPE || "GitHub",
     url:
