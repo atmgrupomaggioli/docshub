@@ -1,20 +1,25 @@
 {
-  "name": "@docshub/cli",
-  "version": "0.1.0",
+  "name": "docshub",
+  "version": "1.0.1",
   "type": "module",
-  "description": "Create new document on Docshub",
+  "description": "Create the workspace or create a new document in DocsHub.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "typings": "./dist/index.d.ts",
+  "license": "GPL-3.0",
+  "keywords": [
+    "docshub",
+    "cli",
+    "documentation"
+  ],
   "bin": {
-    "mlb-cli": "./dist/index.js"
+    "cli": "./dist/index.js"
   },
   "files": [
     "dist/**"
   ],
   "engines": {
-    "node": ">=18",
-    "npm": ">=9.0.0"
+    "node": ">=20"
   },
   "exports": {
     ".": "./dist",
