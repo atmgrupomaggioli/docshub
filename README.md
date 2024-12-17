@@ -66,11 +66,11 @@ You can check the Docshub documentation [here](https://docshub.vercel.app/). Thi
 > [!TIP]
 > If you experience any bugs or problems, please [create a new issue](https://github.com/atmgrupomaggioli/docshub/issues/new/choose) or [contribute using source code](https://docshub.vercel.app/docshub-source#getting-started) and submit a pull request.
 
+Thank you for helping us improve! 😊
+
 <a href="https://github.com/atmgrupomaggioli/docshub/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=atmgrupomaggioli/docshub" />
 </a>
-
-Thank you for helping us improve! 😊
 
 ## 📝 License
 
