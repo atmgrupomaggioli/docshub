@@ -4,26 +4,26 @@ sidebarTitle: "Create new document"
 description: "How to create new Markdown file"
 category: "Write Docs"
 publishDate: "2024-09-04"
+author: {
+    name: 'Roberto',
+    url: 'https://github.com/rperezll'
+}
 ---
 
 To start writing a new document, you can choose from several options:
 
 ## Using the CLI
 
-You can use the CLI to create a new Markdown file. To do this, run the following command:
-
-```bash
-npm run new:doc
-```
+You can use the CLI to create a new Markdown file. To do this, run the following the [CLI docs](/docshub-cli#create-new-document).
 
 ## Creating a new document manually
 
-You can also create a new Markdown file manually. To do this...
+You can also create a new Markdown file manually. To do this, you will need to have the **source project locally**. You can follow the [source code](/docshub-source) guide to obtain it.
 
-1. Create a new file in the `src/content/docs` directory with the `.mdx` extension.
+1. Create a new file in the `src/docs` directory with the `.mdx` extension.
 
 ```txt
-src/content/docs/example.mdx
+src/docs/example.mdx
 ```
 
 2. At the beginning of the document, make sure to include the following parameters:
@@ -33,12 +33,13 @@ src/content/docs/example.mdx
 title: "Example Document"
 sidebarTitle: "Example Document"
 description: "Example Document description"
-category: "Example Category"
 publishDate: "2024-09-04"
 ---
 
 ## Example Heading
 ```
+
+<Alert type="info">Review the full list of available parameters at the end of this page.</Alert>
 
 3. Write your content in the document using [**Markdown**](https://www.markdownguide.org/basic-syntax/) syntax. Also, you can use the following components:
 

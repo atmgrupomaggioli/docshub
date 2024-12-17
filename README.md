@@ -47,8 +47,6 @@
 
 DocsHub is a **self-hosted** application designed to make documentation effortless. Just focus on writing in Markdown, and let DocsHub handle the rest.
 
-- **Live demo**: [docshub.vercel.app](https://docshub.vercel.app/)
-
 ## ✨ Features
 
 - **Syntax Highlighting with Copy Function**: Easily view and copy code snippets directly from the documentation.
@@ -58,6 +56,16 @@ DocsHub is a **self-hosted** application designed to make documentation effortle
 - **Search Documentation**: Quickly find and navigate to specific entries within the documentation.
 - **Endpoint Documentation**: Ability to document API endpoints for better clarity and usage.
 - **Alerts**: Option to document using an alert component for important messages.
+
+## 📚 Documentation
+
+You can check the Docshub documentation [here](https://docshub.vercel.app/). This documentation also serves as a live demo of the application.
+
+## 🙏 Support
+
+If you experience any bugs or problems, please use the **Issues section** of the repository to report them. You can create a [new issue](https://github.com/atmgrupomaggioli/docshub/issues/new/choose).
+
+Thank you for helping us improve! 😊
 
 ## 🤝 Contributors
 

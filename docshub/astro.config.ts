@@ -28,21 +28,32 @@ const vercelDeploy = {
   site: "https://docshub.vercel.app",
 };
 
-const dockerDeploy = {
+const dockerProdDeploy = {
   output: "server" as const,
   adapter: node({
     mode: "standalone",
   }),
 };
 
+const dockerInteractiveDeploy = {
+  server: {
+    host: true,
+    port: 4321,
+  },
+};
+
 // https://astro.build/config
 export default defineConfig({
-  //...dockerDeploy,
+  // ...dockerInteractiveDeploy,
+  // ...dockerProdDeploy,
   ...vercelDeploy,
   redirects: {
     "/documentation-docker": "/docshub-docker",
     "/documentation-docshub": "/docshub-source",
     "/documentation-cli": "/docshub-cli",
+  },
+  devToolbar: {
+    enabled: false
   },
   integrations: [
     react(),
