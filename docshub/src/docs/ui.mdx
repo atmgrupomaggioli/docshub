@@ -4,10 +4,7 @@ sidebarTitle: "UI Components"
 description: "Below you will find examples of all the formats you can use in your Markdown documentation"
 category: "Components"
 publishDate: "2024-10-03"
-author: {
-    name: 'Pablo',
-    url: 'https://github.com/pheralb'
-}
+author: { name: "Pablo", url: "https://github.com/pheralb" }
 ---
 
 import ShowColors from "@/components/ui/showColors";
@@ -60,7 +57,7 @@ echo "Hello World"
 
 <UiBlock component="component" title="Images">
 
-<Image src="/logo/docshub.jpg" width="64" height="64" alt="Docshub Logo" />
+<Image src="/images/docshub.jpg" width="64" height="64" alt="Docshub Logo" />
 
 </UiBlock>
 
@@ -69,7 +66,7 @@ There are two ways to add images to your documentation:
 - Using Markdown syntax:
 
 ```md
-![Docshub Logo](/logo/docshub.jpg)
+![Docshub Logo](/images/docshub.jpg)
 ```
 
 - Using the [`<Image>` Astro Component](https://docs.astro.build/en/guides/images/#images-in-mdx-files):
@@ -81,7 +78,7 @@ title: My Docshub Page
 
 import { Image } from "astro:assets";
 
-<Image src="/logo/docshub.jpg" width="64" height="64" alt="Docshub Logo" />
+<Image src="/images/docshub.jpg" width="64" height="64" alt="Docshub Logo" />
 ```
 
 ## Document Card
