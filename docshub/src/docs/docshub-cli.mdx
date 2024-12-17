@@ -1,11 +1,55 @@
 ---
-title: "CLI"
+title: "DocsHub CLI"
 sidebarTitle: "Using CLI"
-description: "How to create new documentation app using Docshub CLI"
+description: "Simplify your workspace setup, Docker configuration, and content creation with a single command."
 category: "Getting Started"
 publishDate: "2024-09-04"
+author: {
+    name: Roberto,
+    url: 'https://github.com/rperezll'
+}
 ---
 
-Welcome to the introduction site about Docshub CLI.
+A CLI tool to quickly set up and manage a documentation workspace. **Create directories, configure Docker Compose, and generate blank Markdown documentation** with predefined metadata. Run it instantly using **npx**, no installation needed!
 
-<Alert type="warning">Incoming documentation 🚀</Alert>
+## Run CLI
+
+```bash
+$ npx @docshub/cli
+```
+
+When you run the CLI, it will prompt you with a menu to choose the desired action.
+
+## Init new workspace
+
+When you select **Initialize Workspace**, the CLI creates the following directory structure. Existing files and directories are preserved and will not be overwritten.
+
+```text
+.
+├── docs/
+├── images/
+└── docker-compose.yml
+```
+
+Now that we have the `/docs`, `/images` directories and the `docker-compose.yml` file, how can we start our application to edit documentation or deploy it in production? Please refer to [Docker docs](/docshub-docker) for more details.
+
+## Create new document
+
+When you select **Create New Document**, the CLI generates a new `.mdx` file inside the `/docs` directory.
+
+<Alert type="warning">Make sure to *Initialize Workspace* beforehand.</Alert>
+
+To build the `.mdx` file, the CLI will prompt you to provide a series of metadata fields, such as the following:
+
+| **Field**       | **Description**                              | **Example**                      |
+|-----------------|----------------------------------------------|----------------------------------|
+| `title`         | The main title of the document.              | `"Your Title Here"`              |
+| `sidebarTitle`  | The title displayed in the sidebar menu.     | `"Your Sidebar Title"`           |
+| `description`   | A brief description of the document.         | `"A brief description of the document."` |
+| `publishDate`   | The publication date of the document.        | `"2024-09-04"`                   |
+| `author.name`   | The name of the document's author.           | `"Your Name"`                    |
+| `author.url`    | A link to the author's profile or website.   | `"https://your-profile-link.com"`|
+
+## License
+
+- [GNU GENERAL PUBLIC LICENSE 3.0](https://github.com/atmgrupomaggioli/docshub/blob/main/LICENSE)
