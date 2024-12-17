@@ -48,13 +48,13 @@ const { document, docUrl, headings, readingTime } = Astro.props;
     async function renderDiagrams(graphs) {
       const { default: mermaid } = await import("mermaid");
       const htmlClassList = document.documentElement.classList;
-      const theme = htmlClassList.contains("dark") ? "dark" : "default";
+      // const theme = htmlClassList.contains("dark") ? "neutral" : "default";
 
       mermaid.initialize({
         startOnLoad: false,
         fontFamily: "var(--sans-font)",
         // @ts-ignore This works, but TS expects an enum for some reason
-        theme: theme,
+        theme: "neutral",
       });
 
       for (const graph of graphs) {
