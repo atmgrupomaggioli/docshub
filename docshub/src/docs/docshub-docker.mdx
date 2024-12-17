@@ -1,59 +1,33 @@
 ---
 title: "Docker"
 sidebarTitle: "Docker"
-description: "How to run Docshub locally using Docker"
+description: "How to run Docshub using Docker"
 category: "Getting Started"
 publishDate: "2024-09-04"
+author: {
+  name: Roberto,
+  url: 'https://github.com/rperezll'
+}
 ---
 
-## Docker compose
+<Alert type="warning">Make sure to *Initialize Workspace* beforehand. Consult the [CLI docs](/docshub-cli) for detailed instructions on how to proceed.</Alert>
 
-Start and build the DocsHub app with the following compose.
+## Running Docshub with Docker
 
-```yml
-# docker-compose.yml
-services:
-  docshub:
-    container_name: docshub
-    image: atmgrupomaggioli/docshub:latest
-    ports:
-      - "4321:4321"
-    restart: unless-stopped
-    volumes:
-      - ./docs:/app/src/content/docs
-      - ./images:/app/public/images
-    environment:
-      DOCUMENTATION_TITLE: "Example Documentation title"
-      VERSION: "0.0.1"
-      REPOSITORY_TYPE: "github"
-      REPOSITORY_URL: "https://github.com/atmgrupomaggioli/docshub"
-```
+There are 2 modes to run Docshub with Docker: **Interactive Mode** and **Standard Mode** (Production). These instructions are based on the `docker-compose.yml` file, which can either be found in the repository or created by the CLI when initializing the workspace.
+
+## Interactive Mode
+
+Interactive Mode provides Docshub in **development mode**, allowing you to edit and view changes in real time.
 
 ```bash
-docker compose up -d --build
+docker compose --profile interactive up -d
 ```
 
-<Alert type="Info">
-  Additionally, you have a multi-platform image for linux/amd64 and linux/arm64
-  with the tag multiplatform
-</Alert>
+## Standard Mode
 
-## Docker run
-
-Alternatively, if you don't have Docker Compose
-
-You can start the DocsHub Docker environment using the following docker run command.
+Standard Mode is the **build mode**, used to create your site with the finalized documentation.
 
 ```bash
-docker run -d \
-  --name docshub \
-  -p 4321:4321 \
-  --restart unless-stopped \
-  -v ./docs:/app/src/content/docs \
-  -v ./images:/app/public/images \
-  -e DOCUMENTATION_TITLE="Example Documentation title" \
-  -e VERSION="0.0.1" \
-  -e REPOSITORY_TYPE="github" \
-  -e REPOSITORY_URL="https://github.com/atmgrupomaggioli/docshub" \
-  atmgrupomaggioli/docshub:latest
+docker compose --profile standard up -d
 ```
