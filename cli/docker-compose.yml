@@ -1,0 +1,30 @@
+services:
+  docshub:
+    container_name: docshub
+    image: atmgrupomaggioli/docshub:latest
+    ports:
+      - "4321:4321"
+    restart: unless-stopped
+    volumes:
+      - ./docs:/app/src/content/docs
+      - ./images:/app/public/images
+    environment:
+      DOCUMENTATION_TITLE: "Example Documentation title"
+      VERSION: "0.0.1"
+      REPOSITORY_TYPE: "github"
+      REPOSITORY_URL: "https://github.com/atmgrupomaggioli/docshub"
+      
+  # docshub-multiplatform:
+  #   container_name: docshub-multiplatform
+  #   image: atmgrupomaggioli/docshub:multiplatform
+  #   ports:
+  #     - "4321:4321"
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ./docs:/app/src/content/docs
+  #     - ./images:/app/public/images
+  #   environment:
+  #     DOCUMENTATION_TITLE: "Example Documentation title"
+  #     VERSION: "0.0.1"
+  #     REPOSITORY_TYPE: "github"
+  #     REPOSITORY_URL: "https://github.com/atmgrupomaggioli/docshub"
