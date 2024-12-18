@@ -4,11 +4,11 @@ const defaultDocshubConfig: DocshubConfig = {
   docsUrl: import.meta.env.DOCS_URL || "https://docshub.vercel.app",
   author: import.meta.env.AUTHOR || "DocsHub",
   faviconUrl: {
-    png: import.meta.env.FAVICON_URL_PNG || "/images/docshub_transparent.png",
+    png: import.meta.env.FAVICON_URL_PNG || "/assets/docshub_transparent.png",
     svg: import.meta.env.FAVICON_URL_SVG,
   },
   license: import.meta.env.LICENSE || "Proprietary",
-  logoUrl: import.meta.env.LOGO_URL || "/images/docshub_transparent.png",
+  logoUrl: import.meta.env.LOGO_URL || "/assets/docshub_transparent.png",
   repository: {
     type: import.meta.env.REPOSITORY_TYPE || "GitHub",
     url:
