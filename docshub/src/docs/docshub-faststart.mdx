@@ -1,0 +1,47 @@
+---
+title: "Launch DocsHub in 3 minutes 🏃‍♀️"
+sidebarTitle: "Fast start"
+description: "Follow these quick steps to get DocsHub up and running in your environment in just 3 minutes."
+publishDate: "2024-12-18"
+author: { name: Roberto, url: "https://github.com/rperezll" }
+---
+
+<Alert type="info">
+  This method is only available with **Docker**. Make sure you have docker and docker compose installed. If you're not in a hurry, you can read how everything works, starting with the [**Getting Started**](/docshub-cli) section, little padawan. 📚
+</Alert>
+
+Follow these quick steps to get Docs Hub up and running in your environment in just **3 minutes**.
+
+## Startup DocsHub
+
+Use the `docshub` CLI to initialize your working directory or workspace.
+
+```bash
+npx docshub -g
+```
+
+Then, select the `Initialize workspace` option within the CLI. With this, **DocsHub will be ready to start working**. To run it (in edit mode), use the following docker compose command:
+
+```bash
+docker compose --profile interactive up
+```
+
+The application should be available at [http://localhost:4321](http://localhost:4321).
+
+## Create new document
+
+Use the CLI to create your first document by selecting the `Create new document` option. Fill in the required fields, and the new document will be created in your `/docs` directory.
+
+Edit the document as you like, and you're all set! ✨
+
+## Prepare for production
+
+Once you're done editing your document, you're ready to prepare Docs Hub for production. Run the following command to build your application optimized for serving:
+
+```bash
+docker compose --profile standard up -d
+```
+
+**And that's it!** Now that you have the docker images downloaded locally, repeating the process will take you less than 3 minutes.
+
+Happy coding! 🎉

@@ -8,7 +8,7 @@ import { resolve } from 'path';
 import { iDocsProperties } from '../../../docshub/src/content.config';
 import { createFile, createFolder } from './fileHelpers';
 import { cancel, log } from '@clack/prompts';
-import { dockerComposeUrl } from '@/globals';
+import { dockerComposeUrl, gettingStartedUrl } from '@/globals';
 
 export const generateMDX = async (filePath: string, filename: string, properties: iDocsProperties) => {
   const routesDocsFolder = path.resolve(filePath);
@@ -64,19 +64,32 @@ export const generateWorkspace = async () => {
   const docsPath = resolve('docs');
   const imagesPath = resolve('images');
   const dockerComposePath = resolve('docker-compose.yml');
+  const gettingStartedPath = resolve('docs/getting-started.mdx');
 
   createFolder(docsPath);
   createFolder(imagesPath);
 
-  const response = await fetch(dockerComposeUrl);
+  const responseCompose = await fetch(dockerComposeUrl);
 
-  if (!response.ok) {
-    log.error(`Failed to fetch docker-compose.yml: ${response.statusText}`);
+  if (!responseCompose.ok) {
+    log.error(`Failed to fetch docker-compose.yml: ${responseCompose.statusText}`);
     cancel('Failed to fetch docker-compose.yml');
     process.exit(1);
   }
 
-  const dockerComposeContent = await response.text();
+  const dockerComposeContent = await responseCompose.text();
 
   createFile(dockerComposePath, dockerComposeContent.trim());
+
+  const responseStarted = await fetch(gettingStartedUrl);
+
+  if (!responseStarted.ok) {
+    log.error(`Failed to fetch getting-started.mdx: ${responseStarted.statusText}`);
+    cancel('Failed to fetch getting-started.mdxl');
+    process.exit(1);
+  }
+
+  const startedContent = await responseStarted.text();
+
+  createFile(gettingStartedPath, startedContent.trim());
 }
