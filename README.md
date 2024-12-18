@@ -41,14 +41,12 @@
 </div>
 
 <a href="https://docshub.vercel.app/">
-<picture align="center">
+<picture>
   <source media="(prefers-color-scheme: dark)" srcset="./docshub/public/images/dark_screenshot.png">
   <source media="(prefers-color-scheme: light)" srcset="./docshub/public/images/light_screenshot.png">
+  <img alt="DocsHub" src="./docshub/public/images/light_screenshot.png">
 </picture>
 </a>
-
-> [!WARNING]
-> DocsHub is a work in progress. If you find any bug or have any suggestion, please [open an issue](https://github.com/atmgrupomaggioli/docshub/issues/new/choose).
 
 ## 🧑‍🚀 Introduction
 
