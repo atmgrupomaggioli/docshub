@@ -7,12 +7,22 @@ publishDate: "2024-09-04"
 author: { name: Roberto, url: "https://github.com/rperezll" }
 ---
 
+import { Image } from "astro:assets";
+
 A CLI tool to quickly set up and manage a documentation workspace. **Create directories, configure Docker Compose, and generate blank Markdown documentation** with predefined metadata. Run it instantly using **npx**, no installation needed!
+
+<Image
+  src="/images/docshub_cli.png"
+  class="rounded-md"
+  width="430"
+  height="430"
+  alt="Docshub CLI Screenshot"
+/>
 
 ## Run CLI
 
 ```bash
-npx docshub -g
+$ npx @docshub/cli
 ```
 
 When you run the CLI, it will prompt you with a menu to choose the desired action.
@@ -24,12 +34,11 @@ When you select **Initialize Workspace**, the CLI creates the following director
 ```text
 .
 ├── docs/
-│   └── getting-started.mdx
 ├── images/
 └── docker-compose.yml
 ```
 
-Now that we have the `/docs`, `/images` directories, the `docker-compose.yml` file, and the `getting-started.mdx` file in the `/docs` folder, how can we start our application to **edit documentation** or **deploy it in production**? Please refer to Docker docs for more details:
+Now that we have the `/docs`, `/images` directories and the `docker-compose.yml` file, how can we start our application to edit documentation or deploy it in production? Please refer to Docker docs for more details:
 
 <DocumentCard documentSlug="docshub-docker" />
 
