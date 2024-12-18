@@ -1,8 +1,12 @@
 {
   "name": "docshub",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "type": "module",
   "description": "Create the workspace or create a new document in DocsHub.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atmgrupomaggioli/docshub"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "typings": "./dist/index.d.ts",

@@ -52,9 +52,9 @@ const dockerInteractiveDeploy = {
 
 // https://astro.build/config
 export default defineConfig({
-  ...dockerInteractiveDeploy,
-  // ...dockerProdDeploy,
-  // ...vercelDeploy,
+  //...dockerInteractiveDeploy,
+  //...dockerProdDeploy,
+  ...vercelDeploy,
   redirects: {
     "/documentation-docker": "/docshub-docker",
     "/documentation-docshub": "/docshub-source",
