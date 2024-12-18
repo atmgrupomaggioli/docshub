@@ -25,13 +25,7 @@ Welcome to the source code section of [DocsHub](https://github.com/atmgrupomaggi
    $ git clone git@github.com:your_user/docshub.git
    ```
 
-3. Navigate to the project directory:
-
-   ```bash
-   $ cd docshub
-   ```
-
-4. Install the dependencies:
+3. Install the dependencies:
 
    ```bash
    $ npm i

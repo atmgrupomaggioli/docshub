@@ -6,7 +6,7 @@ services:
       - "4321:4321"
     restart: unless-stopped
     volumes:
-      - ./docs:/app/src/content/docs
+      - ./docs:/app/src/docs
       - ./images:/app/public/images
     environment:
       DOCUMENTATION_TITLE: "Standard Documentation"
@@ -23,7 +23,7 @@ services:
       - "4321:4321"
     restart: unless-stopped
     volumes:
-      - ./docs:/app/src/content/docs
+      - ./docs:/app/src/docs
       - ./images:/app/public/images
     environment:
       DOCUMENTATION_TITLE: "Interactive Documentation"

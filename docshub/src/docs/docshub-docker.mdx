@@ -1,7 +1,7 @@
 ---
 title: "Docker"
 sidebarTitle: "Docker"
-description: "How to run Docshub using Docker"
+description: "How to run Docshub using docker"
 category: "Getting Started"
 publishDate: "2024-09-04"
 author: { name: Roberto, url: "https://github.com/rperezll" }
@@ -12,22 +12,41 @@ author: { name: Roberto, url: "https://github.com/rperezll" }
   docs**](/docshub-cli) for detailed instructions on how to proceed.
 </Alert>
 
-## Running Docshub with Docker
+## Running docshub with docker
 
-There are 2 modes to run Docshub with Docker: **Interactive Mode** and **Standard Mode** (Production). These instructions are based on the `docker-compose.yml` file, which can either be found in the repository or created by the CLI when initializing the workspace.
+There are 2 modes to run Docshub with docker: **Interactive Mode** and **Standard Mode** (Production). These instructions are based on the `docker-compose.yml` file, which can either be found in the repository or created by the CLI when initializing the workspace.
 
-## Interactive Mode
+## Interactive mode
 
 Interactive Mode provides Docshub in **development mode**, allowing you to edit and view changes in real time.
 
 ```bash
+# By default, use the interactive docker tag.
 docker compose --profile interactive up -d
 ```
 
-## Standard Mode
+## Standard mode
 
 Standard Mode is the **build mode**, used to create your site with the finalized documentation.
 
 ```bash
+# By default, use the latest docker tag.
 docker compose --profile standard up -d
 ```
+
+## Docker tags for app deployment
+
+When uploading the app, we use specific docker tags to differentiate between versions and their intended usage.
+
+1. `latest`: This tag represents the **production version of the app**. It is always the most stable and current version deployed to production.
+
+2. `x.y.z`: This tag corresponds to the **specific version of the app**. For example, if the app is version 1.2.3, the tag would be `1.2.3`.
+
+3. `interactive`: This tag represents the **latest version of the app available for editing**. It is typically used for development purposes and provides a version where developers can work on the app.
+
+4. `interactive-x.y.z`: This is the **versioned tag for the interactive version of the app**. It is associated with the specific version number for the interactive build. For example, `interactive-1.2.3`.
+
+5. `-next`: This tag is used for the **release candidate version of the app**. It represents a version that is almost stable but still needs some final testing before it can become the official stable release.
+
+6. `-dev`: This tag is **used for developer preview** versions. These are experimental builds intended for developers to test new features or changes that may not be stable yet.
+

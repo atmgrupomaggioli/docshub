@@ -1,1 +1,2 @@
-export const dockerComposeUrl = 'https://raw.githubusercontent.com/atmgrupomaggioli/docshub/refs/heads/main/resources/docker-compose.yml';
+export const dockerComposeUrl = 'https://raw.githubusercontent.com/atmgrupomaggioli/docshub/refs/heads/next/resources/docker-compose.yml';
+export const gettingStartedUrl = 'https://raw.githubusercontent.com/atmgrupomaggioli/docshub/refs/heads/next/docshub/src/docs/getting-started.mdx';
