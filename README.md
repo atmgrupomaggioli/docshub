@@ -50,6 +50,9 @@
 
 ## 🧑‍🚀 Introduction
 
+> [!WARNING]
+> DocsHub is a **work in progress**. If you find any bug or have any suggestion, please [open an issue](https://github.com/atmgrupomaggioli/docshub/issues/new/choose).
+
 DocsHub is a **self-hosted** application designed to make documentation effortless. Just focus on writing in Markdown, and let DocsHub handle the rest.
 
 ## ✨ Features
@@ -68,8 +71,7 @@ You can check the Docshub documentation [here](https://docshub.vercel.app/). Thi
 
 ## 🤝 Contributing
 
-> [!TIP]
-> If you experience any bugs or problems, please [create a new issue](https://github.com/atmgrupomaggioli/docshub/issues/new/choose) or [contribute using source code](https://docshub.vercel.app/docshub-source#getting-started) and submit a pull request.
+If you find any bugs or have a new idea, please [create a new issue](https://github.com/atmgrupomaggioli/docshub/issues/new/choose) or [contribute using source code](https://docshub.vercel.app/docshub-source#getting-started) and submit a pull request.
 
 Thank you for helping us improve! 😊
 
