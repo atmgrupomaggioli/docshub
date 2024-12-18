@@ -1,6 +1,6 @@
 <div align="center">
 <a href="https://docshub.vercel.app">
-<img src="docshub/public/logo/docshub_transparent.png" height="50">
+<img src="docshub/public/images/docshub_transparent.png" height="50">
 </a>
 <p></p>
 <p align="center"><strong>Markdown Documentation with Vitamins</strong></p>
@@ -40,8 +40,15 @@
 
 </div>
 
+<a href="https://docshub.vercel.app/">
+<picture align="center">
+  <source media="(prefers-color-scheme: dark)" srcset="./docshub/public/images/dark_screenshot.png">
+  <source media="(prefers-color-scheme: light)" srcset="./docshub/public/images/light_screenshot.png">
+</picture>
+</a>
+
 > [!WARNING]
-> DocsHub is still in development. You cannot clone the repository yet. Alternatively, you can try it with [Docker](https://github.com/atmgrupomaggioli/docshub/tree/main/docker).
+> DocsHub is a work in progress. If you find any bug or have any suggestion, please [open an issue](https://github.com/atmgrupomaggioli/docshub/issues/new/choose).
 
 ## 🧑‍🚀 Introduction
 
