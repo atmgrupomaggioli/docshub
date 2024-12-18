@@ -11,7 +11,7 @@ services:
     environment:
       DOCUMENTATION_TITLE: "Standard Documentation"
       VERSION: "0.0.1"
-      REPOSITORY_TYPE: "github"
+      REPOSITORY_TYPE: "GitHub"
       REPOSITORY_URL: "https://github.com/atmgrupomaggioli/docshub"
     profiles:
       - standard
@@ -28,7 +28,7 @@ services:
     environment:
       DOCUMENTATION_TITLE: "Interactive Documentation"
       VERSION: "0.0.1"
-      REPOSITORY_TYPE: "github"
+      REPOSITORY_TYPE: "GitHub"
       REPOSITORY_URL: "https://github.com/atmgrupomaggioli/docshub"
     profiles:
       - interactive
