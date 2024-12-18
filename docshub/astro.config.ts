@@ -40,13 +40,21 @@ const dockerInteractiveDeploy = {
     host: true,
     port: 4321,
   },
+  vite: {
+    server:{
+      host: "0.0.0.0",
+      hmr: { clientPort: 4321 },
+      port: 4321, 
+      watch: { usePolling: true }
+    }
+  }
 };
 
 // https://astro.build/config
 export default defineConfig({
-  // ...dockerInteractiveDeploy,
+  ...dockerInteractiveDeploy,
   // ...dockerProdDeploy,
-  ...vercelDeploy,
+  // ...vercelDeploy,
   redirects: {
     "/documentation-docker": "/docshub-docker",
     "/documentation-docshub": "/docshub-source",
