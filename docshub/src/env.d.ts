@@ -15,10 +15,16 @@ type LicenseType =
 
 type RepositoryType = "GitHub" | "GitLab" | "BitBucket";
 
+interface DocshubFavicon {
+  svg?: string;
+  png?: string;
+}
+
 interface DocshubConfig {
   documentationTitle: string;
   version: string;
   docsUrl: string;
+  faviconUrl: DocshubFavicon;
   author?: string;
   logoUrl?: string;
   license?: LicenseType;

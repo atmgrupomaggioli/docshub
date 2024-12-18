@@ -1,12 +1,14 @@
 const defaultDocshubConfig: DocshubConfig = {
-  documentationTitle: import.meta.env.DOCUMENTATION_TITLE || "Docshub Demo",
+  documentationTitle: import.meta.env.DOCUMENTATION_TITLE || "DocsHub Demo",
   version: import.meta.env.VERSION || "2.0.0",
   docsUrl: import.meta.env.DOCS_URL || "https://docshub.vercel.app",
-  author: import.meta.env.AUTHOR || "Author's name",
+  author: import.meta.env.AUTHOR || "DocsHub",
+  faviconUrl: {
+    png: import.meta.env.FAVICON_URL_PNG || "/images/docshub_transparent.png",
+    svg: import.meta.env.FAVICON_URL_SVG,
+  },
   license: import.meta.env.LICENSE || "Proprietary",
-  logoUrl:
-    import.meta.env.LOGO_URL ||
-    "https://github.com/atmgrupomaggioli/docshub/blob/main/docshub/public/logo/docshub_transparent.png?raw=true",
+  logoUrl: import.meta.env.LOGO_URL || "/images/docshub_transparent.png",
   repository: {
     type: import.meta.env.REPOSITORY_TYPE || "GitHub",
     url:

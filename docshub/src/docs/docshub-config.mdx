@@ -63,6 +63,34 @@ const defaultDocshubConfig: DocshubConfig = {
 import.meta.env.DOCS_URL
 ```
 
+### `faviconUrl`
+
+The main favicon URL of your documentation site.
+
+```ts
+const defaultDocshubConfig: DocshubConfig = {
+  faviconUrl: {
+    png:
+      import.meta.env.FAVICON_URL ||
+      "https://github.com/atmgrupomaggioli/docshub/blob/main/docshub/public/images/docshub_transparent.png?raw=true",
+  },
+};
+```
+
+`faviconUrl` accepts the following params:
+
+- `png`: The URL of the PNG favicon.
+
+```env
+import.meta.env.FAVICON_URL_PNG
+```
+
+- `svg`: The URL of the SVG favicon.
+
+```env
+import.meta.env.FAVICON_URL_SVG
+```
+
 ### `author` (optional)
 
 The author of your documentation site.
@@ -114,7 +142,7 @@ The logo of your documentation site.
 ```ts
 const defaultDocshubConfig: DocshubConfig = {
   logoUrl:
-    "https://github.com/atmgrupomaggioli/docshub/blob/main/docshub/public/logo/docshub_transparent.png?raw=true",
+    "https://github.com/atmgrupomaggioli/docshub/blob/main/docshub/public/images/docshub_transparent.png?raw=true",
 };
 ```
 

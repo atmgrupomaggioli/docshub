@@ -1,4 +1,7 @@
 ---
+// Global Docshub Config:
+import defaultDocshubConfig from "docshub.config";
+
 // Styles:
 import "@/styles/globals.css";
 
@@ -60,11 +63,24 @@ const { ...data } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="description" content={data.description} />
     <meta name="viewport" content="width=device-width" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="/logo/docshub_transparent.png"
-    />
+    {
+      defaultDocshubConfig.faviconUrl.png && (
+        <link
+          rel="icon"
+          type="image/png"
+          href={defaultDocshubConfig.faviconUrl.png}
+        />
+      )
+    }
+    {
+      defaultDocshubConfig.faviconUrl.svg && (
+        <link
+          rel="icon"
+          type="image/svg+xml"
+          href={defaultDocshubConfig.faviconUrl.svg}
+        />
+      )
+    }
     <meta name="generator" content={Astro.generator} />
     <title>{data.title} - DocsHub</title>
   </head>

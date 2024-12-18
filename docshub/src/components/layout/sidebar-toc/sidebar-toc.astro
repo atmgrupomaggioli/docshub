@@ -1,7 +1,11 @@
 ---
+import type { MarkdownHeading } from "astro";
 import { cx } from "@/utils/cx";
-
 import { SidebarFolder } from "@/components/layout/sidebar-item";
+
+interface Props {
+  headings: MarkdownHeading[];
+}
 
 const { headings } = Astro.props;
 ---
@@ -27,6 +31,8 @@ const { headings } = Astro.props;
               href={`#${heading.slug}`}
               class={cx(
                 SidebarFolder,
+                heading.depth === 3 && "pl-6",
+                heading.depth === 4 && "pl-8",
                 "dark:border-gray-800 border-gray-300",
                 "hover:font-medium",
               )}

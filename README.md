@@ -1,6 +1,6 @@
 <div align="center">
 <a href="https://docshub.vercel.app">
-<img src="docshub/public/logo/docshub_transparent.png" height="50">
+<img src="docshub/public/images/docshub_transparent.png" height="50">
 </a>
 <p></p>
 <p align="center"><strong>Markdown Documentation with Vitamins</strong></p>
@@ -40,10 +40,18 @@
 
 </div>
 
-> [!WARNING]
-> DocsHub is still in development. You cannot clone the repository yet. Alternatively, you can try it with [Docker](https://github.com/atmgrupomaggioli/docshub/tree/main/docker).
+<a href="https://docshub.vercel.app/">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./docshub/public/images/dark_screenshot.png">
+  <source media="(prefers-color-scheme: light)" srcset="./docshub/public/images/light_screenshot.png">
+  <img alt="DocsHub" src="./docshub/public/images/light_screenshot.png">
+</picture>
+</a>
 
 ## 🧑‍🚀 Introduction
+
+> [!WARNING]
+> DocsHub is a **work in progress**. If you find any bug or have any suggestion, please [open an issue](https://github.com/atmgrupomaggioli/docshub/issues/new/choose).
 
 DocsHub is a **self-hosted** application designed to make documentation effortless. Just focus on writing in Markdown, and let DocsHub handle the rest.
 
@@ -63,8 +71,7 @@ You can check the Docshub documentation [here](https://docshub.vercel.app/). Thi
 
 ## 🤝 Contributing
 
-> [!TIP]
-> If you experience any bugs or problems, please [create a new issue](https://github.com/atmgrupomaggioli/docshub/issues/new/choose) or [contribute using source code](https://docshub.vercel.app/docshub-source#getting-started) and submit a pull request.
+If you find any bugs or have a new idea, please [create a new issue](https://github.com/atmgrupomaggioli/docshub/issues/new/choose) or [contribute using source code](https://docshub.vercel.app/docshub-source#getting-started) and submit a pull request.
 
 Thank you for helping us improve! 😊
 
