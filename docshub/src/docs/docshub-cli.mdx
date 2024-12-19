@@ -22,7 +22,7 @@ A CLI tool to quickly set up and manage a documentation workspace. **Create dire
 ## Run CLI
 
 ```bash
-npx @docshub/cli
+npx docshub
 ```
 
 When you run the CLI, it will prompt you with a menu to choose the desired action.
@@ -33,12 +33,13 @@ When you select **Initialize Workspace**, the CLI creates the following director
 
 ```text
 .
-├── docs/
-├── images/
-└── docker-compose.yml
+├── 📂 docs/
+   └── 📄 getting-started.mdx
+├── 📂 images/
+└── 📄 docker-compose.yml
 ```
 
-Now that we have the `/docs`, `/images` directories and the `docker-compose.yml` file, how can we start our application to edit documentation or deploy it in production? Please refer to Docker docs for more details:
+Now that we have the `/docs`, `/images` directories, the `docker-compose.yml` file and `getting-started.mdx` template, how can we start our application to edit documentation or deploy it in production? Please refer to Docker docs for more details:
 
 <DocumentCard documentSlug="docshub-docker" />
 
