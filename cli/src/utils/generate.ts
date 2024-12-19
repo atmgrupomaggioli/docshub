@@ -7,8 +7,14 @@ import { resolve } from 'path';
 // ⚙️ Properties:
 import { iDocsProperties } from '../../../docshub/src/content.config';
 import { createFile, createFolder } from './fileHelpers';
-import { cancel, log } from '@clack/prompts';
-import { dockerComposeUrl, gettingStartedUrl } from '@/globals';
+import { cancel, log, outro } from '@clack/prompts';
+import { dockerComposeUrl, gettingStartedUrl, startGuideUrl } from '@/globals';
+import gradient from 'gradient-string';
+import { docshubColors } from './resources';
+
+// ⚙️ Settings
+const docsHubGradient = gradient(Object.values(docshubColors));
+const generateEndMessage = '🚀 Workspace created successfully.';
 
 export const generateMDX = async (filePath: string, filename: string, properties: iDocsProperties) => {
   const routesDocsFolder = path.resolve(filePath);
@@ -92,4 +98,8 @@ export const generateWorkspace = async () => {
   const startedContent = await responseStarted.text();
 
   createFile(gettingStartedPath, startedContent.trim());
+
+  log.info(`To get started with DocsHub with 🐳 docker, please review the documentation at the following link: 
+${startGuideUrl}`);
+  outro(docsHubGradient(generateEndMessage));
 }
