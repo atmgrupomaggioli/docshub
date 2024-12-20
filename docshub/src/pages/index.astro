@@ -4,11 +4,15 @@ import { getEntry, render } from "astro:content";
 import LayoutMain from "@/layouts/layoutMain.astro";
 import LayoutDocs from "@/layouts/layoutDocs.astro";
 
+// 🔎 Get Document:
 const document = await getEntry("docs", "getting-started");
 
 if (!document) {
   return Astro.redirect("404");
 }
+
+// ✨ MDX Custom components
+import { MDXComponents } from "@/components/mdx/components";
 
 const { Content, headings } = await render(document);
 
@@ -17,6 +21,6 @@ const url = new URL(Astro.request.url).href;
 
 <LayoutMain title={document.data.title} description={document.data.description}>
   <LayoutDocs document={document.data} docUrl={url} headings={headings}>
-    <Content />
+    <Content components={MDXComponents} />
   </LayoutDocs>
 </LayoutMain>
