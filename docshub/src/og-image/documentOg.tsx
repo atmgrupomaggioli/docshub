@@ -19,9 +19,9 @@ const DocumentOGTemplate = (props: iDocumentOGTemplate) => {
         backgroundColor: "#111827",
         color: "#fff",
         paddingTop: "40px",
-        paddingBottom: "65px",
-        paddingLeft: "65px",
-        paddingRight: "65px",
+        paddingBottom: "64px",
+        paddingLeft: "64px",
+        paddingRight: "64px",
       }}
     >
       <div
