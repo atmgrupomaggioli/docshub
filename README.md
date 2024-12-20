@@ -1,6 +1,6 @@
 <div align="center">
 <a href="https://docshub.vercel.app">
-<img src="docshub/public/images/docshub_transparent.png" height="50">
+<img src="docshub/public/assets/docshub_transparent.png" height="50">
 </a>
 <p></p>
 <p align="center"><strong>Markdown Documentation with Vitamins</strong></p>

@@ -14,7 +14,7 @@ import { generateMDX, generateWorkspace } from './utils/generate';
 const introMessage = '📚 Welcome to Docshub';
 const docsHubGradient = gradient(Object.values(docshubColors));
 const docsHubStep = gradient(Object.values(docshubStepColors));
-const endMessage = '🚀 Document created successfully.';
+const docEndMessage = '🚀 Document created successfully.';
 const cancelMessage = '⛔ Operation canceled.';
 
 const documentRoute = 'docs';
@@ -212,7 +212,7 @@ async function main() {
     clack.log.step(
       `🖼️ ${docsHubStep('Using images')}: You can use images in your documentation. Store them in /images/${documentCategory ? documentCategory?.toLowerCase() : ''}.`,
     );
-    clack.outro(docsHubGradient(endMessage));
+    clack.outro(docsHubGradient(docEndMessage));
   }
   
 }

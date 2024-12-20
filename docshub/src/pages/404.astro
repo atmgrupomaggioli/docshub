@@ -1,0 +1,38 @@
+---
+import LayoutMain from "@/layouts/layoutMain.astro";
+import LastEntries from "@/components/last-entries.astro";
+
+const currentUrl = new URL(Astro.request.url);
+const path = currentUrl.pathname;
+---
+
+<LayoutMain
+  title={"Page Not Found"}
+  description={"Page not found, but don't worry!"}
+>
+  <div
+    class="container mx-auto max-w-5xl p-6 md:h-[calc(100vh-65px)] flex flex-col justify-center items-center"
+  >
+    <header class="space-y-4">
+      <section class="space-y-2 text-center">
+        <h1 class="text-5xl font-extrabold text-gray-800 dark:text-gray-300">
+          404
+        </h1>
+        <p class="text-lg text-gray-500 dark:text-gray-200 text-center">
+          We couldn’t find the page at
+          <code class="font-mono italic text-gray-700 dark:text-gray-400"
+            >{path}</code
+          >
+        </p>
+      </section>
+
+      <p
+        class="font-medium text-gray-600 dark:text-gray-300 text-lg text-center"
+      >
+        Oops! It's like a glitch in the Matrix...
+      </p>
+
+      <LastEntries />
+    </header>
+  </div>
+</LayoutMain>

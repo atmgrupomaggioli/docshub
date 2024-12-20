@@ -12,7 +12,6 @@ import {
   docshubAppColors,
   docshubColors,
 } from "@/components/ui/docshub.colors";
-import { Image } from "astro:assets";
 
 Below you will find examples of all the formats you can use in your Markdown documentation
 
@@ -76,8 +75,6 @@ There are two ways to add images to your documentation:
 title: My Docshub Page
 ---
 
-import { Image } from "astro:assets";
-
 <Image src="/images/docshub.jpg" width="64" height="64" alt="Docshub Logo" />
 ```
 
@@ -91,8 +88,8 @@ Add a card that redirects to a document in your application. It receives the `do
 
 </UiBlock>
 ```html
+<!-- example: src/docs/getting-started.mdx -->
 <DocumentCard documentSlug="getting-started" />
-<!-- src/content/docs/getting-started.mdx -->
 ```
 
 ## Endpoint

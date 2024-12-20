@@ -12,6 +12,9 @@ import UiBlock from "@/components/uiBlock.astro";
 import DocumentCard from "@/components/documentCard.astro";
 import Alert from "@/components/ui/alert.astro";
 
+// 👩‍🚀 Astro components into MDX
+import { Image } from "astro:assets";
+
 // 📄 Get Document:
 const post = Astro.props;
 
@@ -38,6 +41,6 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post);
     readingTime={remarkPluginFrontmatter.minutesRead}
     docUrl={url}
   >
-    <Content components={{ Endpoint, Alert, UiBlock, DocumentCard }} />
+    <Content components={{ Endpoint, Alert, UiBlock, DocumentCard, Image }} />
   </LayoutDocs>
 </LayoutMain>
