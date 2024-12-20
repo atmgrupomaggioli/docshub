@@ -1,5 +1,5 @@
 const defaultDocshubConfig: DocshubConfig = {
-  documentationTitle: import.meta.env.DOCUMENTATION_TITLE || "DocsHub Demo",
+  documentationTitle: import.meta.env.DOCUMENTATION_TITLE || "DocsHub Documentation",
   version: import.meta.env.VERSION || "2.0.0",
   docsUrl: import.meta.env.DOCS_URL || "https://docshub.vercel.app",
   author: import.meta.env.AUTHOR || "DocsHub",
