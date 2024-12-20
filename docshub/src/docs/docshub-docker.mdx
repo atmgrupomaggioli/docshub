@@ -21,9 +21,12 @@ There are 2 modes to run Docshub with docker: **Interactive Mode** and **Standar
 Interactive Mode provides Docshub in **development mode**, allowing you to edit and view changes in real time.
 
 ```bash
-# By default, use the interactive docker tag.
 docker compose --profile interactive up -d
 ```
+
+<Alert type="info">
+  By default, use the **interactive** docker tag.
+</Alert>
 
 The application should be available at [http://localhost:4321](http://localhost:4321).
 
@@ -32,9 +35,12 @@ The application should be available at [http://localhost:4321](http://localhost:
 Standard Mode is the **build mode**, used to create your site with the finalized documentation.
 
 ```bash
-# By default, use the latest docker tag.
 docker compose --profile standard up -d
 ```
+
+<Alert type="info">
+  By default, use the **latest** docker tag.
+</Alert>
 
 The application should be available at [http://localhost:4321](http://localhost:4321).
 
