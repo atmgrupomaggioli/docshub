@@ -1,6 +1,7 @@
 ---
 // Global Docshub Config:
 import defaultDocshubConfig from "docshub.config";
+import { ogUrl } from "@/og-image/og-utils";
 
 // Styles:
 import "@/styles/globals.css";
@@ -12,6 +13,7 @@ import { cx } from "@/utils/cx";
 // Main layout props:
 export interface Props {
   title: string;
+  documentSlug?: string;
   description?: string;
 }
 
@@ -61,8 +63,12 @@ const { ...data } = Astro.props;
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="generator" content={Astro.generator} />
     <meta name="description" content={data.description} />
     <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Favicons -->
     {
       defaultDocshubConfig.faviconUrl.png && (
         <link
@@ -81,8 +87,35 @@ const { ...data } = Astro.props;
         />
       )
     }
-    <meta name="generator" content={Astro.generator} />
-    <title>{data.title} - DocsHub</title>
+
+    <!-- OG Image -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={data.title} />
+    <meta property="og:description" content={data.description} />
+    <meta property="og:url" content={Astro.url} />
+    <meta
+      property="og:site_name"
+      content={`${data.title} - ${defaultDocshubConfig.documentationTitle}`}
+    />
+    <meta name="author" content={defaultDocshubConfig.author || "DocsHub"} />
+
+    <!-- Dynamic OG Image -->
+    {
+      data.documentSlug && (
+        <>
+          <meta
+            name="image"
+            property="og:image"
+            content={ogUrl(data.documentSlug)}
+          />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="600" />
+        </>
+      )
+    }
+
+    <!-- Website Title -->
+    <title>{data.title} - {defaultDocshubConfig.documentationTitle}</title>
   </head>
   <body
     class={cx(

@@ -24,11 +24,16 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"docs">;
 
 const url = new URL(Astro.request.url).href;
+const { slug } = Astro.params;
 
 const { Content, headings, remarkPluginFrontmatter } = await render(post);
 ---
 
-<LayoutMain title={post.data.title} description={post.data.description}>
+<LayoutMain
+  documentSlug={slug}
+  title={post.data.title}
+  description={post.data.description}
+>
   <LayoutDocs
     document={post.data}
     headings={headings}

@@ -19,7 +19,11 @@ const { Content, headings } = await render(document);
 const url = new URL(Astro.request.url).href;
 ---
 
-<LayoutMain title={document.data.title} description={document.data.description}>
+<LayoutMain
+  documentSlug="getting-started"
+  title={document.data.title}
+  description={document.data.description}
+>
   <LayoutDocs document={document.data} docUrl={url} headings={headings}>
     <Content components={MDXComponents} />
   </LayoutDocs>
