@@ -41,13 +41,13 @@ const dockerInteractiveDeploy = {
     port: 4321,
   },
   vite: {
-    server:{
+    server: {
       host: "0.0.0.0",
       hmr: { clientPort: 4321 },
-      port: 4321, 
-      watch: { usePolling: true }
-    }
-  }
+      port: 4321,
+      watch: { usePolling: true },
+    },
+  },
 };
 
 // https://astro.build/config
@@ -61,7 +61,7 @@ export default defineConfig({
     "/documentation-cli": "/docshub-cli",
   },
   devToolbar: {
-    enabled: false
+    enabled: false,
   },
   integrations: [
     react(),
@@ -92,4 +92,9 @@ export default defineConfig({
       remarkPlugins: [remarkGfm, remarkReadingTime, mermaid],
     }),
   ],
+  vite: {
+    optimizeDeps: {
+      exclude: ["@resvg/resvg-js"],
+    },
+  },
 });

@@ -7,13 +7,7 @@ import LayoutMain from "@/layouts/layoutMain.astro";
 import LayoutDocs from "@/layouts/layoutDocs.astro";
 
 // ✨ MDX Custom components
-import Endpoint from "@/components/mdx/endpoint/endpoint.astro";
-import UiBlock from "@/components/uiBlock.astro";
-import DocumentCard from "@/components/documentCard.astro";
-import Alert from "@/components/ui/alert.astro";
-
-// 👩‍🚀 Astro components into MDX
-import { Image } from "astro:assets";
+import { MDXComponents } from "@/components/mdx/components";
 
 // 📄 Get Document:
 const post = Astro.props;
@@ -30,17 +24,22 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"docs">;
 
 const url = new URL(Astro.request.url).href;
+const { slug } = Astro.params;
 
 const { Content, headings, remarkPluginFrontmatter } = await render(post);
 ---
 
-<LayoutMain title={post.data.title} description={post.data.description}>
+<LayoutMain
+  documentSlug={slug}
+  title={post.data.title}
+  description={post.data.description}
+>
   <LayoutDocs
     document={post.data}
     headings={headings}
     readingTime={remarkPluginFrontmatter.minutesRead}
     docUrl={url}
   >
-    <Content components={{ Endpoint, Alert, UiBlock, DocumentCard, Image }} />
+    <Content components={MDXComponents} />
   </LayoutDocs>
 </LayoutMain>

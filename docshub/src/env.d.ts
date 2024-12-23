@@ -1,6 +1,8 @@
 /// <reference types="astro/client" />
 /// <reference path="../.astro/types.d.ts" />
 
+import type { CollectionEntry } from "astro:content";
+
 type LicenseType =
   | "MIT"
   | "GPL-3.0"
@@ -18,6 +20,10 @@ type RepositoryType = "GitHub" | "GitLab" | "BitBucket";
 interface DocshubFavicon {
   svg?: string;
   png?: string;
+}
+
+interface OgImage {
+  title: CollectionEntry<"docs">["data"]["title"];
 }
 
 interface DocshubConfig {
