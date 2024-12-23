@@ -3,10 +3,6 @@ import { defineConfig } from "astro/config";
 // Docshub Configuration:
 import docshubConfig from "./docshub.config";
 
-// Deployment integrations:
-import node from "@astrojs/node";
-import vercel from "@astrojs/vercel";
-
 // UI integrations:
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
@@ -21,40 +17,11 @@ import { mermaid } from "./src/components/mdx/plugins/mermaid";
 import { targetBlank } from "./src/components/mdx/plugins/targetBlank";
 import { remarkReadingTime } from "./src/components/mdx/plugins/remarkReadingTime.mjs";
 import { HEADING_LINK_ANCHOR } from "./src/components/ui/prose-headings";
-
-const vercelDeploy = {
-  adapter: vercel(),
-  output: "server" as const,
-  site: "https://docshub.vercel.app",
-};
-
-const dockerProdDeploy = {
-  output: "server" as const,
-  adapter: node({
-    mode: "standalone",
-  }),
-};
-
-const dockerInteractiveDeploy = {
-  server: {
-    host: true,
-    port: 4321,
-  },
-  vite: {
-    server: {
-      host: "0.0.0.0",
-      hmr: { clientPort: 4321 },
-      port: 4321,
-      watch: { usePolling: true },
-    },
-  },
-};
+import { getDeploymentConfig } from "./deployment.config";
 
 // https://astro.build/config
 export default defineConfig({
-  //...dockerInteractiveDeploy,
-  //...dockerProdDeploy,
-  ...vercelDeploy,
+  ...getDeploymentConfig(),
   redirects: {
     "/documentation-docker": "/docshub-docker",
     "/documentation-docshub": "/docshub-source",
@@ -92,9 +59,4 @@ export default defineConfig({
       remarkPlugins: [remarkGfm, remarkReadingTime, mermaid],
     }),
   ],
-  vite: {
-    optimizeDeps: {
-      exclude: ["@resvg/resvg-js"],
-    },
-  },
 });

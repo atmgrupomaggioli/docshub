@@ -62,8 +62,6 @@ To perform the different builds, we use the following commands:
 
 1. **For production build**:
 
-   Run the following Docker command after enabling the `dockerProdDeploy` configuration and ensuring that both `vercelDeploy` and `dockerInteractiveDeploy` remain disabled.
-
    ```bash
    docker buildx build --platform linux/amd64,linux/arm64 \
        -t atmgrupomaggioli/docshub:latest \
@@ -72,8 +70,6 @@ To perform the different builds, we use the following commands:
    ```
 
 2. **For interactive build**:
-
-   Run the following Docker command after enabling the `dockerInteractiveDeploy` configuration and ensuring that both `vercelDeploy` and `dockerProdDeploy` remain disabled.
 
    ```bash
    docker buildx build --platform linux/amd64,linux/arm64 \

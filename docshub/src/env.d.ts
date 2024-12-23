@@ -17,6 +17,8 @@ type LicenseType =
 
 type RepositoryType = "GitHub" | "GitLab" | "BitBucket";
 
+type DeployType = "vercel" | "docker-interactive" | "docker-prod";
+
 interface DocshubFavicon {
   svg?: string;
   png?: string;
@@ -35,6 +37,7 @@ interface DocshubConfig {
   logoUrl?: string;
   license?: LicenseType;
   repository?: DocshubRepository;
+  deployType?: DeployType;
 }
 
 interface DocshubRepository {
@@ -49,6 +52,7 @@ interface ImportMetaEnv {
   readonly LICENSE: LicenseType;
   readonly REPOSITORY_TYPE: RepositoryType;
   readonly REPOSITORY_URL: string;
+  readonly DEPLOY_ENV: DeployType;
 }
 
 interface ImportMeta {
