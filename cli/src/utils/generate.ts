@@ -8,7 +8,7 @@ import { resolve } from 'path';
 import { iDocsProperties } from '../../../docshub/src/content.config';
 import { createFile, createFolder } from './fileHelpers';
 import { cancel, log, outro } from '@clack/prompts';
-import { dockerComposeUrl, gettingStartedUrl, startGuideUrl } from '@/globals';
+import { dockerComposeUrl, envReferenceUrl, envUrl, gettingStartedUrl, startGuideUrl } from '@/globals';
 import gradient from 'gradient-string';
 import { docshubColors } from './resources';
 
@@ -71,6 +71,7 @@ export const generateWorkspace = async () => {
   const imagesPath = resolve('images');
   const dockerComposePath = resolve('docker-compose.yml');
   const gettingStartedPath = resolve('docs/getting-started.mdx');
+  const envPath = resolve('.env');
 
   createFolder(docsPath);
   createFolder(imagesPath);
@@ -98,6 +99,20 @@ export const generateWorkspace = async () => {
   const startedContent = await responseStarted.text();
 
   createFile(gettingStartedPath, startedContent.trim());
+
+  const responseEnv = await fetch(envUrl);
+
+  if (!responseEnv.ok) {
+    log.error(`Failed to fetch .env: ${responseEnv.statusText}`);
+    cancel('Failed to fetch .env');
+    process.exit(1);
+  }
+
+  const envContent = await responseEnv.text();
+
+  createFile(envPath, envContent.trim());
+
+  log.info(`To learn how to modify the .env file and which fields are supported, refer to the documentation at: ${envReferenceUrl}`);
 
   log.info(`To get started with DocsHub with 🐳 docker, please review the documentation at the following link: 
 ${startGuideUrl}`);
