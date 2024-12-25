@@ -43,6 +43,8 @@ publishDate: ${content.publishDate}
 `;
 
   writeFileSync(filePath, mdxContent.trim());
+
+  clack.log.success(`✏️ You can now start editing your new document at:\n ${filePath}`);
 }
 
 export async function generateWorkspace() {
