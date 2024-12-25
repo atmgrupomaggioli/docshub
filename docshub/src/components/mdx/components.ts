@@ -3,7 +3,6 @@ import Endpoint from "@/components/mdx/endpoint/endpoint.astro";
 import UiBlock from "@/components/uiBlock.astro";
 import DocumentCard from "@/components/documentCard.astro";
 import Alert from "@/components/ui/alert.astro";
-import LastEntries from "../last-entries.astro";
 
 export const MDXComponents = {
   Image,
@@ -11,5 +10,4 @@ export const MDXComponents = {
   UiBlock,
   DocumentCard,
   Alert,
-  LastEntries,
 };
