@@ -1,6 +1,6 @@
 import * as clack from '@clack/prompts';
-import { validateFileName, validateTextLength, validatePublishDate, validateOnlyOneWord, validateURL } from '../utils/validation';
-import { documentRoute, cancelMessage } from '../utils/resources';
+import { validateFileName, validateTextLength, validatePublishDate, validateOnlyOneWord, validateURL, validateTextLengthRequired } from '@/utils/validation';
+import { cancelMessage } from '@/utils/resources';
 import type { DocumentParams } from '@/types/types';
 
 export async function getDocumentDetails(): Promise<DocumentParams> {
@@ -16,16 +16,16 @@ export async function getDocumentDetails(): Promise<DocumentParams> {
       documentTitle: () => clack.text({
         message: '🤔 Document title:',
         placeholder: 'Sentry Integration in Angular',
-        validate: (value) => validateTextLength(value, 100, 'document title'),
+        validate: (value) => validateTextLengthRequired(value, 100, 'document title'),
       }),
       description: () => clack.text({
         message: '✍️ Description:',
-        validate: (value) => validateTextLength(value, 255, 'description'),
+        validate: (value) => validateTextLengthRequired(value, 255, 'description'),
       }),
       sidebarTitle: () => clack.text({
         message: '✨ Sidebar title:',
         placeholder: 'Angular',
-        validate: (value) => validateTextLength(value, 25, 'sidebar title'),
+        validate: (value) => validateTextLengthRequired(value, 25, 'sidebar title'),
       }),
       publishDate: () => clack.text({
         message: '📅 Publish date:',
@@ -41,7 +41,7 @@ export async function getDocumentDetails(): Promise<DocumentParams> {
       authorName: () => clack.text({ 
         message: 'What is your name? (Optional)',
         placeholder: 'Doc McWriter',
-        validate: (value) => validateTextLength(value, 255, 'author name'),
+        validate: (value) => validateTextLength(value, 255),
       }),
       authorUrl: () => clack.text({ 
         message: 'What is your website? (Optional)',
