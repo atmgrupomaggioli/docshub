@@ -14,37 +14,47 @@ author: { name: Roberto, url: "https://github.com/rperezll" }
   section, little padawan. 📚
 </Alert>
 
-Follow these quick steps to get Docs Hub up and running in your environment in just **3 minutes**.
+Follow these quick steps to get Docs Hub up and running in your environment in **just 3 minutes**, in a blank directory.
 
 ## Startup DocsHub
 
 Use the `docshub` CLI to initialize your working directory or workspace.
 
 ```bash
-npx docshub
+npx docshub init
 ```
 
-Then, select the `Initialize workspace` option within the CLI. With this, **DocsHub will be ready to start working**. To run it (in edit mode), use the following docker compose command:
+After initializing the workspace, run the following command to **start the DocsHub in interactive mode**.
 
 ```bash
-docker compose --profile interactive up
+npx docshub interactive
 ```
 
 The application should be available at [http://localhost:4321](http://localhost:4321).
 
 ## Create new document
 
-Use the CLI to create your first document by selecting the `Create new document` option. Fill in the required fields, and the new document will be created in your `/docs` directory.
+Use the CLI again to create a new documentation entry. Fill in all the fields, and the document will be saved in the `/docs` folder.
+
+```bash
+npx docshub create
+```
 
 Edit the document as you like, and you're all set! ✨
 
 ## Prepare for production
 
-Once you're done editing your document, you're ready to prepare DocsHub for production. Run the following command to build your application optimized for serving:
+Once you're done editing your document, you're ready to prepare DocsHub for production. Use the CLI again to build your site for production:
 
 ```bash
-docker compose --profile standard up -d
+npx docshub standard
 ```
+
+The application should be available at http://localhost:4321.
+
+<Alert type="warning">
+  Keep in mind that this command provides an optimized site, so the application may not be available immediately after the command finishes. Docker is performing the build in the background, so it will take a few moments.
+</Alert>
 
 **And that's it!** Now that you have the docker images downloaded locally, repeating the process will take you less than 3 minutes.
 
