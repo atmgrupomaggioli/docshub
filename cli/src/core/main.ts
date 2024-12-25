@@ -106,8 +106,17 @@ export async function main() {
       clack.outro(docsHubGradient(genericMessage))
       break;
 
+    case 'not-allowed':
+      notAllowedCommand();
+      break;
+
     default:
-      clack.cancel(`Invalid command: ${executePresset}. Use "npx docshub help" to see the available commands.`);
-      process.exit(0);
+      notAllowedCommand();
+      break;
   }
+}
+
+function notAllowedCommand() {
+  clack.cancel(`Invalid command: ${process.argv.slice(2).join(' ')}. Use "npx docshub help" to see the available commands.`);
+  process.exit(0);
 }

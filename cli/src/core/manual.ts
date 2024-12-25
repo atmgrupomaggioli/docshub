@@ -8,7 +8,7 @@ export function manualExecution() {
 
     // The user is trying to use more arguments than the CLI supports.
     if (args.length > 3) {
-        return 'help';
+        return 'not-allowed';
     }
 
     return '';
