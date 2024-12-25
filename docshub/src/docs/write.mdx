@@ -57,11 +57,13 @@ publishDate: "2024-09-04"
 
 ## Params
 
-- `title` (required): The title of the document.
-- `sidebarTitle` (required): The title of the sidebar.
-- `description` (required): The description of the document.
-- `category` (optional): The category of the document.
-- `publishDate` (required): The publish date of the document.
-- `author` (optional):
-  - `name`: The name of the author.
-  - `url`: The URL of the author.
+The following table lists **all the fields available** to use in the header of your `.mdx` files in DocsHub:
+
+| **Field**      | **Description**                            | **Example**                              |
+| -------------- | ------------------------------------------ | ---------------------------------------- |
+| `title`        | The main title of the document.            | `"Your Title Here"`                      |
+| `sidebarTitle` | The title displayed in the sidebar menu.   | `"Your Sidebar Title"`                   |
+| `description`  | A brief description of the document.       | `"A brief description of the document."` |
+| `publishDate`  | The publication date of the document.      | `"2024-09-04"`                           |
+| `author.name`  | The name of the document's author.         | `"Your Name"`                            |
+| `author.url`   | A link to the author's profile or website. | `"https://your-profile-link.com"` 
