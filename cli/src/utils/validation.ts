@@ -12,8 +12,12 @@ export function validateFileName(value: string, route: string): string | undefin
   }
 }
 
-export function validateTextLength(value: string, maxLength: number, fieldName: string): string | undefined {
+export function validateTextLengthRequired(value: string, maxLength: number, fieldName: string): string | undefined {
   if (value.length === 0) return `⚠️ The ${fieldName} is required.`;
+  if (value.length > maxLength) return `⚠️ The maximum number of characters is ${maxLength}.`;
+}
+
+export function validateTextLength(value: string, maxLength: number): string | undefined {
   if (value.length > maxLength) return `⚠️ The maximum number of characters is ${maxLength}.`;
 }
 
