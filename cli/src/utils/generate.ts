@@ -48,8 +48,7 @@ publishDate: "${content.publishDate}"
 }
 
 export async function generateWorkspace() {
-  const workspaceSpinner = clack.spinner();
-  workspaceSpinner.start('Creating workspace structure...');
+  clack.log.step('Creating workspace structure...');
 
   const docsPath = resolve('docs');
   const imagesPath = resolve('images');
@@ -57,18 +56,22 @@ export async function generateWorkspace() {
   const gettingStartedPath = resolve('docs/getting-started.mdx');
   const envPath = resolve('.env');
 
-  workspaceSpinner.message(createFolder(docsPath));
-  workspaceSpinner.message(createFolder(imagesPath));
+  await createFolder(docsPath);
+  clack.log.info('Created /docs folder successfully!');
+  await createFolder(imagesPath);
+  clack.log.info('Created /images folder successfully!');
 
   await fetchAndCreateFile(dockerComposeUrl, dockerComposePath, 'Failed to fetch docker-compose.yml');
+  clack.log.info('Created docker-compose.yml file successfully!');
   await fetchAndCreateFile(gettingStartedUrl, gettingStartedPath, 'Failed to fetch getting-started.mdx');
+  clack.log.info('Created docs/getting-started.mdx file successfully!');
   await fetchAndCreateFile(envUrl, envPath, 'Failed to fetch .env');
-  workspaceSpinner.message('Fetching file completed successfully');
+  clack.log.info('Created .env file successfully!');
 
-  workspaceSpinner.stop('Workspace structure created successfully!');
+  clack.log.success('Workspace structure created successfully!');
 
   clack.note(`Some tips that will come in handy:
-  · To learn how to modify the .env file and which fields are supported: 
+  · To learn how to modify the .env file:
     ${envReferenceUrl}
   · To get started DocsHub with 🐳 docker: 
     npx docshub interactive`);
