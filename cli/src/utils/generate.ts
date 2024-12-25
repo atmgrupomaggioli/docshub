@@ -4,7 +4,7 @@ import { resolve } from 'path';
 import { writeFileSync, mkdirSync, existsSync } from 'fs';
 import { DocumentParams } from '@/types/types';
 import { createFile, createFolder } from './fs.helper';
-import { dockerComposeUrl, envReferenceUrl, envUrl, gettingStartedUrl, startGuideUrl } from '@/globals';
+import { dockerComposeUrl, envReferenceUrl, envUrl, gettingStartedUrl } from '@/globals';
 
 export async function generateMDX(route: string, fileName: string, content: DocumentParams) {
   const filePath = resolve(route, `${fileName}.mdx`);
@@ -15,23 +15,23 @@ export async function generateMDX(route: string, fileName: string, content: Docu
   }
 
   let mdxContent = `---
-title: ${content.documentTitle}
-description: ${content.description}
-sidebarTitle: ${content.sidebarTitle}
-publishDate: ${content.publishDate}
+title: "${content.documentTitle}"
+description: "${content.description}"
+sidebarTitle: "${content.sidebarTitle}"
+publishDate: "${content.publishDate}"
 `;
 
   if (content.category) {
-    mdxContent += `category: ${content.category}\n`;
+    mdxContent += `category: "${content.category}"\n`;
   }
 
   if (content.authorName || content.authorUrl) {
     mdxContent += `author:\n`;
     if (content.authorName) {
-      mdxContent += `  name: ${content.authorName}\n`;
+      mdxContent += `  name: "${content.authorName}"\n`;
     }
     if (content.authorUrl) {
-      mdxContent += `  url: ${content.authorUrl}\n`;
+      mdxContent += `  url: "${content.authorUrl}"\n`;
     }
   }
 
@@ -67,11 +67,11 @@ export async function generateWorkspace() {
 
   workspaceSpinner.stop('Workspace structure created successfully!');
 
-  clack.note(`💡 Some tips that will come in handy:
-    To learn how to modify the .env file and which fields are supported, refer to the documentation at: 
-      - ${envReferenceUrl}
-    To get started DocsHub with 🐳 docker, please review the documentation at the following link: 
-      - ${startGuideUrl}`);
+  clack.note(`Some tips that will come in handy:
+  · To learn how to modify the .env file and which fields are supported: 
+    ${envReferenceUrl}
+  · To get started DocsHub with 🐳 docker: 
+    npx docshub interactive`);
 }
 
 const fetchAndCreateFile = async (url: string, path: string, errorMsg: string) => {

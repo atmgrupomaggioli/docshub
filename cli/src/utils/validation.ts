@@ -38,14 +38,32 @@ export function validateURL(value: string): string | undefined {
   }
 }
 
-export function validateWorkspace(): {success: boolean, missing: string[]} {
+export function validateWorkspace(): { 
+  present: string[], 
+  missing: string[], 
+  status: 'complete' | 'partial' | 'empty' 
+} {
+  const presentItems: string[] = [];
   const missingItems: string[] = [];
+  
   for (let index = 0; index < WorkspaceItems.length; index++) {
-    if (existsSync(join(process.cwd(), WorkspaceItems[index].path))) {
-      missingItems.push(`The ${WorkspaceItems[index].item} ${WorkspaceItems[index].path} already exists.`);
+    const itemPath = join(process.cwd(), WorkspaceItems[index].path);
+    if (existsSync(itemPath)) {
+      presentItems.push(` · The ${WorkspaceItems[index].item} ${WorkspaceItems[index].path} already exists.`);
+    } else {
+      missingItems.push(`· The ${WorkspaceItems[index].item} ${WorkspaceItems[index].path} doesn't exist.`);
     }
   }
   
-  return { success: missingItems.length !== 0, missing: missingItems };
+  let status: 'complete' | 'partial' | 'empty';
+  if (presentItems.length === WorkspaceItems.length) {
+    status = 'complete';
+  } else if (presentItems.length === 0) {
+    status = 'empty';
+  } else {
+    status = 'partial';
+  }
+
+  return { present: presentItems, missing: missingItems, status };
 }
 
