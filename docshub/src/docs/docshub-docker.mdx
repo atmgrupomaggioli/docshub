@@ -1,20 +1,24 @@
 ---
 title: "Docker"
-sidebarTitle: "Docker"
-description: "How to run Docshub using docker"
+sidebarTitle: "Using Docker"
+description: "How to run DocsHub using docker"
 category: "Getting Started"
 publishDate: "2024-09-04"
 author: { name: Roberto, url: "https://github.com/rperezll" }
 ---
 
 <Alert type="warning">
-  Make sure to *Initialize Workspace* beforehand. Consult the [**CLI
-  docs**](/docshub-cli) for detailed instructions on how to proceed.
+  Make sure to **initialize the workspace before attempting to run DocsHub with Docker**. For proper functionality, the entire workspace structure should be present in the directory where you intend to run it. You can easily generate this workspace using the [**DocsHub CLI**](/docshub-cli)!
 </Alert>
 
 ## Running docshub with docker
 
-There are 2 modes to run Docshub with docker: **Interactive Mode** and **Standard Mode** (Production). These instructions are based on the `docker-compose.yml` file, which can either be found in the repository or created by the CLI when initializing the workspace.
+There are 2 ways to run Docshub with docker: 
+
+1. [**Interactive Mode**](/docshub-docker#interactive-mode) (Editing Mode).
+2. [**Standard Mode**](/docshub-docker#standard-mode) (Production Mode).
+
+These instructions are based on the `docker-compose.yml` file, which can either be found in the [**repository**](https://github.com/atmgrupomaggioli/docshub/blob/next/resources/docker-compose.yml) or created by the [**DocsHub CLI**](/docshub-cli) when initializing the workspace.
 
 ## Interactive mode
 
@@ -44,7 +48,18 @@ docker compose --profile standard up -d
 
 The application should be available at [http://localhost:4321](http://localhost:4321).
 
-## Docker tags for app deployment
+## Environment
+
+The DocsHub `docker-compose.yml` supports an environment file named `.env` in the same directory, though it's not required for execution. This file helps customize your DocsHub setup.
+
+To see the supported parameters for the `.env` file, you can refer to the documentation created for it:
+
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+  <DocumentCard documentSlug="env-config" />
+  <DocumentCard documentSlug="env-reference" />
+</div>
+
+## Docker tags
 
 When uploading the app, we use specific docker tags to differentiate between versions and their intended usage.
 
