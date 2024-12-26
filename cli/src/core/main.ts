@@ -17,7 +17,7 @@ export async function main() {
 
   clack.note(`If you need to escape, just use Ctrl+C and you'll be free!`);
 
-  let executePresset = manualExecution();
+  let executePresset = await manualExecution();
   
   if (executePresset === '') {
     const executeType = await clack.select({
@@ -25,8 +25,8 @@ export async function main() {
       options: [
         { value: 'init', label: 'Initialize workspace' },
         { value: 'create', label: 'Create new document' },
-        { value: 'interactive', label: 'Run DocsHub in interactive mode' },
-        { value: 'standard', label: 'Run DocsHub in standard mode' },
+        { value: 'interactive', label: 'Run interactive mode' },
+        { value: 'standard', label: 'Run standard mode' },
         { value: 'help', label: 'Need help?' },
         { value: 'about', label: 'About' },
       ],
