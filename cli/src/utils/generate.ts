@@ -1,120 +1,80 @@
-import path from 'path';
-import { existsSync, mkdirSync } from 'fs';
-import { writeFile } from 'fs/promises';
+import * as clack from '@clack/prompts';
 
 import { resolve } from 'path';
+import { writeFileSync, mkdirSync, existsSync } from 'fs';
+import { DocumentParams } from '@/types/types';
+import { createFolder, fetchAndCreateFile } from './file';
+import { dockerComposeUrl, envReferenceUrl, envUrl, gettingStartedUrl } from '@/globals';
 
-// ⚙️ Properties:
-import { iDocsProperties } from '../../../docshub/src/content.config';
-import { createFile, createFolder } from './fileHelpers';
-import { cancel, log, outro } from '@clack/prompts';
-import { dockerComposeUrl, envReferenceUrl, envUrl, gettingStartedUrl, startGuideUrl } from '@/globals';
-import gradient from 'gradient-string';
-import { docshubColors } from './resources';
+export async function generateMDX(route: string, fileName: string, content: DocumentParams) {
+  const filePath = resolve(route, `${fileName}.mdx`);
+  const directoryPath = resolve(route);
 
-// ⚙️ Settings
-const docsHubGradient = gradient(Object.values(docshubColors));
-const generateEndMessage = '🚀 Workspace created successfully.';
-
-export const generateMDX = async (filePath: string, filename: string, properties: iDocsProperties) => {
-  const routesDocsFolder = path.resolve(filePath);
-  const markdownFile = path.resolve(routesDocsFolder, `${filename}.mdx`);
-
-  let content = `---
-title: "${properties.title}"
-sidebarTitle: "${properties.sidebarTitle}"
-description: "${properties.description}"
-publishDate: "${properties.publishDate}"`;
-
-if (properties.category) {
-  content += ` 
-category: "${properties.category}"`;
-}
-
-if (properties.author?.name || properties.author?.url) {
-  content += `
-author: {`;
-  if (properties.author.name) {
-    content += `
-  name: "${properties.author?.name}",`;
+  if (!existsSync(directoryPath)) {
+    mkdirSync(directoryPath, { recursive: true });
   }
-  if (properties.author.url) {
-    content += `
-  url: "${properties.author?.url}"`;
+
+  let mdxContent = `---
+title: "${content.documentTitle}"
+description: "${content.description}"
+sidebarTitle: "${content.sidebarTitle}"
+publishDate: "${content.publishDate}"
+`;
+
+  if (content.category) {
+    mdxContent += `category: "${content.category}"\n`;
   }
-  content += `
-}`;
-}
 
-content += `
---- 
-
-## Hello World 👋
-
-Here begins your new documentation...`;
-
-  try {
-    const dir = path.dirname(filePath);
-    if (!existsSync(dir)) {
-      mkdirSync(dir, { recursive: true });
+  if (content.authorName || content.authorUrl) {
+    mdxContent += `author:\n`;
+    if (content.authorName) {
+      mdxContent += `  name: "${content.authorName}"\n`;
     }
-
-    await writeFile(markdownFile, content);
-  } catch (error) {
-    log.error(`Error creating file, have you created the workspace first?: ${error}.`);
-    process.exit(1);
+    if (content.authorUrl) {
+      mdxContent += `  url: "${content.authorUrl}"\n`;
+    }
   }
-};
 
-export const generateWorkspace = async () => {
+  mdxContent += `---
+
+## Hello World
+
+🎉 Here’s your shiny new documentation entry. Go ahead, make it legendary!
+`;
+
+  writeFileSync(filePath, mdxContent.trim());
+
+  clack.log.success(`✏️ You can now start editing your new document at:\n ${filePath}`);
+}
+
+export async function generateWorkspace() {
+  clack.log.step('Creating workspace structure...');
+
   const docsPath = resolve('docs');
   const imagesPath = resolve('images');
   const dockerComposePath = resolve('docker-compose.yml');
   const gettingStartedPath = resolve('docs/getting-started.mdx');
   const envPath = resolve('.env');
 
-  createFolder(docsPath);
-  createFolder(imagesPath);
+  await createFolder(docsPath);
+  clack.log.info('Created /docs folder successfully!');
+  await createFolder(imagesPath);
+  clack.log.info('Created /images folder successfully!');
 
-  const responseCompose = await fetch(dockerComposeUrl);
+  await fetchAndCreateFile(dockerComposeUrl, dockerComposePath, 'Failed to fetch docker-compose.yml');
+  clack.log.info('Created docker-compose.yml file successfully!');
+  await fetchAndCreateFile(gettingStartedUrl, gettingStartedPath, 'Failed to fetch getting-started.mdx');
+  clack.log.info('Created docs/getting-started.mdx file successfully!');
+  await fetchAndCreateFile(envUrl, envPath, 'Failed to fetch .env');
+  clack.log.info('Created .env file successfully!');
 
-  if (!responseCompose.ok) {
-    log.error(`Failed to fetch docker-compose.yml: ${responseCompose.statusText}`);
-    cancel('Failed to fetch docker-compose.yml');
-    process.exit(1);
-  }
+  clack.log.success('Workspace structure created successfully!');
 
-  const dockerComposeContent = await responseCompose.text();
-
-  createFile(dockerComposePath, dockerComposeContent.trim());
-
-  const responseStarted = await fetch(gettingStartedUrl);
-
-  if (!responseStarted.ok) {
-    log.error(`Failed to fetch getting-started.mdx: ${responseStarted.statusText}`);
-    cancel('Failed to fetch getting-started.mdxl');
-    process.exit(1);
-  }
-
-  const startedContent = await responseStarted.text();
-
-  createFile(gettingStartedPath, startedContent.trim());
-
-  const responseEnv = await fetch(envUrl);
-
-  if (!responseEnv.ok) {
-    log.error(`Failed to fetch .env: ${responseEnv.statusText}`);
-    cancel('Failed to fetch .env');
-    process.exit(1);
-  }
-
-  const envContent = await responseEnv.text();
-
-  createFile(envPath, envContent.trim());
-
-  log.info(`To learn how to modify the .env file and which fields are supported, refer to the documentation at: ${envReferenceUrl}`);
-
-  log.info(`To get started with DocsHub with 🐳 docker, please review the documentation at the following link: 
-${startGuideUrl}`);
-  outro(docsHubGradient(generateEndMessage));
+  clack.note(`Some tips that will come in handy:
+  · To learn how to modify the .env file:
+    ${envReferenceUrl}
+  · To get started DocsHub with 🐳 docker: 
+    npx docshub interactive`);
 }
+
+
