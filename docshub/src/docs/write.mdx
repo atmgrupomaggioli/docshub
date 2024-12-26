@@ -50,7 +50,7 @@ publishDate: "2024-09-04"
 
 3. Write your content in the document using [**Markdown**](https://www.markdownguide.org/basic-syntax/) syntax. Also, you can use the following components:
 
-<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
   <DocumentCard documentSlug="ui" />
   <DocumentCard documentSlug="mermaid" />
 </div>
@@ -67,3 +67,16 @@ The following table lists **all the fields available** to use in the header of y
 | `publishDate`  | The publication date of the document.      | `"2024-09-04"`                           |
 | `author.name`  | The name of the document's author.         | `"Your Name"`                            |
 | `author.url`   | A link to the author's profile or website. | `"https://your-profile-link.com"` 
+
+```mdx
+---
+title: "Example Document"
+sidebarTitle: "Example Document"
+description: "Example Document description"
+publishDate: "2024-09-04"
+category: "Example"
+author: { name: "Example", url: "https://docshub.vercel.app/" }
+---
+
+## Example Heading
+```
