@@ -1,6 +1,7 @@
 // 📦 Resources to dowload URLs
 export const dockerComposeUrl = 'https://raw.githubusercontent.com/atmgrupomaggioli/docshub/refs/heads/next/resources/docker-compose.yml';
 export const gettingStartedUrl = 'https://raw.githubusercontent.com/atmgrupomaggioli/docshub/refs/heads/next/docshub/src/docs/getting-started.mdx';
+export const guessHintsUrl = 'https://raw.githubusercontent.com/rperezll/dev-guess/refs/heads/main/WordHints';
 export const envUrl = 'https://raw.githubusercontent.com/atmgrupomaggioli/docshub/refs/heads/next/resources/env-template';
 
 // 📚 Documentation URLs
@@ -35,6 +36,7 @@ export const WorkspaceItems = [
 export const RunInteractive = 'docker compose --profile interactive up -d';
 export const RunStandard = 'docker compose --profile standard up -d';
 export const UpsiteUrl = 'http://localhost:4321';
+export const DockerPort = 4321;
 
 // 😷 Starting App messages
 export const StartingMessages = [
