@@ -1,4 +1,4 @@
-// Deployment integrations:
+// 🏗️ Deployment integrations:
 import node from "@astrojs/node";
 import vercel from "@astrojs/vercel";
 
@@ -44,7 +44,7 @@ export const dockerInteractiveDeploy = {
 };
 
 export function getDeploymentConfig() {
-  const deployEnv = import.meta.env.DEPLOY_ENV || "vercel";
+  const deployEnv = process.env.DEPLOY_ENV || "vercel";
   console.log(`⚡ Execution mode: ${deployEnv}`);
   switch (deployEnv) {
     case "docker-interactive":

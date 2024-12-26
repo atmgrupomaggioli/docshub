@@ -1,6 +1,6 @@
 services:
   docshub:
-    container_name: docshub
+    container_name: docshub-standard
     image: atmgrupomaggioli/docshub:latest
     ports:
       - "4321:4321"
