@@ -1,5 +1,4 @@
 DOCUMENTATION_TITLE=Example Documentation
-INTERACTIVE_DOCUMENTATION_TITLE=Interactive Documentation
 VERSION=1.2.3
 REPOSITORY_TYPE=GitHub
 REPOSITORY_URL=https://github.com/atmgrupomaggioli/docshub

@@ -1,6 +1,6 @@
 {
   "name": "docshub",
-  "version": "1.0.3-next",
+  "version": "2.0.2-dev",
   "type": "module",
   "description": "Create the workspace or create a new document in DocsHub.",
   "repository": {
