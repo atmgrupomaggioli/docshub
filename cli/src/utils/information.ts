@@ -9,6 +9,8 @@ your documents and workspaces directly from the terminal:
 If you run "npx docshub"...
         [Initialize workspace] - Initialize the workspace structure.
         [Create new document] - Create a new document in the docs folder.
+        [Run interactive mode] - Run DocsHub in interactive mode (Editor mode).
+        [Run standard mode] - Run DocsHub in standard mode (Production mode).
         [Need help?] - Display help instructions.
         [About] - Display information about DocsHub CLI.
 If you run "npx docshub <command>"...
@@ -23,7 +25,7 @@ If you run "npx docshub <command>"...
 
 export async function displayAbout() {
         clack.note(`DocsHub CLI is the perfect complement 
-    to your documentation project using DocsHub.
+to your documentation project using DocsHub.
     
     Name: ${pkgJson.name}
     Version: ${pkgJson.version}
