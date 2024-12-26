@@ -3,7 +3,7 @@ import * as clack from '@clack/prompts';
 import { resolve } from 'path';
 import { writeFileSync, mkdirSync, existsSync } from 'fs';
 import { DocumentParams } from '@/types/types';
-import { createFile, createFolder } from './fs.helper';
+import { createFolder, fetchAndCreateFile } from './file';
 import { dockerComposeUrl, envReferenceUrl, envUrl, gettingStartedUrl } from '@/globals';
 
 export async function generateMDX(route: string, fileName: string, content: DocumentParams) {
@@ -77,16 +77,4 @@ export async function generateWorkspace() {
     npx docshub interactive`);
 }
 
-const fetchAndCreateFile = async (url: string, path: string, errorMsg: string) => {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`${errorMsg}: ${response.statusText}`);
-    }
-    const content = await response.text();
-    return createFile(path, content.trim());
-  } catch (error) {
-    clack.cancel(errorMsg);
-    process.exit(1);
-  }
-};
+
