@@ -6,20 +6,20 @@
 <p align="center"><strong>Markdown Documentation with Vitamins</strong></p>
 
 <div align="center">
-    <a href="https://docshub.vercel.app/docshub-source" target="_blank">
-        Get Started
+    <a href="https://docshub.vercel.app/docshub-cli" target="_blank">
+        Start DocsHub with CLI
     </a>
     <span>&nbsp;❖&nbsp;</span>
-    <a href="https://docshub.vercel.app/docshub-docker" target="_blank">
-        Get Started with Docker
+    <a href="https://docshub.vercel.app/docshub-source" target="_blank">
+        Source Code
     </a>
     <span>&nbsp;❖&nbsp;</span>
     <a href="https://docshub.vercel.app">
-        Demo
+        Live Demo
     </a>
     <span>&nbsp;❖&nbsp;</span>
     <a href="https://github.com/atmgrupomaggioli/docshub/issues/new/choose">
-        Create Issue
+        Contributing
     </a>
     <span>&nbsp;❖&nbsp;</span>
     <a href="#-license">
