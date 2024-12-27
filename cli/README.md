@@ -6,6 +6,14 @@ DocsHub CLI is a **command-line interface** (CLI) tool designed to streamline th
 
 - [Node.js +20 installed](https://nodejs.org/en/download/)
 
+## Run CLI
+
+Simply run the following command:
+
+```bash
+npx docshub
+```
+
 ## Getting started
 
 1. Install the dependencies:
