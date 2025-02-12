@@ -40,11 +40,13 @@
 
 </div>
 
-> [!TIP]
-> 🚀 Check out the new candidate pre-release on the next branch [here](https://github.com/atmgrupomaggioli/docshub/tree/next).
-
-> [!WARNING]
-> DocsHub is still in development. You cannot clone the repository yet. Alternatively, you can try it with [Docker](https://github.com/atmgrupomaggioli/docshub/tree/main/docker).
+<a href="https://docshub.vercel.app/">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./docshub/public/images/dark_screenshot.png">
+  <source media="(prefers-color-scheme: light)" srcset="./docshub/public/images/light_screenshot.png">
+  <img alt="DocsHub" src="./docshub/public/images/light_screenshot.png">
+</picture>
+</a>
 
 ## 🧑‍🚀 Introduction
 
