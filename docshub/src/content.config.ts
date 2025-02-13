@@ -30,6 +30,7 @@ const docsProperties = z.object({
       url: z.string().url().optional(),
     })
     .optional(),
+  order: z.number().optional(),
 });
 
 const docs = defineCollection({
