@@ -27,8 +27,10 @@ import {
 } from "@/components/ui/command";
 
 import SearchDocs from "@/components/searchDocs";
-import { convertCategory } from "@/utils/convertCategory";
 import { SidebarFolder, SidebarItemActive } from "../sidebar-item";
+
+import { convertCategory } from "@/utils/convertCategory";
+import { allDocs } from "@/utils/docs";
 
 interface SidebarContentProps {
   docs: CollectionEntry<"docs">[];
@@ -41,29 +43,34 @@ interface SidebarContentProps {
 const ignoreDocuments = ["getting-started"];
 
 const SidebarContent = (props: SidebarContentProps) => {
-  const allDocs = [
-    ...props.docs
-      .filter((doc) => !ignoreDocuments.includes(doc.id))
-      .map((doc) => ({
-        ...doc,
-        slug: doc.id.startsWith("/") ? doc.id : `/${doc.id}`,
-      })),
-  ];
+  const getDocs = allDocs({
+    ignoreDocuments,
+    docs: props.docs,
+  });
 
   const categories = Array.from(
-    new Set(allDocs.map((doc) => doc.data.category)),
+    new Set(getDocs.map((doc) => doc.data.category)),
   );
 
+  // Group docs by category:
   const docsByCategory = [
     {
       category: null,
-      docs: allDocs.filter((doc) => !doc.data.category),
+      docs: getDocs
+        .filter((doc) => !doc.data.category)
+        .sort(
+          (a, b) => (a.data.order ?? Infinity) - (b.data.order ?? Infinity),
+        ),
     },
     ...categories
       .filter((category) => category)
       .map((category) => ({
         category,
-        docs: allDocs.filter((doc) => doc.data.category === category),
+        docs: getDocs
+          .filter((doc) => doc.data.category === category)
+          .sort(
+            (a, b) => (a.data.order ?? Infinity) - (b.data.order ?? Infinity),
+          ),
       }))
       .filter((group) => group.docs.length > 0),
   ];
