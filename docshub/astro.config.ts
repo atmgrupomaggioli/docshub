@@ -2,22 +2,24 @@ import { defineConfig } from "astro/config";
 
 // Docshub Configuration:
 import docshubConfig from "./docshub.config";
+import { getDeploymentConfig } from "./deployment.config";
 
 // UI integrations:
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 
-// MDX Plugins:
+// External MDX Plugins:
 import mdx from "@astrojs/mdx";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import remarkGfm from "remark-gfm";
 
+// Custom MDX Plugins:
 import { mermaid } from "./src/components/mdx/plugins/mermaid";
 import { targetBlank } from "./src/components/mdx/plugins/targetBlank";
 import { remarkReadingTime } from "./src/components/mdx/plugins/remarkReadingTime.mjs";
+import { remarkModifiedTime } from "./src/components/mdx/plugins/remarkModifiedTime.mjs";
 import { HEADING_LINK_ANCHOR } from "./src/components/ui/prose-headings";
-import { getDeploymentConfig } from "./deployment.config";
 
 // https://astro.build/config
 export default defineConfig({
@@ -56,7 +58,12 @@ export default defineConfig({
           },
         ],
       ],
-      remarkPlugins: [remarkGfm, remarkReadingTime, mermaid],
+      remarkPlugins: [
+        remarkModifiedTime,
+        remarkGfm,
+        remarkReadingTime,
+        mermaid,
+      ],
     }),
   ],
 });
