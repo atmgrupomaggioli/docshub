@@ -1,8 +1,9 @@
 ---
+import type { iDocsProperties } from "@/content.config";
+
 import { cx } from "@/utils/cx";
 import {
   ArrowUpRightIcon,
-  CalendarIcon,
   ChevronRightIcon,
   ClockIcon,
   UserIcon,
@@ -10,18 +11,20 @@ import {
 
 import { convertCategory } from "@/utils/convertCategory";
 
-import Badge from "@/components/ui/badge.astro";
+import Badge from "@/components/ui/badge";
 import CopyToClipboard from "@/components/copyToClipboard";
-import type { iDocsProperties } from "@/content.config";
+import PublishedUpdated from "@/components/publishedUpdated";
+
 import defaultDocshubConfig from "docshub.config";
 
 interface Props {
   document: iDocsProperties;
   readingTime?: string;
+  lastModified?: string;
   url: string;
 }
 
-const { document, url, readingTime } = Astro.props;
+const { document, url, readingTime, lastModified } = Astro.props;
 ---
 
 <div class={cx("flex flex-col px-4 py-4 md:px-8 md:py-7 container max-w-6xl")}>
@@ -61,14 +64,11 @@ const { document, url, readingTime } = Astro.props;
     <div class="w-full gap-1 flex flex-wrap items-center">
       {
         document.publishDate && (
-          <Badge title={`Published on: ${document.publishDate}`}>
-            <CalendarIcon
-              className="flex-shrink-0"
-              size={14}
-              strokeWidth={1.5}
-            />
-            <span>{document.publishDate}</span>
-          </Badge>
+          <PublishedUpdated
+            client:load
+            publishedDate={document.publishDate}
+            lastModified={lastModified}
+          />
         )
       }
       {

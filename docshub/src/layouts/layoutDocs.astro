@@ -14,10 +14,11 @@ export interface Props {
   document: iDocsProperties;
   docUrl: string;
   readingTime?: string;
+  lastModified?: string;
   headings?: MarkdownHeading[];
 }
 
-const { document, docUrl, headings, readingTime } = Astro.props;
+const { document, docUrl, headings, readingTime, lastModified } = Astro.props;
 ---
 
 <ClientRouter />
@@ -32,7 +33,12 @@ const { document, docUrl, headings, readingTime } = Astro.props;
       )
     }
   </section>
-  <PageContent document={document} url={docUrl} readingTime={readingTime}>
+  <PageContent
+    document={document}
+    url={docUrl}
+    readingTime={readingTime}
+    lastModified={lastModified}
+  >
     <slot />
   </PageContent>
   <section>
