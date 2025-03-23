@@ -142,7 +142,7 @@ const CommandShortcut = ({
 CommandShortcut.displayName = "CommandShortcut";
 
 const CommandItemDescription = cx(
-  "max-w-[350px] truncate text-gray-500 md:max-w-[420px]",
+  "max-w-[300px] sm:max-w-[330px] truncate text-gray-500 md:max-w-[420px]",
 );
 
 export {
