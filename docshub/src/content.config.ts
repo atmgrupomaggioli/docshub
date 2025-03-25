@@ -30,7 +30,12 @@ const docsProperties = z.object({
       url: z.string().url().optional(),
     })
     .optional(),
-  order: z.number().optional(),
+  order: z
+    .number()
+    .positive({
+      message: "⚠️ docshub/mdx: Order must be a positive number.",
+    })
+    .optional(),
 });
 
 const docs = defineCollection({
