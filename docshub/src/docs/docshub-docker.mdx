@@ -8,12 +8,15 @@ author: { name: Roberto, url: "https://github.com/rperezll" }
 ---
 
 <Alert type="warning">
-  Make sure to **initialize the workspace before attempting to run DocsHub with Docker**. For proper functionality, the entire workspace structure should be present in the directory where you intend to run it. You can easily generate this workspace using the [**DocsHub CLI**](/docshub-cli)!
+  Make sure to **initialize the workspace before attempting to run DocsHub with
+  Docker**. For proper functionality, the entire workspace structure should be
+  present in the directory where you intend to run it. You can easily generate
+  this workspace using the [**DocsHub CLI**](/docshub-cli)!
 </Alert>
 
 ## Running docshub with docker
 
-There are 2 ways to run Docshub with docker: 
+There are 2 ways to run Docshub with docker:
 
 1. [**Interactive Mode**](/docshub-docker#interactive-mode) (Editing Mode).
 2. [**Standard Mode**](/docshub-docker#standard-mode) (Production Mode).
@@ -28,9 +31,7 @@ Interactive Mode provides Docshub in **development mode**, allowing you to edit 
 docker compose --profile interactive up -d
 ```
 
-<Alert type="info">
-  By default, use the **interactive** docker tag.
-</Alert>
+<Alert type="info">By default, use the **interactive** docker tag.</Alert>
 
 The application should be available at [http://localhost:4321](http://localhost:4321).
 
@@ -42,9 +43,7 @@ Standard Mode is the **build mode**, used to create your site with the finalized
 docker compose --profile standard up -d
 ```
 
-<Alert type="info">
-  By default, use the **latest** docker tag.
-</Alert>
+<Alert type="info">By default, use the **latest** docker tag.</Alert>
 
 The application should be available at [http://localhost:4321](http://localhost:4321).
 
@@ -74,4 +73,3 @@ When uploading the app, we use specific docker tags to differentiate between ver
 5. `-next`: This tag is used for the **release candidate version of the app**. It represents a version that is almost stable but still needs some final testing before it can become the official stable release.
 
 6. `-dev`: This tag is **used for developer preview** versions. These are experimental builds intended for developers to test new features or changes that may not be stable yet.
-
