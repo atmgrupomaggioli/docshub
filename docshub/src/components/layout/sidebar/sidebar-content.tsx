@@ -27,8 +27,10 @@ import {
 } from "@/components/ui/command";
 
 import SearchDocs from "@/components/searchDocs";
-import { convertCategory } from "@/utils/convertCategory";
 import { SidebarFolder, SidebarItemActive } from "../sidebar-item";
+
+import { convertCategory } from "@/utils/convertCategory";
+import { sortDocs } from "@/utils/docs";
 
 interface SidebarContentProps {
   docs: CollectionEntry<"docs">[];
@@ -41,32 +43,12 @@ interface SidebarContentProps {
 const ignoreDocuments = ["getting-started"];
 
 const SidebarContent = (props: SidebarContentProps) => {
-  const allDocs = [
-    ...props.docs
-      .filter((doc) => !ignoreDocuments.includes(doc.id))
-      .map((doc) => ({
-        ...doc,
-        slug: doc.id.startsWith("/") ? doc.id : `/${doc.id}`,
-      })),
-  ];
-
-  const categories = Array.from(
-    new Set(allDocs.map((doc) => doc.data.category)),
-  );
-
-  const docsByCategory = [
-    {
-      category: null,
-      docs: allDocs.filter((doc) => !doc.data.category),
+  const categorizedDocs = sortDocs({
+    getDocs: props.docs,
+    options: {
+      ignoreDocs: ignoreDocuments,
     },
-    ...categories
-      .filter((category) => category)
-      .map((category) => ({
-        category,
-        docs: allDocs.filter((doc) => doc.data.category === category),
-      }))
-      .filter((group) => group.docs.length > 0),
-  ];
+  });
 
   const handleGoToDoc = (slug: string) => {
     window.location.href = `${slug}`;
@@ -94,7 +76,7 @@ const SidebarContent = (props: SidebarContentProps) => {
       <SearchDocs>
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
-          {docsByCategory.map((category) => {
+          {categorizedDocs.map((category) => {
             if (!category.category) {
               return category.docs.map((doc) => (
                 <CommandGroup key={doc.id}>
@@ -147,8 +129,8 @@ const SidebarContent = (props: SidebarContentProps) => {
             <span>Introduction</span>
           </div>
         </a>
-        {docsByCategory.length > 0 &&
-          docsByCategory.map((category) => {
+        {categorizedDocs.length > 0 &&
+          categorizedDocs.map((category) => {
             if (!category.category) {
               return category.docs.map((doc) => (
                 <a

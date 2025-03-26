@@ -2,6 +2,8 @@
 export const prerender = true;
 
 import { type CollectionEntry, getCollection, render } from "astro:content";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 
 import LayoutMain from "@/layouts/layoutMain.astro";
 import LayoutDocs from "@/layouts/layoutDocs.astro";
@@ -25,8 +27,12 @@ type Props = CollectionEntry<"docs">;
 
 const url = new URL(Astro.request.url).href;
 const { slug } = Astro.params;
-
 const { Content, headings, remarkPluginFrontmatter } = await render(post);
+
+dayjs.extend(utc);
+const lastModified = dayjs(remarkPluginFrontmatter.lastModified)
+  .utc()
+  .format("YYYY-MM-DD");
 ---
 
 <LayoutMain
@@ -38,6 +44,7 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post);
     document={post.data}
     headings={headings}
     readingTime={remarkPluginFrontmatter.minutesRead}
+    lastModified={lastModified}
     docUrl={url}
   >
     <Content components={MDXComponents} />

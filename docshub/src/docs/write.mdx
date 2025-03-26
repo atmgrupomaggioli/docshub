@@ -18,7 +18,8 @@ You can use the CLI to create a new Markdown file. To do this, run the following
 ## Creating a new document manually
 
 <Alert type="info">
-  Make sure to create a **getting-started.mdx** file beforehand. It is a necessary step for accessing the application for the first time.
+  Make sure to create a **getting-started.mdx** file beforehand. It is a
+  necessary step for accessing the application for the first time.
 </Alert>
 
 1. Create a new file in the `src/docs` (source code) or `/docs` volume (docker) directory with the `.mdx` extension.
@@ -59,14 +60,15 @@ publishDate: "2024-09-04"
 
 The following table lists **all the fields available** to use in the header of your `.mdx` files in DocsHub:
 
-| **Field**      | **Description**                            | **Example**                              |
-| -------------- | ------------------------------------------ | ---------------------------------------- |
-| `title`        | The main title of the document.            | `"Your Title Here"`                      |
-| `sidebarTitle` | The title displayed in the sidebar menu.   | `"Your Sidebar Title"`                   |
-| `description`  | A brief description of the document.       | `"A brief description of the document."` |
-| `publishDate`  | The publication date of the document.      | `"2024-09-04"`                           |
-| `author.name`  | The name of the document's author.         | `"Your Name"`                            |
-| `author.url`   | A link to the author's profile or website. | `"https://your-profile-link.com"` 
+| **Field**      | **Description**                            | **Type** | **Example**                              |
+| -------------- | ------------------------------------------ | -------- | ---------------------------------------- |
+| `title`        | The main title of the document.            | `string` | `"Your Title Here"`                      |
+| `sidebarTitle` | The title displayed in the sidebar menu.   | `string` | `"Your Sidebar Title"`                   |
+| `description`  | A brief description of the document.       | `string` | `"A brief description of the document."` |
+| `publishDate`  | The publication date of the document.      | `string` | `"2024-09-04"`                           |
+| `order`        | The order of the document in the sidebar.  | `number` | `1`                                      |
+| `author.name`  | The name of the document's author.         | `string` | `"Your Name"`                            |
+| `author.url`   | A link to the author's profile or website. | `string` | `"https://your-profile-link.com"`        |
 
 ```mdx
 ---
