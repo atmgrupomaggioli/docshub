@@ -30,7 +30,7 @@
     "clsx": "2.1.1",
     "cmdk": "1.1.1",
     "dayjs": "1.11.13",
-    "lucide-react": "0.483.0",
+    "lucide-react": "0.503.0",
     "mdast-util-to-string": "4.0.0",
     "mermaid": "11.6.0",
     "micromatch": "4.0.8",
