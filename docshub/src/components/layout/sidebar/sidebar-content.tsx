@@ -128,6 +128,7 @@ const SidebarContent = (props: SidebarContentProps) => {
           categorizedDocs.map((category) => {
             if (!category.category) {
               return category.docs.map((doc) => {
+                const DocIcon = findLucideIcon(doc.data.icon ?? "");
                 return (
                   <a
                     key={doc.id}
@@ -137,6 +138,7 @@ const SidebarContent = (props: SidebarContentProps) => {
                       props.pathname === `/${doc.id}` && SidebarItemActive,
                     )}
                   >
+                    <DocIcon strokeWidth={iconStroke} size={16} />
                     <span className="max-w-40 truncate">
                       {doc.data.sidebarTitle}
                     </span>
