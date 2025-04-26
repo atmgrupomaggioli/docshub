@@ -71,8 +71,6 @@ export const sortDocs = ({
     ]),
   ];
 
-  console.log(combinedArray);
-
   const categories = options?.categories ?? [
     ...new Set(
       combinedArray
