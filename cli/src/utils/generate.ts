@@ -35,6 +35,10 @@ publishDate: "${content.publishDate}"
     }
   }
 
+  mdxContent += `icon: "${content.icon}"
+order: ${parseInt(content.order)}
+`;
+
   mdxContent += `---
 
 ## Hello World

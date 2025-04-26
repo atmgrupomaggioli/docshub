@@ -7,4 +7,6 @@ export interface DocumentParams {
     category: string;
     authorName: string;
     authorUrl: string;
+    icon: string;
+    order: string;
 }  

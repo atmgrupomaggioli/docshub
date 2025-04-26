@@ -1,5 +1,5 @@
 import * as clack from '@clack/prompts';
-import { validateFileName, validateTextLength, validatePublishDate, validateOnlyOneWord, validateURL, validateTextLengthRequired } from '@/utils/validation';
+import { validateFileName, validateTextLength, validatePublishDate, validateOnlyOneWord, validateURL, validateTextLengthRequired, validateNumber, validateIcon } from '@/utils/validation';
 import { cancelMessage } from '@/utils/resources';
 import type { DocumentParams } from '@/types/types';
 
@@ -48,6 +48,16 @@ export async function getDocumentDetails(): Promise<DocumentParams> {
         placeholder: 'https://your-website.com',
         validate: validateURL
       }),
+      icon: () => clack.text({
+        message: 'Select an icon (optional)',
+        placeholder: 'Enter the Lucide icon component name (e.g., AlarmClock)',
+        validate: validateIcon
+      }),
+      order: () => clack.text({
+        message: 'Set an order number (optional)',
+        placeholder: 'Enter a number to define the display order',
+        validate: validateNumber
+      }),
     },
     {
       onCancel: () => {
@@ -58,13 +68,16 @@ export async function getDocumentDetails(): Promise<DocumentParams> {
   );
 
   clack.note(`🎉 These are all the parameters for your new document:
-  Document: ${documentParams.fileName ? 'docs/' + documentParams.fileName + '.mdx' : '-'}
-  Title: ${documentParams.documentTitle ?? '-'}
-  Description: ${documentParams.description ?? '-'}
-  Publish date: ${documentParams.publishDate ?? '-'}
-  Category: ${documentParams.category ?? '-'}
-  Author name: ${documentParams.authorName ?? '-'}
-  Author url: ${documentParams.authorUrl ?? '-'}`);
+    Document: ${documentParams.fileName ? 'docs/' + documentParams.fileName + '.mdx' : '-'}
+    Title: ${documentParams.documentTitle ?? '-'}
+    Description: ${documentParams.description ?? '-'}
+    Publish date: ${documentParams.publishDate ?? '-'}
+    Category: ${documentParams.category ?? '-'}
+    Author name: ${documentParams.authorName ?? '-'}
+    Author URL: ${documentParams.authorUrl ?? '-'}
+    Icon: ${documentParams.icon ?? '-'}
+    Order: ${documentParams.order ?? '-'}
+  `);
 
   const shouldContinue = await clack.confirm({
     message: 'Do you want to create the document?',
