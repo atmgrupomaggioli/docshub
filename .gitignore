@@ -23,3 +23,8 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 package-lock.json
+
+# CLI
+cli/docs
+cli/images
+cli/docker-compose.yml
