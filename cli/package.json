@@ -44,6 +44,7 @@
     "chalk": "5.4.1",
     "date-fns": "4.1.0",
     "gradient-string": "3.0.0",
+    "lucide-react": "0.503.0",
     "node-fetch": "^3.3.2"
   },
   "devDependencies": {
