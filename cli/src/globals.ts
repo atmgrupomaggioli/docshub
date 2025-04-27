@@ -10,27 +10,27 @@ export const envReferenceUrl = 'https://docshub.vercel.app/env-reference';
 
 // 💅 Workspace structure
 export const WorkspaceItems = [
-    {
-        item: 'folder',
-        path: 'docs'
-    },
-    {
-        item: 'folder',
-        path: 'images'
-    },
-    {
-        item: 'file',
-        path: 'docker-compose.yml'
-    },
-    {
-        item: 'file',
-        path: 'docs/getting-started.mdx'
-    },
-    {
-        item: 'file',
-        path: '.env'
-    }
-]
+  {
+    item: 'folder',
+    path: 'docs',
+  },
+  {
+    item: 'folder',
+    path: 'images',
+  },
+  {
+    item: 'file',
+    path: 'docker-compose.yml',
+  },
+  {
+    item: 'file',
+    path: 'docs/getting-started.mdx',
+  },
+  {
+    item: 'file',
+    path: '.env',
+  },
+];
 
 // 🕹️ Run Commands & up site
 export const RunInteractive = 'docker compose --profile interactive up -d';
@@ -40,8 +40,8 @@ export const DockerPort = 4321;
 
 // 😷 Starting App messages
 export const StartingMessages = [
-    'Starting the project...',
-    "Don't close the terminal, we\'re setting everything up...",
-    'Almost ready, just a moment...',
-    'The project is being set up...'
+  'Starting the project...',
+  "Don't close the terminal, we're setting everything up...",
+  'Almost ready, just a moment...',
+  'The project is being set up...',
 ];

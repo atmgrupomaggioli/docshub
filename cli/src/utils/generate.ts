@@ -80,5 +80,3 @@ export async function generateWorkspace() {
   · To get started DocsHub with 🐳 docker: 
     npx docshub interactive`);
 }
-
-
