@@ -25,6 +25,8 @@ interface Props {
 }
 
 const { document, url, readingTime, lastModified } = Astro.props;
+
+const fullUrl = defaultDocshubConfig.url + url;
 ---
 
 <div class={cx("flex flex-col px-4 py-4 md:px-8 md:py-7 container max-w-6xl")}>
@@ -113,7 +115,7 @@ const { document, url, readingTime, lastModified } = Astro.props;
       <CopyToClipboard
         client:only="react"
         btnText="Share"
-        contentToCopy={url}
+        contentToCopy={fullUrl}
       />
     </div>
   </div>

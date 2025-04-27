@@ -19,6 +19,7 @@ const defaultDocshubConfig: DocshubConfig = {
       "https://github.com/atmgrupomaggioli/docshub",
   },
   deployType: import.meta.env.DEPLOY_ENV || "vercel",
+  url: import.meta.env.URL || "http://localhost:4321",
 };
 
 export default defaultDocshubConfig;

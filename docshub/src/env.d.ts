@@ -38,6 +38,7 @@ interface DocshubConfig {
   license?: LicenseType;
   repository?: DocshubRepository;
   deployType?: DeployType;
+  url?: string;
 }
 
 interface DocshubRepository {
