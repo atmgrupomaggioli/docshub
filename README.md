@@ -64,6 +64,7 @@ DocsHub is a **self-hosted** application designed to make documentation effortle
 - **Search Documentation**: Quickly search your documentation for specific entries using Cmd+K.
 - **Mermaid Support**: Create beautiful diagrams and flowcharts using Mermaid.
 - **UI Components**: Includes a variety of UI components for better user experience.
+- **Lucide icons**: Easily add icons to your documentation entries for a better browsing experience.
 
 ## 📚 Documentation
 
