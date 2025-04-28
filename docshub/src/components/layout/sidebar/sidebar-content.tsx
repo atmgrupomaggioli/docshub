@@ -49,14 +49,12 @@ const SidebarContent = (props: SidebarContentProps) => {
   });
 
   const findLucideIcon = (componentName: string): LucideIcon => {
-    console.log("componentName", componentName);
-    
     const found =
       Object.entries(icons).find(
         ([key]) => key.toLowerCase() === componentName.toLowerCase(),
       )?.[1] ?? FileIcon;
     return found;
-  }
+  };
 
   const handleGoToDoc = (slug: string) => {
     window.location.href = `${slug}`;
@@ -188,27 +186,28 @@ const SidebarContent = (props: SidebarContentProps) => {
                   </AccordionTrigger>
                   <AccordionContent className="mb-2 flex w-full flex-col">
                     {category.docs.map((doc) => {
-                    const DocIcon = findLucideIcon(doc.data.icon ?? "");
-                    return (
-                      <a
-                        key={doc.id}
-                        href={doc.id}
-                        title={doc.data.sidebarTitle}
-                        className={cx(
-                          SidebarFolder,
-                          "border-l border-gray-300 dark:border-gray-800",
-                          "ml-[14px]",
-                          doc.id.replace(/^\/|\/$/g, "") ===
-                            props.pathname.replace(/^\/|\/$/g, "") &&
-                            SidebarItemActive,
-                        )}
-                      >
-                        <DocIcon strokeWidth={iconStroke} size={16} />
-                        <span className="max-w-[138px] truncate">
-                          {doc.data.sidebarTitle}
-                        </span>
-                      </a>
-                    )})}
+                      const DocIcon = findLucideIcon(doc.data.icon ?? "");
+                      return (
+                        <a
+                          key={doc.id}
+                          href={doc.id}
+                          title={doc.data.sidebarTitle}
+                          className={cx(
+                            SidebarFolder,
+                            "border-l border-gray-300 dark:border-gray-800",
+                            "ml-[14px]",
+                            doc.id.replace(/^\/|\/$/g, "") ===
+                              props.pathname.replace(/^\/|\/$/g, "") &&
+                              SidebarItemActive,
+                          )}
+                        >
+                          <DocIcon strokeWidth={iconStroke} size={16} />
+                          <span className="max-w-[138px] truncate">
+                            {doc.data.sidebarTitle}
+                          </span>
+                        </a>
+                      );
+                    })}
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
