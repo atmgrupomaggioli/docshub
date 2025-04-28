@@ -1,8 +1,8 @@
 import * as clack from '@clack/prompts';
-import pkgJson from "../../package.json";
+import pkgJson from '../../package.json';
 
 export async function displayHelp() {
-    clack.note(`DocsHub CLI is a simple and powerful 
+  clack.note(`DocsHub CLI is a simple and powerful 
 command-line tool designed to help you manage 
 your documents and workspaces directly from the terminal:
 
@@ -24,7 +24,7 @@ If you run "npx docshub <command>"...
 }
 
 export async function displayAbout() {
-        clack.note(`DocsHub CLI is the perfect complement 
+  clack.note(`DocsHub CLI is the perfect complement 
 to your documentation project using DocsHub.
     
     Name: ${pkgJson.name}

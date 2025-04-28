@@ -1,6 +1,6 @@
 {
   "name": "docshub",
-  "version": "2.0.2",
+  "version": "2.0.3-dev",
   "type": "module",
   "description": "Create the workspace or create a new document in DocsHub.",
   "repository": {
@@ -44,6 +44,7 @@
     "chalk": "5.4.1",
     "date-fns": "4.1.0",
     "gradient-string": "3.0.0",
+    "lucide-react": "0.503.0",
     "node-fetch": "^3.3.2"
   },
   "devDependencies": {

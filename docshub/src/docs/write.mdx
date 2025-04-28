@@ -4,6 +4,7 @@ sidebarTitle: "Create documentation"
 description: "How to create new documentation file"
 category: "Write Docs"
 publishDate: "2024-09-04"
+icon: "NotebookPen"
 author: { name: "Roberto", url: "https://github.com/rperezll" }
 ---
 
@@ -69,6 +70,7 @@ The following table lists **all the fields available** to use in the header of y
 | `order`        | The order of the document in the sidebar.  | `number` | `1`                                      |
 | `author.name`  | The name of the document's author.         | `string` | `"Your Name"`                            |
 | `author.url`   | A link to the author's profile or website. | `string` | `"https://your-profile-link.com"`        |
+| `icon`   | Name of a Lucide icon component to display alongside the entry (https://lucide.dev/icons). | `string` | `"Beer"`        |
 
 ```mdx
 ---
@@ -77,6 +79,8 @@ sidebarTitle: "Example Document"
 description: "Example Document description"
 publishDate: "2024-09-04"
 category: "Example"
+order: 1
+icon: "Beer"
 author: { name: "Example", url: "https://docshub.vercel.app/" }
 ---
 
