@@ -25,7 +25,8 @@ export async function getStaticPaths() {
 }
 type Props = CollectionEntry<"docs">;
 
-const url = new URL(Astro.request.url).href;
+const url = new URL(Astro.request.url).pathname;
+
 const { slug } = Astro.params;
 const { Content, headings, remarkPluginFrontmatter } = await render(post);
 

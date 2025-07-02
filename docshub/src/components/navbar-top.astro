@@ -14,7 +14,6 @@ import SidebarContent from "@/components/layout/sidebar/sidebar-content";
 
 import { buttonVariants } from "@/components/ui/button";
 
-import config from "docshub.config";
 import ThemeToggle from "./themeToggle";
 import DocshubBrand from "@/components/brand/docshubBrand.astro";
 import { GitFork, HistoryIcon } from "lucide-react";
@@ -46,16 +45,16 @@ const truncateStyles =
           class="mt-2 pb-2 border-b border-dashed border-gray-200 dark:border-gray-800 flex items-center space-x-2 text-sm font-mono text-gray-600 dark:text-gray-400 tracking-tight"
         >
           <HistoryIcon size={14} />
-          <span>v{defaultDocshubConfig.version}</span>
+          <span>v{defaultDocshubConfig().version}</span>
         </p>
         <DocshubBrand />
       </SidebarCollapse>
       {
-        defaultDocshubConfig.logoUrl && (
+        defaultDocshubConfig().logoUrl && (
           <Image
             width={24}
             height={24}
-            src={defaultDocshubConfig.logoUrl}
+            src={defaultDocshubConfig().logoUrl}
             alt="Docshub Logo"
           />
         )
@@ -70,7 +69,7 @@ const truncateStyles =
             truncateStyles,
           )}
         >
-          {config.documentationTitle}
+          {defaultDocshubConfig().documentationTitle}
         </p>
       </a>
     </section>
@@ -78,18 +77,18 @@ const truncateStyles =
       <div
         class="mr-3 hidden md:inline pr-4 border-r border-gray-300 dark:border-gray-800"
       >
-        <span class="text-sm font-mono tracking-tight">v{config.version}</span>
+        <span class="text-sm font-mono tracking-tight">v{defaultDocshubConfig().version}</span>
       </div>
       <div class="flex items-center gap-1">
         {
-          config.repository && (
+          defaultDocshubConfig().repository && (
             <a
               title={
-                config.repository.type
-                  ? `${config.repository.type} Repository`
+                defaultDocshubConfig().repository.type
+                  ? `${defaultDocshubConfig().repository.type} Repository`
                   : "Repository"
               }
-              href={config.repository.url}
+              href={defaultDocshubConfig().repository.url}
               target="_blank"
               rel="noopener noreferrer"
               class={buttonVariants({
@@ -97,16 +96,16 @@ const truncateStyles =
                 size: "icon",
               })}
             >
-              {config.repository.type === "BitBucket" && (
+              {defaultDocshubConfig().repository.type === "BitBucket" && (
                 <Bitbucket height={22} width={22} />
               )}
-              {config.repository.type === "GitHub" && (
+              {defaultDocshubConfig().repository.type === "GitHub" && (
                 <Github height={22} width={22} />
               )}
-              {config.repository.type === "GitLab" && (
+              {defaultDocshubConfig().repository.type === "GitLab" && (
                 <Gitlab height={22} width={22} />
               )}
-              {!config.repository.type && <GitFork height={20} width={20} />}
+              {!defaultDocshubConfig().repository.type && <GitFork height={20} width={20} />}
             </a>
           )
         }

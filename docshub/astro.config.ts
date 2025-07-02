@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 
 // Docshub Configuration:
-import docshubConfig from "./docshub.config";
+// import docshubConfig from "./docshub.config";
 import { getDeploymentConfig } from "./deployment.config";
 
 // UI integrations:
@@ -20,6 +20,7 @@ import { targetBlank } from "./src/components/mdx/plugins/targetBlank";
 import { remarkReadingTime } from "./src/components/mdx/plugins/remarkReadingTime.mjs";
 import { remarkModifiedTime } from "./src/components/mdx/plugins/remarkModifiedTime.mjs";
 import { HEADING_LINK_ANCHOR } from "./src/components/ui/prose-headings";
+import defaultDocshubConfig from "./docshub.config";
 
 // https://astro.build/config
 export default defineConfig({
@@ -47,7 +48,7 @@ export default defineConfig({
       },
       rehypePlugins: [
         rehypeSlug,
-        [targetBlank, { domain: docshubConfig.docsUrl }],
+        [targetBlank, { domain: defaultDocshubConfig().docsUrl }],
         [
           rehypeAutolinkHeadings,
           {

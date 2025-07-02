@@ -16,7 +16,7 @@ import { MDXComponents } from "@/components/mdx/components";
 
 const { Content, headings } = await render(document);
 
-const url = new URL(Astro.request.url).href;
+const url = new URL(Astro.request.url).pathname;
 ---
 
 <LayoutMain
