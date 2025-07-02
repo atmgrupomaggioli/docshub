@@ -1,10 +1,6 @@
 name: Docker Deploy to GHCR (interactive & standard)
 
 on:
-  push:
-    branches:
-      - main
-      - next
   workflow_dispatch:
 
 jobs:
