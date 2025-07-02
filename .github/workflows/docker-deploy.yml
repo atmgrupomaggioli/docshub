@@ -1,4 +1,4 @@
-name: Docker Deploy to GHCR (interactive & standard)
+name: Docker Deploy (interactive & latest)
 
 on:
   workflow_dispatch:
