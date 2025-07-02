@@ -18,26 +18,26 @@ npx docshub
 
 1. Install the dependencies:
 
-    ```bash
-    npm i
-    ```
+   ```bash
+   npm i
+   ```
 
 2. To run in a development environment:
 
-    ```bash
-    $ npm run dev
-    ```
+   ```bash
+   npm run dev
+   ```
 
 ## Building
 
 1. To build the CLI for production:
 
-    ```bash
-    npm run build
-    ```
+   ```bash
+   npm run build
+   ```
 
 2. To publish the CLI:
 
-    ```bash
-    npm publish
-    ```
+   ```bash
+   npm publish
+   ```

@@ -18,7 +18,7 @@ export async function main() {
   clack.note(`If you need to escape, just use Ctrl+C and you'll be free!`);
 
   let executePresset = await manualExecution();
-  
+
   if (executePresset === '') {
     const executeType = await clack.select({
       message: 'What do you want to do?',
@@ -31,7 +31,7 @@ export async function main() {
         { value: 'about', label: 'About' },
       ],
     });
-  
+
     if (clack.isCancel(executeType)) {
       clack.cancel(cancelMessage);
       process.exit(0);
@@ -63,7 +63,11 @@ export async function main() {
       } else {
         clack.log.warning(workspace.status === 'empty' ? 'Hey! You need to initialize the workspace.' : 'Hey! Your workspace is incomplete.');
         clack.note('These are the missing elements in your workspace:\n' + workspace.missing.join('\n'));
-        clack.cancel(workspace.status === 'empty' ? 'Initialize workspace before creating a new document.' : 'Complete the workspace structure before creating a new document.');
+        clack.cancel(
+          workspace.status === 'empty'
+            ? 'Initialize workspace before creating a new document.'
+            : 'Complete the workspace structure before creating a new document.',
+        );
         process.exit(0);
       }
       break;
@@ -82,34 +86,34 @@ export async function main() {
         clack.cancel('Initialize the workspace before.');
         process.exit(0);
       }
-      clack.outro(docsHubGradient(genericMessage))
+      clack.outro(docsHubGradient(genericMessage));
       break;
 
-      case 'standard':
-        if (workspace.status === 'complete') {
-          try {
-            await executeCommand(RunStandard);
-          } catch (error) { 
-            clack.cancel(String(error));
-            process.exit(1);
-          }
-        } else {
-          clack.log.warning('Hey! Your need a complete workspace to run DocsHub.');
-          clack.note('These are the missing elements in your workspace:\n' + workspace.missing.join('\n'));
-          clack.cancel('Initialize the workspace before.');
-          process.exit(0);
+    case 'standard':
+      if (workspace.status === 'complete') {
+        try {
+          await executeCommand(RunStandard);
+        } catch (error) {
+          clack.cancel(String(error));
+          process.exit(1);
         }
-        clack.outro(docsHubGradient(genericMessage))
-        break;
+      } else {
+        clack.log.warning('Hey! Your need a complete workspace to run DocsHub.');
+        clack.note('These are the missing elements in your workspace:\n' + workspace.missing.join('\n'));
+        clack.cancel('Initialize the workspace before.');
+        process.exit(0);
+      }
+      clack.outro(docsHubGradient(genericMessage));
+      break;
 
     case 'help':
       displayHelp();
-      clack.outro(docsHubGradient(genericMessage))
+      clack.outro(docsHubGradient(genericMessage));
       break;
 
     case 'about':
       displayAbout();
-      clack.outro(docsHubGradient(genericMessage))
+      clack.outro(docsHubGradient(genericMessage));
       break;
 
     case 'not-allowed':

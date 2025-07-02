@@ -5,10 +5,8 @@ import {
   FileIcon,
   FolderIcon,
   HouseIcon,
-  PaletteIcon,
-  PenLineIcon,
-  SettingsIcon,
-  TelescopeIcon,
+  icons,
+  type LucideIcon,
 } from "lucide-react";
 
 import {
@@ -50,25 +48,20 @@ const SidebarContent = (props: SidebarContentProps) => {
     },
   });
 
+  const findLucideIcon = (componentName: string): LucideIcon => {
+    const found =
+      Object.entries(icons).find(
+        ([key]) => key.toLowerCase() === componentName.toLowerCase(),
+      )?.[1] ?? FileIcon;
+    return found;
+  };
+
   const handleGoToDoc = (slug: string) => {
     window.location.href = `${slug}`;
   };
 
   // Document Styles:
   const iconStroke = 1.5;
-
-  const specialCategories = [
-    { category: "components", icon: PaletteIcon },
-    { category: "getting started", icon: TelescopeIcon },
-    { category: "configuration", icon: SettingsIcon },
-    { category: "write docs", icon: PenLineIcon },
-    { category: "folders", icon: FolderIcon },
-  ];
-
-  const getIconForCategory = (category: string) => {
-    const config = specialCategories.find((item) => item.category === category);
-    return config ? config.icon : FolderIcon;
-  };
 
   return (
     <div className={cx("flex flex-col space-y-4", props.className)}>
@@ -132,23 +125,25 @@ const SidebarContent = (props: SidebarContentProps) => {
         {categorizedDocs.length > 0 &&
           categorizedDocs.map((category) => {
             if (!category.category) {
-              return category.docs.map((doc) => (
-                <a
-                  key={doc.id}
-                  href={doc.id}
-                  className={cx(
-                    SidebarFolder,
-                    props.pathname === `/${doc.id}` && SidebarItemActive,
-                  )}
-                >
-                  <FileIcon strokeWidth={iconStroke} size={16} />
-                  <span className="max-w-40 truncate">
-                    {doc.data.sidebarTitle}
-                  </span>
-                </a>
-              ));
+              return category.docs.map((doc) => {
+                const DocIcon = findLucideIcon(doc.data.icon ?? "");
+                return (
+                  <a
+                    key={doc.id}
+                    href={doc.id}
+                    className={cx(
+                      SidebarFolder,
+                      props.pathname === `/${doc.id}` && SidebarItemActive,
+                    )}
+                  >
+                    <DocIcon strokeWidth={iconStroke} size={16} />
+                    <span className="max-w-40 truncate">
+                      {doc.data.sidebarTitle}
+                    </span>
+                  </a>
+                );
+              });
             }
-            const IconComponent = getIconForCategory(category.category);
             return (
               <Accordion
                 key={category.category}
@@ -183,33 +178,36 @@ const SidebarContent = (props: SidebarContentProps) => {
                     )}
                   >
                     <div className="flex items-center space-x-3">
-                      <IconComponent strokeWidth={iconStroke} size={16} />
+                      <FolderIcon strokeWidth={iconStroke} size={16} />
                       <span className="max-w-28 truncate">
                         {convertCategory(category.category)}
                       </span>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="mb-2 flex w-full flex-col">
-                    {category.docs.map((doc) => (
-                      <a
-                        key={doc.id}
-                        href={doc.id}
-                        title={doc.data.sidebarTitle}
-                        className={cx(
-                          SidebarFolder,
-                          "border-l border-gray-300 dark:border-gray-800",
-                          "ml-[14px]",
-                          doc.id.replace(/^\/|\/$/g, "") ===
-                            props.pathname.replace(/^\/|\/$/g, "") &&
-                            SidebarItemActive,
-                        )}
-                      >
-                        <FileIcon strokeWidth={iconStroke} size={16} />
-                        <span className="max-w-[138px] truncate">
-                          {doc.data.sidebarTitle}
-                        </span>
-                      </a>
-                    ))}
+                    {category.docs.map((doc) => {
+                      const DocIcon = findLucideIcon(doc.data.icon ?? "");
+                      return (
+                        <a
+                          key={doc.id}
+                          href={doc.id}
+                          title={doc.data.sidebarTitle}
+                          className={cx(
+                            SidebarFolder,
+                            "border-l border-gray-300 dark:border-gray-800",
+                            "ml-[14px]",
+                            doc.id.replace(/^\/|\/$/g, "") ===
+                              props.pathname.replace(/^\/|\/$/g, "") &&
+                              SidebarItemActive,
+                          )}
+                        >
+                          <DocIcon strokeWidth={iconStroke} size={16} />
+                          <span className="max-w-[138px] truncate">
+                            {doc.data.sidebarTitle}
+                          </span>
+                        </a>
+                      );
+                    })}
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>

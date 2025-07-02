@@ -35,6 +35,10 @@ publishDate: "${content.publishDate}"
     }
   }
 
+  mdxContent += `icon: "${content.icon}"
+order: ${parseInt(content.order)}
+`;
+
   mdxContent += `---
 
 ## Hello World
@@ -76,5 +80,3 @@ export async function generateWorkspace() {
   · To get started DocsHub with 🐳 docker: 
     npx docshub interactive`);
 }
-
-

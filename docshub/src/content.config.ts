@@ -2,6 +2,10 @@ import { glob } from "astro/loaders";
 import { defineCollection } from "astro:content";
 import { z } from "zod";
 
+import { icons } from "lucide-react"
+
+const availableIcons = Object.keys(icons) as [string, ...string[]];
+
 const defaultSiteConfig = {
   title: "DocsHub",
   description: "Markdown Documentation with Vitamins",
@@ -33,9 +37,10 @@ const docsProperties = z.object({
   order: z
     .number()
     .positive({
-      message: "⚠️ docshub/mdx: Order must be a positive number.",
+      message: "⚠️ Order must be a positive number.",
     })
     .optional(),
+  icon: z.enum(availableIcons, {message: "Invalid icon name. Please use a correct Component Name from the available Lucide icons https://lucide.dev/icons"}).optional(),
 });
 
 const docs = defineCollection({

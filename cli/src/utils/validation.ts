@@ -1,11 +1,14 @@
 import { join, resolve } from 'path';
 import { existsSync } from 'fs';
 import { WorkspaceItems } from '@/globals';
+import { icons } from 'lucide-react';
+
+const availableIcons = Object.keys(icons) as [string, ...string[]];
 
 export function validateFileName(value: string, route: string): string | undefined {
   if (value.length === 0) return '⚠️ The file name is required.';
   if (/[^a-zA-Z0-9-]/.test(value)) return '⚠️ Only letters, numbers, and hyphens are allowed.';
-  
+
   const absoluteFilePath = resolve(route, `${value}.mdx`);
   if (existsSync(absoluteFilePath)) {
     return '⚠️ This file name already exists.';
@@ -32,20 +35,30 @@ export function validateOnlyOneWord(value: string): string | undefined {
 }
 
 export function validateURL(value: string): string | undefined {
-  const urlPattern = /^(https?:\/\/)?([a-zA-Z0-9\-]+\.)+[a-zA-Z]{2,}(\/[^\s]*)?$/;
+  const urlPattern = /^(https?:\/\/)([a-zA-Z0-9\-]+\.)+[a-zA-Z]{2,}(\/[^\s]*)?$/;
   if (value.length >= 1 && !urlPattern.test(value)) {
     return '⚠️ Please enter a valid URL.';
   }
 }
 
-export function validateWorkspace(): { 
-  present: string[], 
-  missing: string[], 
-  status: 'complete' | 'partial' | 'empty' 
+export const validateNumber = (value: string): string | undefined => {
+  if (value.length === 0) return undefined;
+  return isNaN(Number(value)) ? 'Please enter a valid number' : undefined;
+};
+
+export const validateIcon = (value: string): string | undefined => {
+  if (value.length === 0) return undefined;
+  return !availableIcons.includes(value) ? 'Please enter a valid icon name' : undefined;
+};
+
+export function validateWorkspace(): {
+  present: string[];
+  missing: string[];
+  status: 'complete' | 'partial' | 'empty';
 } {
   const presentItems: string[] = [];
   const missingItems: string[] = [];
-  
+
   for (let index = 0; index < WorkspaceItems.length; index++) {
     const itemPath = join(process.cwd(), WorkspaceItems[index].path);
     if (existsSync(itemPath)) {
@@ -54,7 +67,7 @@ export function validateWorkspace(): {
       missingItems.push(`· The ${WorkspaceItems[index].item} ${WorkspaceItems[index].path} doesn't exist.`);
     }
   }
-  
+
   let status: 'complete' | 'partial' | 'empty';
   if (presentItems.length === WorkspaceItems.length) {
     status = 'complete';
@@ -66,4 +79,3 @@ export function validateWorkspace(): {
 
   return { present: presentItems, missing: missingItems, status };
 }
-
