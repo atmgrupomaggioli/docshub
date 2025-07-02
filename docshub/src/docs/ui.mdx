@@ -1,0 +1,271 @@
+---
+title: "UI Components"
+sidebarTitle: "UI Components"
+description: "Below you will find examples of all the formats you can use in your Markdown documentation"
+category: "Components"
+publishDate: "2024-10-03"
+icon: "Boxes"
+author: { name: "Pablo", url: "https://github.com/pheralb" }
+---
+
+import ShowColors from "@/components/ui/showColors";
+import {
+  docshubAppColors,
+  docshubColors,
+} from "@/components/ui/docshub.colors";
+
+Below you will find examples of all the formats you can use in your Markdown documentation
+
+## Colors
+
+Generated using [tints.dev](https://www.tints.dev/brand/FF8200) and [Tailwind CSS Default Colors Theme](https://tailwindcss.com/docs/customizing-colors).
+
+<div className="flex flex-col space-y-4">
+
+<UiBlock component="palette" title="Docshub Brand Colors">
+
+<ShowColors client:only="react" colors={docshubColors} />
+
+</UiBlock>
+
+<UiBlock component="palette" title="Docshub App Colors">
+
+<ShowColors client:only="react" colors={docshubAppColors} />
+
+</UiBlock>
+
+</div>
+
+## Codeblocks
+
+Using [Shiki](https://shiki.matsu.io/) for syntax highlighting.
+
+<UiBlock component="component" title="Codeblocks">
+
+```bash
+echo "Hello World"
+```
+
+</UiBlock>
+````md
+```bash
+echo "Hello World"
+```
+````
+
+## Images
+
+<UiBlock component="component" title="Images">
+
+<Image src="/assets/docshub.jpg" width="64" height="64" alt="Docshub Logo" />
+
+</UiBlock>
+
+There are two ways to add images to your documentation:
+
+- Using Markdown syntax:
+
+```md
+![Docshub Logo](/images/docshub.jpg)
+```
+
+- Using the [`<Image>` Astro Component](https://docs.astro.build/en/guides/images/#images-in-mdx-files):
+
+```mdx
+---
+title: My Docshub Page
+---
+
+<Image src="/images/docshub.jpg" width="64" height="64" alt="Docshub Logo" />
+```
+
+## Document Card
+
+Add a card that redirects to a document in your application. It receives the `documentSlug` parameter, which refers to the **filename** of the document.
+
+<UiBlock component="component" title="Document Card">
+
+<DocumentCard documentSlug="getting-started" />
+
+</UiBlock>
+```html
+<!-- example: src/docs/getting-started.mdx -->
+<DocumentCard documentSlug="getting-started" />
+```
+
+## Endpoint
+
+<UiBlock component="component" title="Endpoint">
+
+<Endpoint
+  method="GET"
+  title="Example endpoint title"
+  description="Example endpoint description"
+  label="STABLE"
+>
+
+```bash
+https://example.com/end/point/resource
+```
+
+```tsx
+// Your markdown code here
+```
+
+</Endpoint>
+
+</UiBlock>
+
+```tsx
+<Endpoint
+  method="GET"
+  title="Example endpoint title"
+  description="Example endpoint description"
+  label="STABLE"
+>
+  // Code
+</Endpoint>
+```
+
+- `Method` properties:
+
+```ts
+export type Method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
+```
+
+- `Label` properties:
+
+```ts
+export type Label = "DEPRECATED" | "BETA" | "ALPHA" | "STABLE";
+```
+
+## UI Block
+
+<UiBlock component="component" title="UI Block">
+
+<UiBlock component="component" title="Component Block Title">
+  Your Astro or React component here
+</UiBlock>
+
+</UiBlock>
+```html
+ <UiBlock component="component" title="Component Block Title">
+  Your Astro or React component here
+ </UiBlock>
+ ```
+
+- `component` properties:
+
+```ts
+type Component = "palette" | "mermaid" | "component";
+```
+
+## Alert
+
+<UiBlock component="component" title="Alert">
+
+<Alert type="info">Example message</Alert>
+<Alert type="error">Example message</Alert>
+<Alert type="success">Example message</Alert>
+<Alert type="warning">Example message</Alert>
+
+</UiBlock>
+
+```tsx
+<Alert type="warning">Example message</Alert>
+```
+
+- `type` properties:
+
+```ts
+export type AlertType = "success" | "error" | "warning" | "info";
+```
+
+## Link
+
+<UiBlock component="component" title="Link">
+
+[Astro Framework](https://astro.build/).
+
+</UiBlock>
+```md
+[Astro Framework](https://astro.build/).
+```
+
+### Table
+
+<UiBlock component="component" title="Table">
+
+| Column 1      | Column 2      | Column 3      |
+| ------------- | ------------- | ------------- |
+| Row 1, Cell 1 | Row 1, Cell 2 | Row 1, Cell 3 |
+| Row 2, Cell 1 | Row 2, Cell 2 | Row 2, Cell 3 |
+| Row 3, Cell 1 | Row 3, Cell 2 | Row 3, Cell 3 |
+
+</UiBlock>
+```md
+| Column 1      | Column 2      | Column 3      |
+| ------------- | ------------- | ------------- |
+| Row 1, Cell 1 | Row 1, Cell 2 | Row 1, Cell 3 |
+| Row 2, Cell 1 | Row 2, Cell 2 | Row 2, Cell 3 |
+| Row 3, Cell 1 | Row 3, Cell 2 | Row 3, Cell 3 |
+```
+
+### Headings
+
+Use `#` to define different levels of headings (from h1 to h4).
+
+<UiBlock component="component" title="Headings">
+
+## Heading Level 1
+
+### Heading Level 2
+
+#### Heading Level 3
+
+</UiBlock>
+
+```md
+## Heading Level 1
+
+### Heading Level 2
+
+#### Heading Level 3
+```
+
+### Text
+
+<UiBlock component="component" title="Text">
+
+Normal
+**Bold**
+_Italic_
+~~Strikethrough~~
+
+</UiBlock>
+
+```md
+Normal
+**Bold**
+_Italic_
+~~Strikethrough~~
+```
+
+### Lists
+
+<UiBlock component="component" title="Lists">
+
+1.  First item
+2.  Second item
+    1. Sub-item 2.1
+    2. Sub-item 2.2
+3.  Third item
+
+</UiBlock>
+```md
+1.  First item
+2.  Second item
+    1. Sub-item 2.1
+    2. Sub-item 2.2
+3.  Third item
+```

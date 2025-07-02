@@ -1,44 +1,83 @@
 ---
 import type { MarkdownHeading } from "astro";
+import type { iDocsProperties } from "@/content.config";
+import { ClientRouter } from "astro:transitions";
+
+import Sidebar from "@/components/layout/sidebar/sidebar.astro";
+import SidebarToc from "@/components/layout/sidebar-toc/sidebar-toc.astro";
+import SidebarTocCollapse from "@/components/layout/sidebar-toc/sidebar-toc-collapse";
 
 import PageContent from "@/components/page-content.astro";
-import Sidebar from "@/components/sidebar/sidebar.astro";
-import CopyToClipboard from "@/components/copyToClipboard.astro";
+import CopyToClipboardMDX from "@/components/mdx/plugins/copyToClipboard.astro";
 
-import { ViewTransitions } from "astro:transitions";
-import { cx } from "@/utils/cx";
-
-import { ContainerPage } from "@/components/ui/container-page";
-
-// Docs layout props:
 export interface Props {
-  title: string;
-  description: string;
-  category: string;
+  document: iDocsProperties;
   docUrl: string;
-  publishDate?: string;
+  readingTime?: string;
+  lastModified?: string;
   headings?: MarkdownHeading[];
 }
 
-const { title, description, category, publishDate, docUrl, headings } =
-  Astro.props;
+const { document, docUrl, headings, readingTime, lastModified } = Astro.props;
 ---
 
-<ViewTransitions />
-<CopyToClipboard />
+<ClientRouter />
+<CopyToClipboardMDX />
 
-<article class={cx(ContainerPage, "h-full")}>
-  <Sidebar />
-  
+<Sidebar />
+<div class="xl:ml-64 grid grid-cols-1 xl:grid-cols-[1fr_240px]">
+  <section class="block sm:block md:block lg:hidden">
+    {
+      headings && headings.length > 0 && (
+        <SidebarTocCollapse headings={headings} client:load />
+      )
+    }
+  </section>
   <PageContent
-    title={title}
-    description={description}
-    category={category}
-    publishDate={publishDate}
+    document={document}
     url={docUrl}
-    headings={headings}
+    readingTime={readingTime}
+    lastModified={lastModified}
   >
     <slot />
   </PageContent>
+  <section>
+    {headings && headings.length > 0 && <SidebarToc headings={headings} />}
+  </section>
+</div>
 
-</article>
+<script>
+  /**
+   * @params {HTMLCollectionOf<HTMLElement>} graphs
+   */
+  document.addEventListener("astro:page-load", () => {
+    async function renderDiagrams(graphs) {
+      const { default: mermaid } = await import("mermaid");
+      const htmlClassList = document.documentElement.classList;
+      // const theme = htmlClassList.contains("dark") ? "neutral" : "default";
+
+      mermaid.initialize({
+        startOnLoad: false,
+        fontFamily: "var(--sans-font)",
+        // @ts-ignore This works, but TS expects an enum for some reason
+        theme: "neutral",
+      });
+
+      for (const graph of graphs) {
+        const content = graph.querySelector(".mermaid-src").innerText;
+        if (!content) continue;
+        let svg = document.createElement("svg");
+        const id = (svg.id = "mermaid-" + Math.round(Math.random() * 100000));
+        graph.appendChild(svg);
+        mermaid.render(id, content).then((result) => {
+          graph.innerHTML = result.svg;
+        });
+      }
+    }
+
+    const graphs = document.getElementsByClassName("mermaid");
+    if (document.getElementsByClassName("mermaid").length > 0) {
+      renderDiagrams(graphs);
+    }
+  });
+</script>

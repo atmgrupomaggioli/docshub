@@ -12,7 +12,4 @@
     "jsx": "react-jsx",
     "jsxImportSource": "react"
   },
-  "exclude": [
-    "cli"
-  ]
 }

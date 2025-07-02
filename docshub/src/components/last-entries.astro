@@ -1,0 +1,42 @@
+---
+import { getCollection } from "astro:content";
+import DocumentCard from "./documentCard.astro";
+
+const allDocs = await getCollection("docs");
+const latestPost = allDocs
+  .sort((a, b) => {
+    const dateA = new Date(b.data.publishDate).valueOf();
+    const dateB = new Date(a.data.publishDate).valueOf();
+    return dateA - dateB;
+  })
+  .slice(0, 6);
+---
+
+<section
+  class={`
+    grid grid-cols-1 gap-4 
+    ${latestPost.length === 1 ? "md:grid-cols-1" : ""} 
+    ${latestPost.length === 2 ? "md:grid-cols-2 lg:grid-cols-2" : ""} 
+    ${latestPost.length > 2 ? "md:grid-cols-2 lg:grid-cols-3" : ""} 
+  `}
+>
+  {
+    latestPost.length > 0 ? (
+      latestPost.map((post) => <DocumentCard documentSlug={post.id} />)
+    ) : (
+      <div class="col-span-1 md:col-span-2 lg:col-span-3 text-center py-8">
+        <p class="text-lg text-gray-500">
+          No entries yet. Refer to the documentation for
+          <a
+            href="https://docshub.vercel.app/write"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-blue-500 hover:underline"
+          >
+            creating your first entry.
+          </a>
+        </p>
+      </div>
+    )
+  }
+</section>

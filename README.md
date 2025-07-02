@@ -1,29 +1,29 @@
 <div align="center">
 <a href="https://docshub.vercel.app">
-<img src="docshub/public/logo/docshub_transparent.png" height="50">
+<img src="docshub/public/assets/docshub_transparent.png" height="50">
 </a>
 <p></p>
 <p align="center"><strong>Markdown Documentation with Vitamins</strong></p>
 
 <div align="center">
-    <a href="https://github.com/atmgrupomaggioli/docshub/tree/main/docshub#docshub---core" target="_blank">
-        Get Started
+    <a href="https://docshub.vercel.app/docshub-cli" target="_blank">
+        Start DocsHub with CLI
     </a>
     <span>&nbsp;❖&nbsp;</span>
-    <a href="https://github.com/atmgrupomaggioli/docshub/tree/main/docker" target="_blank">
-        Get Started with Docker
+    <a href="https://docshub.vercel.app/docshub-source" target="_blank">
+        Source Code
     </a>
     <span>&nbsp;❖&nbsp;</span>
     <a href="https://docshub.vercel.app">
-        Demo
+        Live Demo
     </a>
     <span>&nbsp;❖&nbsp;</span>
-    <a href="#-features">
-        Features
+    <a href="https://github.com/atmgrupomaggioli/docshub/issues/new/choose">
+        Contributing
     </a>
     <span>&nbsp;❖&nbsp;</span>
-    <a href="#-contributors">
-        Contributors
+    <a href="#-license">
+        License
     </a>
 </div>
 
@@ -33,43 +33,53 @@
 ![TailwindCSS Badge](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=fff&style=flat)
 ![Docker Badge](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff&style=flat)
 ![MDX Badge](https://img.shields.io/badge/MDX-1B1F24?logo=mdx&logoColor=fff&style=flat)
+![Mermaid Badge](https://img.shields.io/badge/Mermaid-FF3670?logo=mermaid&logoColor=fff&style=flat)
 ![GitHub Release](https://img.shields.io/github/v/release/atmgrupomaggioli/docshub)
 ![GitHub stars](https://img.shields.io/github/stars/atmgrupomaggioli/docshub)
 ![GitHub issues](https://img.shields.io/github/issues/atmgrupomaggioli/docshub)
 
 </div>
 
-> [!TIP]
-> 🚀 Check out the new candidate pre-release on the next branch [here](https://github.com/atmgrupomaggioli/docshub/tree/next).
-
-> [!WARNING]
-> DocsHub is still in development. You cannot clone the repository yet. Alternatively, you can try it with [Docker](https://github.com/atmgrupomaggioli/docshub/tree/main/docker).
+<a href="https://docshub.vercel.app/">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./docshub/public/images/dark_screenshot.png">
+  <source media="(prefers-color-scheme: light)" srcset="./docshub/public/images/light_screenshot.png">
+  <img alt="DocsHub" src="./docshub/public/images/light_screenshot.png">
+</picture>
+</a>
 
 ## 🧑‍🚀 Introduction
 
-DocsHub is a **self-hosted** application designed to make documentation effortless. Just focus on writing in Markdown, and let DocsHub handle the rest.
+> [!WARNING]
+> DocsHub is a **work in progress**. If you find any bug or have any suggestion, please [open an issue](https://github.com/atmgrupomaggioli/docshub/issues/new/choose).
 
-- **Live demo**: [docshub.vercel.app](https://docshub.vercel.app/)
+DocsHub is a **self-hosted** application designed to make documentation effortless. Just focus on writing in Markdown, and let DocsHub handle the rest.
 
 ## ✨ Features
 
-- **Syntax Highlighting with Copy Function**: Easily view and copy code snippets directly from the documentation.
-- **Friendly URLs**: Clean and user-friendly URLs for better navigation and sharing.
+- **CLI**: Create a new Docshub application or new documents using the command line.
+- **Syntax Highlighting**: Easily view and copy code snippets directly from the documentation.
+- **Automatically categorised menu**: Organized menu structure to easily navigate through different categories and sections.
 - **Table of Contents**: Automatically generated table of contents for quick and easy access to different sections.
-- **Categorized Menu**: Organized menu structure to easily navigate through different categories and sections.
-- **Search Documentation**: Quickly find and navigate to specific entries within the documentation.
-- **Endpoint Documentation**: Ability to document API endpoints for better clarity and usage.
-- **Alerts**: Option to document using an alert component for important messages.
+- **Search Documentation**: Quickly search your documentation for specific entries using Cmd+K.
+- **Mermaid Support**: Create beautiful diagrams and flowcharts using Mermaid.
+- **UI Components**: Includes a variety of UI components for better user experience.
+- **Lucide icons**: Easily add icons to your documentation entries for a better browsing experience.
 
-## 🤝 Contributors
+## 📚 Documentation
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
+You can check the Docshub documentation [here](https://docshub.vercel.app/). This documentation also serves as a live demo of the application.
 
-<!-- ALL-CONTRIBUTORS-LIST:END -->
+## 🤝 Contributing
+
+If you find any bugs or have a new idea, please [create a new issue](https://github.com/atmgrupomaggioli/docshub/issues/new/choose) or [contribute using source code](https://docshub.vercel.app/docshub-source#getting-started) and submit a pull request.
+
+Thank you for helping us improve! 😊
+
 <a href="https://github.com/atmgrupomaggioli/docshub/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=atmgrupomaggioli/docshub" />
 </a>
+
+## 📝 License
+
+- [GPL-3.0 license](https://github.com/atmgrupomaggioli/docshub/blob/main/LICENSE)

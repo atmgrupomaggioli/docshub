@@ -1,8 +1,9 @@
 .DS_Store
 dist
-src/content/docs/*.mdx
+src/docs/*.mdx
 public/images/**
 .env
 .dockerignore
 .git
 Dockerfile
+node_modules

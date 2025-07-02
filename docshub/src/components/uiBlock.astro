@@ -1,0 +1,39 @@
+---
+import { BoxIcon, PaletteIcon } from "lucide-react";
+import MermaidIcon from "@/components/icons/mermaid";
+
+type Component = "palette" | "mermaid" | "component";
+
+interface Props {
+  title: string;
+  component: Component;
+}
+---
+
+<section
+  class="flex flex-col border-2 border-neutral-200 dark:border-gray-800 rounded-md"
+>
+  <div
+    class="py-2 px-2 border-b-2 border-gray-200 dark:border-gray-800 flex items-center space-x-2"
+  >
+    {
+      Astro.props.component === "palette" && (
+        <PaletteIcon strokeWidth={1.5} size={16} />
+      )
+    }
+    {
+      Astro.props.component === "component" && (
+        <BoxIcon strokeWidth={1.5} size={16} />
+      )
+    }
+    {
+      Astro.props.component === "mermaid" && (
+        <MermaidIcon width={18} height={18} />
+      )
+    }
+    <p class="my-0 font-mono tracking-tight text-sm">{Astro.props.title}</p>
+  </div>
+  <div class="p-6">
+    <slot />
+  </div>
+</section>

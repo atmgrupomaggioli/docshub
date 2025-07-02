@@ -1,0 +1,47 @@
+---
+import { cx } from "@/utils/cx";
+import {
+  AlertTriangleIcon,
+  CheckIcon,
+  CircleXIcon,
+  InfoIcon,
+} from "lucide-react";
+
+type AlertType = "success" | "error" | "warning" | "info";
+
+const iconSize = 16;
+const iconClass = cx("flex-shrink-0");
+
+interface Props {
+  type: AlertType;
+}
+
+const { type } = Astro.props;
+---
+
+<div
+  role="alert"
+  class={cx(
+    "flex items-center gap-2.5",
+    "border-[1.5px] pl-3 pr-2 rounded-md my-2 py-3",
+    "text-sm not-prose [&_a]:underline [&_a]:underline-offset-2",
+    type === "success" &&
+      "text-emerald-900 dark:text-emerald-200 border-emerald-600/20 bg-emerald-100/50 dark:border-emerald-500/30 dark:bg-emerald-500/10 selection:bg-emerald-500/20 dark:selection:bg-emerald-500/30",
+    type === "error" &&
+      "text-red-900 dark:text-red-200 border-red-600/20 bg-red-100/50 dark:border-red-500/30 dark:bg-red-500/10 selection:bg-red-500/20 dark:selection:bg-red-500/30",
+    type === "warning" &&
+      "text-yellow-900 dark:text-yellow-200 border-yellow-600/20 bg-yellow-100/50 dark:border-yellow-500/30 dark:bg-yellow-500/10 selection:bg-yellow-500/20 dark:selection:bg-yellow-500/30",
+    type === "info" &&
+      "text-blue-900 dark:text-blue-200 border-blue-600/20 bg-blue-100/50 dark:border-blue-500/30 dark:bg-blue-500/10 selection:bg-blue-500/20 dark:selection:bg-blue-500/30",
+  )}
+>
+  {type === "success" && <CheckIcon className={iconClass} size={iconSize} />}
+  {type === "error" && <CircleXIcon className={iconClass} size={iconSize} />}
+  {
+    type === "warning" && (
+      <AlertTriangleIcon className={iconClass} size={iconSize} />
+    )
+  }
+  {type === "info" && <InfoIcon className={iconClass} size={iconSize} />}
+  <slot />
+</div>

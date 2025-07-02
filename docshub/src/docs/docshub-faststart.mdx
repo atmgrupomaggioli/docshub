@@ -1,0 +1,71 @@
+---
+title: "Launch DocsHub in 3 minutes"
+sidebarTitle: "Fast Start"
+description: "Follow these quick steps to get DocsHub up and running in your environment in just 3 minutes."
+category: "Getting Started"
+publishDate: "2024-12-18"
+icon: "Zap"
+order: 1
+author: { name: Roberto, url: "https://github.com/rperezll" }
+---
+
+<Alert type="info">
+  This method is only available with **Docker** and **Node+20**. Make sure you
+  have docker, docker compose and node installed. If you're not in a hurry, you
+  can read how everything works, starting with the [**Getting
+  Started**](/docshub-cli) section, little padawan. 📚
+</Alert>
+
+Follow these quick steps to get Docs Hub up and running in your environment in **just 3 minutes**, in a blank directory.
+
+## Startup DocsHub
+
+Use the `docshub` CLI to initialize your working directory or workspace.
+
+```bash
+npx docshub init
+```
+
+After initializing the workspace, run the following command to **start the DocsHub in interactive mode**.
+
+```bash
+npx docshub interactive
+```
+
+The application should be available at [http://localhost:4321](http://localhost:4321).
+
+## Create new document
+
+Use the CLI again to create a new documentation entry. Fill in all the fields, and the document will be saved in the `/docs` folder.
+
+```bash
+npx docshub create
+```
+
+Edit the document as you like, and you're all set! ✨
+
+## Prepare for production
+
+Once you're done editing your document, you're ready to prepare DocsHub for production. Use the CLI again to build your site for production:
+
+```bash
+npx docshub standard
+```
+
+<Alert type="info">
+  Remember that, the **interactive** mode starts by default on port **4321**.
+  This aligns with the established **standard mode** and **ensures that the port
+  used by Docshub is not in use before** executing the command.
+</Alert>
+
+The application should be available at http://localhost:4321.
+
+<Alert type="warning">
+  Keep in mind that this command provides an optimized site, so the application
+  may not be available immediately after the command finishes. Docker is
+  performing the build in the background, so it will take a few moments.
+</Alert>
+
+**And that's it!** Now that you have the docker images downloaded locally, repeating the process will take you less than 3 minutes.
+
+Happy coding! 🎉

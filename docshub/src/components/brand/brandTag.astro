@@ -1,0 +1,23 @@
+---
+import { cx } from "@/utils/cx";
+
+interface Props {
+  position: "left" | "right";
+}
+
+const { position } = Astro.props;
+---
+
+<div
+  class={cx(
+    "flex items-center space-x-2 text-[11px] rounded-t-md",
+    position === "left" && "left-0",
+    position === "right" && "right-0",
+    "bg-neutral-100/80 dark:bg-gray-900/80 backdrop-blur-sm",
+    "absolute -top-8 p-2 group-hover:text-docshub-700",
+    "dark:group-hover:text-docshub-600 text-gray-500dark:text-gray-400",
+    "border-b-0  border-l border-t border-r border-dashed border-gray-300 dark:border-gray-800",
+  )}
+>
+  <slot />
+</div>

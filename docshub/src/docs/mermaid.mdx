@@ -1,0 +1,102 @@
+---
+title: "Mermaid Diagrams"
+sidebarTitle: "Mermaid Diagrams"
+description: "How to create diagrams and visualizations using Mermaid.js"
+category: "Components"
+publishDate: "2024-10-03"
+icon: "Spline"
+author: {
+    name: 'Pablo',
+    url: 'https://github.com/pheralb'
+}
+---
+
+[Mermaid](https://mermaid.js.org/) lets you create visual diagrams using text and code. You can use **all diagrams** that [Mermaid supports](https://mermaid.js.org/intro/#diagram-types).
+
+## Flowcharts
+
+Flowcharts are composed of nodes (geometric shapes) and edges (arrows or lines).
+
+- [Mermaid - Flowcharts documentation](https://mermaid.js.org/syntax/flowchart.html)
+
+<UiBlock component="mermaid" title="Flowchart">
+
+```mermaid
+flowchart LR
+    A[Input] --> B[Neuron]
+    B --> C[Output]
+```
+
+</UiBlock>
+````md
+```mermaid
+flowchart LR
+    A[Input] --> B[Neuron]
+    B --> C[Output]
+```
+````
+
+## Gitgraph
+
+A Git Graph is a pictorial representation of git commits and git actions(commands) on various branches.
+
+- [Mermaid - Gitgraph Diagrams documentation](https://mermaid.js.org/syntax/gitgraph.html)
+
+<UiBlock component="mermaid" title="Gitgraph Diagrams">
+
+```mermaid
+gitGraph
+   commit
+   commit
+   branch develop
+   checkout develop
+   commit
+   commit
+   checkout main
+   merge develop
+   commit
+   commit
+
+```
+
+</UiBlock>
+````md
+```mermaid
+gitGraph
+   commit
+   commit
+   branch develop
+   checkout develop
+   commit
+   commit
+   checkout main
+   merge develop
+   commit
+   commit
+```
+````
+
+## Entity Relationship
+
+An entity–relationship model (or ER model) describes interrelated things of interest in a specific domain of knowledge.
+
+- [Mermaid - Entity Relationship documentation](https://mermaid.js.org/syntax/entityRelationshipDiagram.html)
+
+<UiBlock component="mermaid" title="Entity Relationship Diagrams">
+
+```mermaid
+erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE-ITEM : contains
+    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+```
+
+</UiBlock>
+````md
+```mermaid
+erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE-ITEM : contains
+    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+```
+````

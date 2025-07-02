@@ -1,0 +1,65 @@
+---
+import { cx } from "@/utils/cx";
+import { Image } from "astro:assets";
+import { ArrowUpRightIcon, PencilIcon } from "lucide-react";
+import pkgJson from "../../../package.json";
+import BrandTag from "./brandTag.astro";
+
+interface Props {
+  isEditing?: boolean;
+}
+
+const { isEditing } = Astro.props;
+---
+
+<div class="relative mx-0 md:mx-5 mb-4 mt-2 md:mt-4">
+  <a
+    href="https://github.com/atmgrupomaggioli/docshub"
+    target="_blank"
+    rel="noopener noreferrer"
+    class={cx(
+      "relative group",
+      "transition-colors",
+      "z-50",
+      "bg-gray-50 dark:bg-gray-900",
+      "border border-dashed border-gray-300 dark:border-gray-800",
+      "hover:border-docshub-500 hover:dark:border-docshub-700",
+      "flex flex-col shadow-sm space-y-2 p-2.5 rounded-md",
+    )}
+  >
+    <p
+      class="font-mono font-light tracking-tight text-gray-500 dark:text-gray-400 uppercase text-[11px]"
+    >
+      Powered by
+    </p>
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-2">
+        <Image
+          src="/assets/docshub_transparent.png"
+          alt="Docshub Logo"
+          width="23"
+          height="23"
+        />
+        <h2 class="font-semibold tracking-tight">DocsHub</h2>
+      </div>
+      <span
+        class="hidden group-hover:block tracking-tight font-mono text-[11px] animate-in fade-in-40 text-gray-500 dark:text-gray-400"
+      >
+        v{pkgJson.version}
+      </span>
+    </div>
+    <ArrowUpRightIcon
+      size={16}
+      strokeWidth={1.5}
+      className="absolute top-0 right-1.5 group-hover:text-docshub-700 dark:group-hover:text-docshub-600 text-gray-500"
+    />
+  </a>
+  {
+    isEditing && (
+      <BrandTag position="left">
+        <PencilIcon size={12} strokeWidth={1.5} />
+        <p>Editing</p>
+      </BrandTag>
+    )
+  }
+</div>

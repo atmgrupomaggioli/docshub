@@ -1,0 +1,88 @@
+---
+title: "Create documentation"
+sidebarTitle: "Create documentation"
+description: "How to create new documentation file"
+category: "Write Docs"
+publishDate: "2024-09-04"
+icon: "NotebookPen"
+author: { name: "Roberto", url: "https://github.com/rperezll" }
+---
+
+The extension for your documentation files is `.mdx`, which allows you to write them using **Markdown syntax**, enhanced with **custom extras by Docshub**. To begin creating a new document, you can choose from several options:
+
+## Using the CLI
+
+You can use the CLI to create a new Markdown file. To do this, run the following the CLI docs:
+
+<DocumentCard documentSlug="docshub-cli" />
+
+## Creating a new document manually
+
+<Alert type="info">
+  Make sure to create a **getting-started.mdx** file beforehand. It is a
+  necessary step for accessing the application for the first time.
+</Alert>
+
+1. Create a new file in the `src/docs` (source code) or `/docs` volume (docker) directory with the `.mdx` extension.
+
+```bash
+# Source code:
+src/docs/example.mdx
+
+# Docker:
+./docs/example.mdx
+```
+
+2. At the beginning of the document, make sure to include the following parameters:
+
+```mdx
+---
+title: "Example Document"
+sidebarTitle: "Example Document"
+description: "Example Document description"
+publishDate: "2024-09-04"
+---
+
+## Example Heading
+```
+
+<Alert type="info">
+  Review the full list of available parameters at the end of this page.
+</Alert>
+
+3. Write your content in the document using [**Markdown**](https://www.markdownguide.org/basic-syntax/) syntax. Also, you can use the following components:
+
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+  <DocumentCard documentSlug="ui" />
+  <DocumentCard documentSlug="mermaid" />
+</div>
+
+## Params
+
+The following table lists **all the fields available** to use in the header of your `.mdx` files in DocsHub:
+
+| **Field**      | **Description**                            | **Type** | **Example**                              |
+| -------------- | ------------------------------------------ | -------- | ---------------------------------------- |
+| `title`        | The main title of the document.            | `string` | `"Your Title Here"`                      |
+| `sidebarTitle` | The title displayed in the sidebar menu.   | `string` | `"Your Sidebar Title"`                   |
+| `description`  | A brief description of the document.       | `string` | `"A brief description of the document."` |
+| `publishDate`  | The publication date of the document.      | `string` | `"2024-09-04"`                           |
+| `order`        | The order of the document in the sidebar.  | `number` | `1`                                      |
+| `author.name`  | The name of the document's author.         | `string` | `"Your Name"`                            |
+| `author.url`   | A link to the author's profile or website. | `string` | `"https://your-profile-link.com"`        |
+| `icon`   | Name of a Lucide icon component to display alongside the entry (https://lucide.dev/icons). | `string` | `"Beer"`        |
+
+```mdx
+---
+title: "Example Document"
+sidebarTitle: "Example Document"
+description: "Example Document description"
+publishDate: "2024-09-04"
+category: "Example"
+order: 1
+icon: "Beer"
+author: { name: "Example", url: "https://docshub.vercel.app/" }
+---
+
+## Example Heading
+```

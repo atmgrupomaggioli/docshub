@@ -1,45 +1,53 @@
 ---
 export const prerender = true;
 
-import { type CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 
 import LayoutMain from "@/layouts/layoutMain.astro";
 import LayoutDocs from "@/layouts/layoutDocs.astro";
 
 // ✨ MDX Custom components
-import Endpoint from "@/components/mdx/endpoint/endpoint.astro";
-import Alert from "@/components/mdx/alert/alert.astro";
+import { MDXComponents } from "@/components/mdx/components";
 
 // 📄 Get Document:
-// ----------------
-
 const post = Astro.props;
 
 export async function getStaticPaths() {
   const docs = await getCollection("docs");
   return docs.map((entry) => ({
     params: {
-      slug: entry.slug,
+      slug: entry.id,
     },
     props: entry,
   }));
 }
 type Props = CollectionEntry<"docs">;
 
-const url = new URL(Astro.request.url).href;
+const url = new URL(Astro.request.url).pathname;
 
-const { Content, headings } = await post.render();
+const { slug } = Astro.params;
+const { Content, headings, remarkPluginFrontmatter } = await render(post);
+
+dayjs.extend(utc);
+const lastModified = dayjs(remarkPluginFrontmatter.lastModified)
+  .utc()
+  .format("YYYY-MM-DD");
 ---
 
-<LayoutMain title={post.data.title} description={post.data.description}>
+<LayoutMain
+  documentSlug={slug}
+  title={post.data.title}
+  description={post.data.description}
+>
   <LayoutDocs
-    title={post.data.title}
-    description={post.data.description}
-    category={post.data.category}
-    publishDate={post.data.publishDate}
+    document={post.data}
     headings={headings}
+    readingTime={remarkPluginFrontmatter.minutesRead}
+    lastModified={lastModified}
     docUrl={url}
   >
-    <Content components={{ Endpoint, Alert }} />
+    <Content components={MDXComponents} />
   </LayoutDocs>
 </LayoutMain>

@@ -1,0 +1,53 @@
+---
+title: "Environment File"
+sidebarTitle: "Environment File"
+description: "Prepare your documentation site using custom environments"
+category: "Configuration"
+publishDate: "2024-09-04"
+icon: "BookLock"
+author: { name: "Pablo", url: "https://github.com/pheralb" }
+---
+
+We can configure DocsHub to customize the parameters (centralized in `docshub.config.ts`) based on our environment specifications.
+
+## Source code
+
+If you run the application from the source code, you simply need to create an `.env` file within the project, stored in the [**source code**]() section. The use of environment values and default settings are reflected in the `docshub.config` file. The most efficient approach is to modify the `.env` file to apply your custom environment variables, but you can also override the parameters directly within the `docshub.config` file if needed. Below is an example model of a `.env` file:
+
+```ts
+// docshub/.env
+DOCUMENTATION_TITLE=Source Example Docs
+VERSION=my-version
+AUTHOR=Author's name
+LICENSE=Proprietary
+REPOSITORY_TYPE=GitHub
+REPOSITORY_URL=https://github.com/atmgrupomaggioli/docshub
+```
+
+To learn how to run the project from the **source code**, refer to the documentation:
+
+<DocumentCard documentSlug="docshub-source" />
+
+## Docker
+
+If you are using docker, you can follow the same approach as described in the **Source Code** section. You can use the `.env` file within your workspace directory or the environment section in the docker compose file. However, the recommended approach is to generate a `.env` file and work with it directly.
+
+```ts
+// .env
+DOCUMENTATION_TITLE=Docker Example Docs
+VERSION=my-version
+AUTHOR=Author's name
+LICENSE=Proprietary
+REPOSITORY_TYPE=GitHub
+REPOSITORY_URL=https://github.com/atmgrupomaggioli/docshub
+```
+
+To learn how to run the project with **docker**, refer to the documentation:
+
+<DocumentCard documentSlug="docshub-docker" />
+
+## Env Params
+
+You can learn and review **all the parameters you can include in your environment file** and that are compatible with DocsHub by accessing the **reference** directly.
+
+<DocumentCard documentSlug="env-reference" />

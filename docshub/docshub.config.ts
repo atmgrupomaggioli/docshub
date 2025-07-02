@@ -1,12 +1,40 @@
-const defaultDocshubConfig: DocshubConfig = {
-  documentationTitle: import.meta.env.DOCUMENTATION_TITLE || "Example documentation site",
-  version: import.meta.env.VERSION || "0.0.1",
-  author: import.meta.env.AUTHOR || "Author's name",
-  license: import.meta.env.LICENSE || "Proprietary",
-  repository: {
-    type: import.meta.env.REPOSITORY_TYPE || "github",
-    url: import.meta.env.REPOSITORY_URL || "https://github.com/atmgrupomaggioli/docshub"
+import { DocshubConfigSchema, type iDocshubConfig } from "./src/env.schema";
+
+let cachedEnvs: iDocshubConfig;
+
+const defaultDocshubConfig = (): iDocshubConfig  => {
+  if (!cachedEnvs) {
+    const parse = DocshubConfigSchema.safeParse({
+        documentationTitle:
+          import.meta.env.DOCUMENTATION_TITLE || "DocsHub Documentation",
+        version: import.meta.env.VERSION || "2.0.0",
+        docsUrl: import.meta.env.DOCS_URL || "https://docshub.vercel.app",
+        author: import.meta.env.AUTHOR || "DocsHub",
+        faviconUrl: {
+          png: import.meta.env.FAVICON_URL_PNG || "/assets/docshub_transparent.png",
+          svg: import.meta.env.FAVICON_URL_SVG,
+        },
+        license: import.meta.env.LICENSE || "Proprietary",
+        logoUrl: import.meta.env.LOGO_URL || "/assets/docshub_transparent.png",
+        repository: {
+          type: import.meta.env.REPOSITORY_TYPE || "GitHub",
+          url:
+            import.meta.env.REPOSITORY_URL ||
+            "https://github.com/atmgrupomaggioli/docshub",
+        },
+        deployType: import.meta.env.DEPLOY_ENV || "vercel",
+        url: import.meta.env.URL || "http://localhost:4321",
+      });
+
+      
+      if (!parse.success) {
+        throw new Error(`Incorrect envs: ${parse.error}`);
+      }
+      
+      cachedEnvs = parse.data;
   }
+  
+  return cachedEnvs;
 };
 
 export default defaultDocshubConfig;

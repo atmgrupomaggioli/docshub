@@ -1,95 +1,116 @@
 ---
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+import { cx } from "@/utils/cx";
+import defaultDocshubConfig from "docshub.config";
 
 import Bitbucket from "@/components/icons/bitbucket.astro";
 import Github from "@/components/icons/github.astro";
 import Gitlab from "@/components/icons/gitlab.astro";
 
-import SidebarCollapse from "@/components/sidebar/sidebar-collapse";
-import SidebarContent from "@/components/sidebar/sidebar-content";
+import SidebarCollapse from "@/components/layout/sidebar/sidebar-collapse";
+import SidebarContent from "@/components/layout/sidebar/sidebar-content";
+
 import { buttonVariants } from "@/components/ui/button";
 
-import config from "docshub.config";
-import MiniBadge from "./ui/mini-badge.astro";
-import { cx } from "@/utils/cx";
-
-import { ContainerPage } from "@/components/ui/container-page";
+import ThemeToggle from "./themeToggle";
+import DocshubBrand from "@/components/brand/docshubBrand.astro";
+import { GitFork, HistoryIcon } from "lucide-react";
 
 const allDocs = await getCollection("docs");
 const pathname = new URL(Astro.request.url).pathname;
 
-interface Props {
-  title: string;
-}
-
-const { title } = Astro.props;
-
-const truncateStyles="truncate max-w-[210px] sm:max-w-[300px] md:max-w-[500px] lg:max-w-[600px] xl:max-w-[800px] 2xl:max-w-full";
+const truncateStyles =
+  "truncate max-w-[210px] sm:max-w-[300px] md:max-w-[500px] lg:max-w-[600px] xl:max-w-[800px] 2xl:max-w-full";
 ---
 
 <nav
-  class="bg-gray-900/80 backdrop-blur-md sticky top-0 w-full border-b border-gray-800 z-50"
+  class={cx(
+    "sticky top-0 w-full z-50",
+    "bg-gray-50/80 dark:bg-gray-900/80 backdrop-blur-md",
+    "border-b border-gray-200 dark:border-gray-800",
+  )}
 >
-  <div class={cx("flex items-center justify-between h-16", ContainerPage)}>
-    <div class="flex items-center space-x-3 rtl:space-x-reverse">
+  <div class="flex items-center justify-between h-16 px-3">
+    <section class="flex items-center space-x-3 rtl:space-x-reverse">
       <SidebarCollapse client:only="react">
         <SidebarContent
           client:only="react"
           docs={allDocs}
           pathname={pathname}
-          className="p-0"
+          className="flex-1"
         />
-      </SidebarCollapse>
-      <img
-        class="h-6 w-6"
-        src="/logo/docshub_transparent.png"
-        alt="Docshub Logo"
-      />
-      <a href="/" class="flex flex-col md:flex-row md:gap-2 max-w-full">
-        <span
-          class="md:text-xl text-base font-semibold whitespace-nowrap text-white"
+        <p
+          class="mt-2 pb-2 border-b border-dashed border-gray-200 dark:border-gray-800 flex items-center space-x-2 text-sm font-mono text-gray-600 dark:text-gray-400 tracking-tight"
         >
-          {title}
-        </span>
+          <HistoryIcon size={14} />
+          <span>v{defaultDocshubConfig().version}</span>
+        </p>
+        <DocshubBrand />
+      </SidebarCollapse>
+      {
+        defaultDocshubConfig().logoUrl && (
+          <Image
+            width={24}
+            height={24}
+            src={defaultDocshubConfig().logoUrl}
+            alt="Docshub Logo"
+          />
+        )
+      }
+      <a
+        href="/"
+        class="flex flex-col md:flex-row md:gap-2 max-w-full hover:opacity-70 transition-opacity items-center"
+      >
         <p
           class={cx(
-            "block md:pl-2 md:border-l border-gray-800 self-center text-sm md:text-base text-gray-300 whitespace-nowrap overflow-hidden",
-            truncateStyles
+            "block text-lg font-semibold tracking-tight",
+            truncateStyles,
           )}
         >
-          {config.documentationTitle}
+          {defaultDocshubConfig().documentationTitle}
         </p>
-        <div class="hidden md:flex items-center">
-          <MiniBadge>
-            <span class="tracking-tight">v{config.version}</span>
-          </MiniBadge>
-        </div>
       </a>
-      
-    </div>
-    { config.repository &&
-      <div class="flex items-center px-2">
-        <a
-          title={'Repositorio de ' + config.repository.type}
-          href={config.repository.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          class={buttonVariants({
-            variant: "ghost",
-            size: "icon",
-          })}
-        >
-          { config.repository.type === 'bitbucket' &&
-            <Bitbucket height={30} width={30} />
-          }
-          { config.repository.type === 'github' &&
-            <Github height={25} width={25} />
-          }
-          { config.repository.type === 'gitlab' &&
-            <Gitlab height={25} width={25} />
-          }
-        </a>
+    </section>
+    <section class="flex items-center">
+      <div
+        class="mr-3 hidden md:inline pr-4 border-r border-gray-300 dark:border-gray-800"
+      >
+        <span class="text-sm font-mono tracking-tight">v{defaultDocshubConfig().version}</span>
       </div>
-    }
+      <div class="flex items-center gap-1">
+        {
+          defaultDocshubConfig().repository && (
+            <a
+              title={
+                defaultDocshubConfig().repository.type
+                  ? `${defaultDocshubConfig().repository.type} Repository`
+                  : "Repository"
+              }
+              href={defaultDocshubConfig().repository.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class={buttonVariants({
+                variant: "ghost",
+                size: "icon",
+              })}
+            >
+              {defaultDocshubConfig().repository.type === "BitBucket" && (
+                <Bitbucket height={22} width={22} />
+              )}
+              {defaultDocshubConfig().repository.type === "GitHub" && (
+                <Github height={22} width={22} />
+              )}
+              {defaultDocshubConfig().repository.type === "GitLab" && (
+                <Gitlab height={22} width={22} />
+              )}
+              {!defaultDocshubConfig().repository.type && <GitFork height={20} width={20} />}
+            </a>
+          )
+        }
+        <ThemeToggle client:load />
+      </div>
+    </section>
   </div>
 </nav>

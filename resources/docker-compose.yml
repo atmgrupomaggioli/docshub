@@ -1,0 +1,30 @@
+services:
+  docshub:
+    container_name: docshub-standard
+    image: atmgrupomaggioli/docshub:latest
+    ports:
+      - "4321:4321"
+    restart: unless-stopped
+    volumes:
+      - ./docs:/app/src/docs
+      - ./images:/app/public/images
+    env_file:
+      - path: ./.env
+        required: false
+    profiles:
+      - standard
+
+  docshub-interactive:
+    container_name: docshub-interactive
+    image: atmgrupomaggioli/docshub:interactive
+    ports:
+      - "4321:4321"
+    restart: unless-stopped
+    volumes:
+      - ./docs:/app/src/docs
+      - ./images:/app/public/images
+    env_file:
+      - path: ./.env
+        required: false
+    profiles:
+      - interactive
