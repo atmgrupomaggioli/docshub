@@ -80,9 +80,3 @@ body:
         - Vercel Adapter (@astrojs/vercel)
     validations:
       required: true
-  - type: markdown
-    id: additional-info
-    attributes:
-      value: |
-        **Additional Info**  
-        You can add any extra details, logs, screenshots, or context below.
