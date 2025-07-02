@@ -20,7 +20,7 @@ The DocsHub application supports a set of parameters in its .env file that helps
 The title of your documentation site.
 
 ```ts
-const defaultDocshubConfig: DocshubConfig = {
+const defaultDocshubConfig: iDocshubConfig = {
   documentationTitle: "Docshub Demo",
 };
 ```
@@ -34,7 +34,7 @@ import.meta.env.DOCUMENTATION_TITLE
 The version of your documentation site.
 
 ```ts
-const defaultDocshubConfig: DocshubConfig = {
+const defaultDocshubConfig: iDocshubConfig = {
   version: "0.0.1",
 };
 ```
@@ -48,7 +48,7 @@ import.meta.env.VERSION
 The URL of your documentation site. If you don't have a production URL, you can use `http://localhost:4321` for testing.
 
 ```ts
-const defaultDocshubConfig: DocshubConfig = {
+const defaultDocshubConfig: iDocshubConfig = {
   docsUrl: "https://docshub.vercel.app",
 };
 ```
@@ -62,7 +62,7 @@ import.meta.env.DOCS_URL
 The main favicon URL of your documentation site.
 
 ```ts
-const defaultDocshubConfig: DocshubConfig = {
+const defaultDocshubConfig: iDocshubConfig = {
   faviconUrl: {
     png:
       import.meta.env.FAVICON_URL ||
@@ -90,7 +90,7 @@ import.meta.env.FAVICON_URL_SVG
 The author of your documentation site.
 
 ```ts
-const defaultDocshubConfig: DocshubConfig = {
+const defaultDocshubConfig: iDocshubConfig = {
   author: "Author's name",
 };
 ```
@@ -104,7 +104,7 @@ import.meta.env.AUTHOR
 The license of your documentation site.
 
 ```ts
-const defaultDocshubConfig: DocshubConfig = {
+const defaultDocshubConfig: iDocshubConfig = {
   license: "Proprietary",
 };
 ```
@@ -134,7 +134,7 @@ type LicenseType =
 The logo of your documentation site.
 
 ```ts
-const defaultDocshubConfig: DocshubConfig = {
+const defaultDocshubConfig: iDocshubConfig = {
   logoUrl:
     "https://github.com/atmgrupomaggioli/docshub/blob/main/docshub/public/images/docshub_transparent.png?raw=true",
 };
@@ -149,7 +149,7 @@ import.meta.env.LOGO_URL
 The repository of your documentation site.
 
 ```ts
-const defaultDocshubConfig: DocshubConfig = {
+const defaultDocshubConfig: iDocshubConfig = {
   repository: {
     type: "GitHub",
     url: "https://github.com/atmgrupomaggioli/docshub",
