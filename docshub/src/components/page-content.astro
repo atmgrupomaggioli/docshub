@@ -26,7 +26,7 @@ interface Props {
 
 const { document, url, readingTime, lastModified } = Astro.props;
 
-const fullUrl = defaultDocshubConfig.url + url;
+const fullUrl = defaultDocshubConfig().url + url;
 ---
 
 <div class={cx("flex flex-col px-4 py-4 md:px-8 md:py-7 container max-w-6xl")}>
@@ -35,7 +35,7 @@ const fullUrl = defaultDocshubConfig.url + url;
   >
     <div class="flex items-center space-x-2">
       <p class="select-all max-w-24 md:max-w-48 truncate">
-        {defaultDocshubConfig.documentationTitle}
+        {defaultDocshubConfig().documentationTitle}
       </p>
       {document.category && <ChevronRightIcon size={14} />}
       {

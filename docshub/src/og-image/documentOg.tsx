@@ -35,8 +35,8 @@ const DocumentOGTemplate = (props: iDocumentOGTemplate) => {
         <img
           width={50}
           height={50}
-          alt={defaultDocshubConfig.documentationTitle}
-          src={`${props.imgSrc}${defaultDocshubConfig.logoUrl}`}
+          alt={defaultDocshubConfig().documentationTitle}
+          src={`${props.imgSrc}${defaultDocshubConfig().logoUrl}`}
         />
         <h2
           style={{
@@ -45,7 +45,7 @@ const DocumentOGTemplate = (props: iDocumentOGTemplate) => {
             fontFamily: "InterDisplay-SemiBold",
           }}
         >
-          {defaultDocshubConfig.documentationTitle}
+          {defaultDocshubConfig().documentationTitle}
         </h2>
       </div>
 

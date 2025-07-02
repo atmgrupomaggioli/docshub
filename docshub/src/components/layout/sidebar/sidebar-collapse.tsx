@@ -32,11 +32,11 @@ const SidebarCollapse = (props: SidebarCollapseProps) => {
           <div className="flex items-center gap-2">
             <img
               className="h-6 w-6"
-              src={defaultDocshubConfig.logoUrl}
-              alt={defaultDocshubConfig.documentationTitle}
+              src={defaultDocshubConfig().logoUrl}
+              alt={defaultDocshubConfig().documentationTitle}
             />
             <p className="max-w-48 truncate text-lg font-bold">
-              {defaultDocshubConfig.documentationTitle}
+              {defaultDocshubConfig().documentationTitle}
             </p>
           </div>
           <SheetClose className="hover:opacity-90"></SheetClose>

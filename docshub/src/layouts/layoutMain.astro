@@ -70,20 +70,20 @@ const { ...data } = Astro.props;
 
     <!-- Favicons -->
     {
-      defaultDocshubConfig.faviconUrl.png && (
+      defaultDocshubConfig().faviconUrl.png && (
         <link
           rel="icon"
           type="image/png"
-          href={defaultDocshubConfig.faviconUrl.png}
+          href={defaultDocshubConfig().faviconUrl.png}
         />
       )
     }
     {
-      defaultDocshubConfig.faviconUrl.svg && (
+      defaultDocshubConfig().faviconUrl.svg && (
         <link
           rel="icon"
           type="image/svg+xml"
-          href={defaultDocshubConfig.faviconUrl.svg}
+          href={defaultDocshubConfig().faviconUrl.svg}
         />
       )
     }
@@ -95,9 +95,9 @@ const { ...data } = Astro.props;
     <meta property="og:url" content={Astro.url} />
     <meta
       property="og:site_name"
-      content={`${data.title} - ${defaultDocshubConfig.documentationTitle}`}
+      content={`${data.title} - ${defaultDocshubConfig().documentationTitle}`}
     />
-    <meta name="author" content={defaultDocshubConfig.author || "DocsHub"} />
+    <meta name="author" content={defaultDocshubConfig().author || "DocsHub"} />
 
     <!-- Dynamic OG Image -->
     {
@@ -115,7 +115,7 @@ const { ...data } = Astro.props;
     }
 
     <!-- Website Title -->
-    <title>{data.title} - {defaultDocshubConfig.documentationTitle}</title>
+    <title>{data.title} - {defaultDocshubConfig().documentationTitle}</title>
   </head>
   <body
     class={cx(
