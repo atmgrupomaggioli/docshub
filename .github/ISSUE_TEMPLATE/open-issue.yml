@@ -3,6 +3,17 @@ description: Create a new issue for a bug or feature.
 title: "🔔 New Issue"
 labels: ["new", "request"]
 body:
+  - type: dropdown
+    id: project-type
+    attributes:
+      label: Project Type
+      description: Enter the project type.
+      options:
+        - DocsHub CLI
+        - DocsHub Docs (Astro)
+        - All
+    validations:
+      required: true
   - type: textarea
     id: issue-description
     attributes:
@@ -11,13 +22,12 @@ body:
       placeholder: Describe the issue.
     validations:
       required: true
-  - type: dropdown
+  - type: input
     id: docshub-version
     attributes:
       label: Docshub Version
       description: Enter the version of Docshub you are using.
-      options:
-        - 0.0.1
+      placeholder: "v2.0.0"
     validations:
       required: true
   - type: dropdown
@@ -34,13 +44,16 @@ body:
   - type: dropdown
     id: browser
     attributes:
-      label: Browser
+      label: Web Browser
       description: Enter the browser you are using.
       options:
         - Chrome
+        - Brave
+        - Opera
         - Firefox
         - Safari
         - Edge
+        - Other
     validations:
       required: true
   - type: dropdown
@@ -49,9 +62,11 @@ body:
       label: Node Version
       description: Enter the node version you are using.
       options:
-        - "18"
-        - "19"
+        - "22"
+        - "21"
         - "20"
+        - "19"
+        - "18"
     validations:
       required: true
   - type: dropdown
@@ -60,9 +75,14 @@ body:
       label: Deployed on
       description: Enter the platform you are using.
       options:
-        - Vercel
-        - Netlify
-        - GitHub Pages
-        - Other
+        - Docker (Docshub CLI Interactive Mode)
+        - Docker (Docshub CLI Standard Mode)
+        - Vercel Adapter (@astrojs/vercel)
     validations:
       required: true
+  - type: markdown
+    id: additional-info
+    attributes:
+      label: Additional info
+      description: Add extra information about your issue.
+      value: "Additional Info"
