@@ -1,7 +1,7 @@
 services:
   docshub:
     container_name: docshub-standard
-    image: atmgrupomaggioli/docshub:latest
+    image: ghcr.io/atmgrupomaggioli/docshub:latest
     ports:
       - "4321:4321"
     restart: unless-stopped
@@ -16,7 +16,7 @@ services:
 
   docshub-interactive:
     container_name: docshub-interactive
-    image: atmgrupomaggioli/docshub:interactive
+    image: ghcr.io/atmgrupomaggioli/docshub:interactive
     ports:
       - "4321:4321"
     restart: unless-stopped

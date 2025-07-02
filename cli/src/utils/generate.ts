@@ -35,9 +35,13 @@ publishDate: "${content.publishDate}"
     }
   }
 
-  mdxContent += `icon: "${content.icon}"
-order: ${parseInt(content.order)}
-`;
+  if (content.icon) {
+    mdxContent += `icon: "${content.icon}"\n`
+  }
+
+  if (content.order) {
+    mdxContent += `order: ${parseInt(content.order)}\n`
+  }
 
   mdxContent += `---
 
