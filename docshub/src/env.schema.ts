@@ -45,3 +45,5 @@ export const DocshubConfigSchema = z.object({
   deployType: DeployTypeEnum.optional().default("vercel"),
   url: z.string().url().optional(),
 });
+
+export type iDocshubConfig = z.infer<typeof DocshubConfigSchema>;
