@@ -83,6 +83,6 @@ body:
   - type: markdown
     id: additional-info
     attributes:
-      label: Additional info
-      description: Add extra information about your issue.
-      value: "Additional Info"
+      value: |
+        **Additional Info**  
+        You can add any extra details, logs, screenshots, or context below.
