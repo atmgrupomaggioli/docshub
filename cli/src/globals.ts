@@ -1,8 +1,8 @@
 // 📦 Resources to dowload URLs
-export const dockerComposeUrl = 'https://raw.githubusercontent.com/atmgrupomaggioli/docshub/refs/heads/next/resources/docker-compose.yml';
-export const gettingStartedUrl = 'https://raw.githubusercontent.com/atmgrupomaggioli/docshub/refs/heads/next/docshub/src/docs/getting-started.mdx';
+export const dockerComposeUrl = 'https://raw.githubusercontent.com/atmgrupomaggioli/docshub/refs/heads/main/resources/docker-compose.yml';
+export const gettingStartedUrl = 'https://raw.githubusercontent.com/atmgrupomaggioli/docshub/refs/heads/main/docshub/src/docs/getting-started.mdx';
 export const guessHintsUrl = 'https://raw.githubusercontent.com/rperezll/dev-guess/refs/heads/main/WordHints';
-export const envUrl = 'https://raw.githubusercontent.com/atmgrupomaggioli/docshub/refs/heads/next/resources/env-template';
+export const envUrl = 'https://raw.githubusercontent.com/atmgrupomaggioli/docshub/refs/heads/main/resources/env-template';
 
 // 📚 Documentation URLs
 export const startGuideUrl = 'https://docshub.vercel.app/docshub-docker';
